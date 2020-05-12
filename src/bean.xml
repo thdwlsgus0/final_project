@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   <!-- 이메일 관련 -->
+   <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+     <bean property name="host" value="smtp.gmail.com"/>
+     <bean property name="port" value="587"/>
+     <bean property name="username" value="사용할 이메일"/>
+     <bean property name="password" value="비밀번호"/>
+     <bean property name="javaMailProperties">
+     
+     </bean>
+   
+   </bean>
+</beans>
