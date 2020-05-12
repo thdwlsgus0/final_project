@@ -3,6 +3,7 @@ package auth;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+@Service
 public class MailServiceImpl implements MailService{
  
 	// logging ¼³Á¤
