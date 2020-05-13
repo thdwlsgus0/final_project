@@ -1,4 +1,4 @@
-package auth;
+package auth.service;
 
 public interface MailService {
  
