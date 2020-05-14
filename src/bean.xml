@@ -6,21 +6,15 @@
 	<!-- 이메일 관련 -->
 	<bean id="javaMailSender"
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<bean property name="host" value="smtp.gmail.com" />
-		<bean property name="port" value="587" />
-		<bean property name="username" value="사용할 이메일" />
-		<bean property name="password" value="비밀번호" />
-		<bean property name="javaMailProperties">
-			<bean:props>
-				<beans:prop key="mail.smtp.ssl.trust">smtp.gmail.com</beans:prop>
-				<beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
-				<beans:prop key="mail.smtp.auth">true</beans:prop>
-			</bean:props>
-		</bean>
-		<beans:bean id="mailService"
-			class="com.co.kr.common.mail.service.impl.MailServiceImpl">
-			<beans:property name="javaMailSender" ref="javaMailSender" />
-		</beans:bean>
-
+		<!-- smtp를 이용해서 생성자를 이용해서 초기화 -->
+		<property name="host" value="smtp.yourEmailDomain.co.kr" />
+		<property name="port" value="25" />
+		<property name="username" value="thdwlsgus0" />
+		<property name="password" value="12345" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+			</props>
+		</property>
 	</bean>
 </beans>
