@@ -21,6 +21,7 @@
 							<button type="submit" name="submit">이메일 인증받기(이메일 보내기)</button>
 						</div>
 					</form>
+					<a href="youtube.do">유튜브 크롤링</a>
 				</td>
 			</tr>
 		</div>

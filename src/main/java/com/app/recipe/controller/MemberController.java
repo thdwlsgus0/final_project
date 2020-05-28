@@ -49,7 +49,6 @@ public class MemberController {
 		mv.addObject("dice", dice);
 		
 		System.out.println("mv : "+mv);
-		
 		response_email.setContentType("text/html; charset=UTF-8");
 		PrintWriter out_email = response_email.getWriter();
 		out_email.println("<script>alert('이메일이 발송되었습니다. 인증번호를 입력해주세요.');</script>");
@@ -83,15 +82,16 @@ public class MemberController {
 //		return "email/email";
 //	}
 	
-	@RequestMapping(value = "/email/join_injeung.do{dice}", method = RequestMethod.POST)
-	public ModelAndView join_injeung(String email_injeung, @PathVariable String dice, HttpServletResponse response_equals) throws IOException{
+	@RequestMapping(value = "/email/join_injeung.do", method = RequestMethod.POST)
+	public ModelAndView join_injeung(HttpServletRequest request,String email_injeung,  HttpServletResponse response_equals) throws IOException{
+		String dice = request.getParameter("dice");
 		System.out.println("마지막 : email_injeung : "+email_injeung);
 		System.out.println("마지막 : dice : "+dice);
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/email/join.do");
-		mv.addObject("e_mail", email_injeung);
+		mv.setViewName("/email/email_auth.jsp");
+		mv.addObject("e_mail",email_injeung);
 		if(email_injeung.equals(dice)) { // 인증번호가 같은 경우 인증번호가 일치하였으므로 회원가입창으로 다시 이동시킴
-			mv.setViewName("email/join");
+			mv.setViewName("/member/login.jsp");
 			mv.addObject("e_mail", email_injeung);
 		    response_equals.setContentType("text/html; charset=UTF-8");
 		    PrintWriter out_equals = response_equals.getWriter();
@@ -100,7 +100,7 @@ public class MemberController {
 		    return mv;
 		}else if(email_injeung != dice) {
 			ModelAndView mv2 = new ModelAndView();
-			mv2.setViewName("email/email_injeung");
+			mv2.setViewName("/email/email_auth.jsp");
 			response_equals.setContentType("text/html; charset=UTF-8");
 			PrintWriter out_equals = response_equals.getWriter();
 			out_equals.println("<script>alert('인증번호가 일치하지않습니다. 인증번호를 다시 입력해주세요.'); history.go(-1);</script>");
@@ -108,5 +108,5 @@ public class MemberController {
 			return mv2;
 		}
 		return mv;
-	}
+	} 
 }

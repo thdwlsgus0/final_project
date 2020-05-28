@@ -18,7 +18,8 @@
             <tr>        
                 <td>
                 <center>
-                    <form action="join_injeung.do${dice}" method="post"> //받아온 인증코드를 컨트롤러로 넘겨서 일치하는지 확인                  
+                    <form action="join_injeung.do" method="post"> //받아온 인증코드를 컨트롤러로 넘겨서 일치하는지 확인      
+                    <input type="hidden" value=${dice} name="dice">            
                     <center>
                         <br>
                         <div>
