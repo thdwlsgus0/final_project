@@ -1,0 +1,10 @@
+name,method,food_id
+Á¦À°ººÀ½,"[{'id': 1, 'name' : 'fry'}, {'id':101,'name' :'poke'}]",1
+¹Ì¿ª±¹,"[{'id':2, 'name': 'soup'}, {'id':102,'name':'seafood'}]",2
+¼ÒºÒ°í±â,"[{'id': 1, 'name' : 'fry'}, {'id':104,'name' :'beef'}]",6
+È¸µ¤¹ä,"[{'id':3, 'name' : 'raw'}, {'id':102, 'name' : 'seafood'}]",4
+°¨ÀÚÃ¤ººÀ½,"[{'id':1,'name':'fry'}, {'id':103,'name':'vegetable'}]",5
+»ï°ã»ìººÀ½,"[{'id': 1, 'name' : 'fry'}, {'id':101,'name' :'poke'}]",7
+µÎ·çÄ¡±â,"[{'id': 1, 'name' : 'fry'}, {'id':101,'name' :'poke'}]",8
+°¡ÁöººÀ½,"[{'id':1, 'name' : 'fry'}, {'id' : 103 ,'name' : 'vegetable'}]",3
+ÃÊ¹ä,"[{'id':3, 'name' : 'raw'}, {'id':102, 'name' : 'seafood'}]",9
