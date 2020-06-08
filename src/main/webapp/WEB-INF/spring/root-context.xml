@@ -23,4 +23,5 @@
 			</props>
 		</property>
 	</bean>
+	<bean id="KakaoAPI" class="com.personal.kakaoLogin.service.KakaoAPI"></bean>
 </beans>

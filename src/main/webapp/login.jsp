@@ -8,9 +8,10 @@
     <title>Insert title here</title>
 </head>
 <body>
+     
 <!-- client_id=앱키  redirect_uri=내 uri-->
     <c:if test="${userId eq null}">
-        <a href="https://kauth.kakao.com/oauth/authorize?client_id=1356aced5c32878850cc1596142752e4&redirect_uri=http://localhost:8090/recipe/login&response_type=code">
+        <a href="https://kauth.kakao.com/oauth/authorize?client_id=1356aced5c32878850cc1596142752e4&redirect_uri=http://localhost:8090/recipe/login.do&response_type=code">
             <img src="img/kakao_login_medium_narrow.png">
         </a>
     </c:if>

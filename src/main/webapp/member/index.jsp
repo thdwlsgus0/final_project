@@ -43,13 +43,13 @@
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="#portfolio">로그인</a></li>
+						href="../loginForm.do">로그인</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="#about">회원가입</a></li>
+						href="signup.do">회원가입</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="#contact">관리자에게 문의</a></li>
+						href="contact.do">관리자에게 문의</a></li>
 				</ul>
 			</div>
 		</div>
