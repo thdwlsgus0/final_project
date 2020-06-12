@@ -13,7 +13,8 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link href="css/style.css" rel="stylesheet" />
 <link href="css/jinhyun.css" rel="stylesheet" />
-<link href="css/login.css" rel="stylesheet"/>
+<link href="css/login.css" rel="stylesheet" />
+
 </head>
 <body>
 	<nav
@@ -51,28 +52,31 @@
 					<h3 class="text-center">로그인</h3>
 				</div>
 			</div>
-			<div class="row">
-				<div class="text-center">
-					<input type="text" size="100" placeholder="아이디를 입력하세요">
+			<form action="">
+				<div class="row">
+					<div class="text-center">
+						<input type="text" size="100" placeholder="아이디를 입력하세요">
+					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="text-center">
-					<input type="text" size="100" placeholder="비밀번호를 입력하세요">
+
+				<div class="row">
+					<div class="text-center">
+						<input type="text" size="100" placeholder="비밀번호를 입력하세요">
+					</div>
 				</div>
+				<div class="row">
+				<button class="btn btn-success login_btn" type="submit">로그인</button>
 			</div>
-			<div class="row">
-			    <div class="btn btn-success login_btn">로그인</div>
-			</div>
+			</form>
+
+			
 			<div class="row">
 				<div class="btn btn-default">
 					<a href="http://localhost:8090/recipe/member/signup.jsp">회원가입</a>
 				</div>
-				<div class="btn btn-primary">
-				        비밀번호찾기
-				</div>
+				<div class="btn btn-primary">비밀번호찾기</div>
 			</div>
-			
+
 			<div class="row">
 				<c:if test="${userId eq null}">
 					<a

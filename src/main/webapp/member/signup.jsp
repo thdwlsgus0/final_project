@@ -4,75 +4,108 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<style type="text/css">
-.recipeForm {
-	margin: 10px;
-	width: 400px;
-	height: 500px;
-	padding: 50px;
-	margin: 0 auto;
-}
-
-.pos {
-	display: block;
-}
-</style>
 <title>Insert title here</title>
+<%@ include file="../template/header.jsp"%>
 </head>
 <body>
-
-	<div id="style" class="recipeForm">
-		<form id="form" name="form" method="post">
-			<h1>회원가입</h1>
-			<p>모두 입력해 주세요.</p>
-
-			<label>Name <span class="pos">이름 입력</span>
-			</label> <input type="text" name="name" id="name" /> <label>ID <span
-				class="pos">아이디 입력</span>
-			</label> <input type="text" name="id" id="id" /> <label>Password <span
-				class="pos">패스워드</span>
-			</label> <input type="text" name="password1" id="password1" /> <label>Password
-				<span class="pos">패스워드 확인</span>
-			</label> <input type="text" name="password2" id="password2" /> <label>age
-				<span class="pos">생년월일</span>
-			</label> <input type="text" name="age" id="age" /> <label>age <span
-				class="pos">성별</span>
-			</label> <input type="text" name="gender" id="gender" /> <label>age
-				<span class="pos">이메일</span>
-			</label> <input type="text" name="email" id="email" /> <label>Phone
-				<span class="pos">전화번호 입력</span>
-			</label> <input type="text" name="phone" id="phone" />
-
-			<button type="submit">회원가입 완료</button>
-
-
-		</form>
-
-		<div>
-			<a href="https://kauth.kakao.com/oauth/authorize?client_id=1356aced5c32878850cc1596142752e4&redirect_uri=http://localhost:8090/recipe/login.do&response_type=code">
-				<img src="../img/KakaotalkLogin.png">
-			</a>
+	<nav
+		class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top"
+		id="mainNav">
+		<div class="container">
+			<a class="navbar-brand js-scroll-trigger" href="#page-top">달달하조</a>
+			<button
+				class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
+				type="button" data-toggle="collapse" data-target="#navbarResponsive"
+				aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				Menu <i class="fas fa-bars"></i>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item mx-0 mx-lg-1"><a
+						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+						href="../loginForm.do">로그인</a></li>
+					<li class="nav-item mx-0 mx-lg-1"><a
+						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+						href="signup.do">회원가입</a></li>
+					<li class="nav-item mx-0 mx-lg-1"><a
+						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+						href="contact.do">관리자에게 문의</a></li>
+				</ul>
+			</div>
 		</div>
+	</nav>
+	<div class="signup_body">
+		<div class="container">
+			<form method="post">
+				<h1 class="signup_h1">회원가입</h1>
+				<div class="row">
+					<input type="text" name="Mem_ID" id="Mem_ID" placeholder="아이디 입력" />
+					<!-- 아이디 중복체크가 필요할 듯 -->
+					<button class="btn btn-sm btn-primary" onclick="">중복체크</button>
+				</div>
+				<!-- 비밀번호 확인 필요할 듯-->
+				<div class="row">
+					<input type="text" name="Mem_password" id="Mem_password"
+						placeholder="비밀번호 입력" />
+				</div>
+				<div class="row">
+					<input type="text" name="Mem_password2" id="Mem_password1"
+						placeholder="확인 비밀번호 입력" />
+				</div>
+				<!-- 이메일 인증 연동하는거 구현 필요할 듯 -->
+				<div class="row">
+					<input type="text" name="Mem_email" id="Mem_email"
+						placeholder="이메일" />
+					<form action="../email/auth.do">
+						<button type="submit" class="btn btn-sm btn-success">인증</button>
+					</form>
+				</div>
 
-		<div>
-			<a href="">
-				<img src="../img/NaverLogin.png">
-			</a>
+				<div class="row">
+					<input type="text" name="Mem_age" id="Mem_age" placeholder="나이" />
+				</div>
+				<div class="row">
+					<span class="ps_box"> <input type="text" name="Mem_birth_yy"
+						id="Mem_birth_yy" placeholder="연" />
+					</span> 
+					<span class="ps_box">
+					<input type="text" name="Mem_birth_mm" id="Mem_birth_mm" placeholder="월"/>
+					<!-- <select id="Mem_birth_mm" aria-label="월">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+					</select> -->
+					</span>
+					<span class="ps_box">
+					  <input type="text" name="Mem_birth_dd" id="Mem_birth_dd" placeholder="일"/>
+					</span>
+				</div>
+				<div class="row">
+					<input type="text" name="Mem_favor" id="Mem_favor" placeholder="취향" />
+				</div>
+				<div class="row input-group">
+					<button type="button" class="btn btn-sm btn-success">남자</button>
+					<button type="button" class="btn btn-sm btn-default">여자</button>
+				</div>
+				<div class="row">
+				   <input type="text" name="Mem_phone" placeholder="전화번호를 입력하세요 ex) 01011112222">
+				</div>
+				<div class="row">
+				  <button class="btn btn-success btn-lg" type="submit" onclick="signup_check();">회원가입 완료</button>
+				</div>
+			</form>
 		</div>
-
-		<div>
-			<a href="">
-				<img src="../img/FacebookLogin.png">
-			</a>
-		</div>
-
-		<div>
-			<a href="">
-				<img src="../img/GoogleLogin.png">
-			</a>
-		</div>
-
 	</div>
-
+	<%@ include file="../template/script.jsp"%>
 </body>
 </html>
