@@ -94,8 +94,9 @@
 					<input type="text" name="Mem_favor" id="Mem_favor" placeholder="취향" />
 				</div>
 				<div class="row input-group">
-					<button type="button" class="btn btn-sm btn-success">남자</button>
-					<button type="button" class="btn btn-sm btn-default">여자</button>
+					<button type="button" class="btn btn-sm btn-success" id="btn-gen-male">남자</button>
+					<button type="button" class="btn btn-sm btn-default" id="btn-gen-female"">여자</button>
+					<input type="hidden" id="Mem_gender">
 				</div>
 				<div class="row">
 				   <input type="text" name="Mem_phone" placeholder="전화번호를 입력하세요 ex) 01011112222">
@@ -107,5 +108,6 @@
 		</div>
 	</div>
 	<%@ include file="../template/script.jsp"%>
+	<script src="../script/mem_regi.js"></script> <!-- 회원가입 -->
 </body>
 </html>
