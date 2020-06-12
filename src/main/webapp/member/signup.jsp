@@ -37,7 +37,7 @@
 	</nav>
 	<div class="signup_body">
 		<div class="container">
-			<form method="post">
+			<form method="post" action="#">
 				<h1 class="signup_h1">회원가입</h1>
 				<div class="row">
 					<input type="text" name="Mem_ID" id="Mem_ID" placeholder="아이디 입력" />
@@ -50,7 +50,7 @@
 						placeholder="비밀번호 입력" />
 				</div>
 				<div class="row">
-					<input type="text" name="Mem_password2" id="Mem_password1"
+					<input type="text" name="Mem_password2" id="Mem_password2"
 						placeholder="확인 비밀번호 입력" />
 				</div>
 				<!-- 이메일 인증 연동하는거 구현 필요할 듯 -->
@@ -94,18 +94,20 @@
 					<input type="text" name="Mem_favor" id="Mem_favor" placeholder="취향" />
 				</div>
 				<div class="row input-group">
-					<button type="button" class="btn btn-sm btn-success">남자</button>
-					<button type="button" class="btn btn-sm btn-default">여자</button>
+					<button type="button" class="btn btn-sm btn-success" id="btn-gen-male">남자</button>
+					<button type="button" class="btn btn-sm btn-default" id="btn-gen-female"">여자</button>
+					<input type="hidden" id="Mem_gender">
 				</div>
 				<div class="row">
 				   <input type="text" name="Mem_phone" placeholder="전화번호를 입력하세요 ex) 01011112222">
 				</div>
 				<div class="row">
-				  <button class="btn btn-success btn-lg" type="submit" onclick="signup_check();">회원가입 완료</button>
+				  <button class="btn btn-success btn-lg" type="submit" onclick="signup_check();" id="btn-register">회원가입 완료</button>
 				</div>
 			</form>
 		</div>
 	</div>
 	<%@ include file="../template/script.jsp"%>
+	<script src="../script/mem_regi.js" charset="UTF-8"></script> <!-- 회원가입 -->
 </body>
 </html>
