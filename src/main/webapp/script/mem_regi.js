@@ -16,10 +16,9 @@ var main = {
 	},
 	register:function(){
 		var _this = this;
-		var str_birth = '{0}{1}{2}'.format(
-				$('#Mem_birth_yy').val(), 
-				$('#Mem_birth_mm').val(),
-				$('#Mem_birth_dd').val())
+		var str_birth = $('#Mem_birth_yy').val() + 
+				$('#Mem_birth_mm').val() + 
+				$('#Mem_birth_dd').val() + '';
 		if(!_this.pwOverCheck()) return;
 		var data = {
 			id: $('#Mem_ID').val(),
@@ -40,7 +39,8 @@ var main = {
 		}).done(function(){
 			alert('회원가입 성공');
 			window.location.href='/recipe/loginForm.do';
-		}).fail(function(){
+		}).fail(function(err){
+			console.log(err)
 			alert('잘못된 접근');
 		});
 	},
@@ -53,6 +53,7 @@ var main = {
 		_pw = $('#Mem_password').val();
 		_pw2 = $('#Mem_password2').val();
 		if(_pw != _pw2){
+			console.log(_pw + ":" + _pw2)
 			console.log('비밀번호가 다릅니다.'); // UI 표시
 			return false;
 		}

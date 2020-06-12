@@ -13,6 +13,6 @@ public class RegisterController {
 		System.out.println("dto: " + dto);
 		//db연동필요: insert
 		//메일 보내기
-		return "/signup_check.jsp"; //ajax를 쓰지 말까?
+		return "/member/signup_check.jsp"; //ajax를 쓰지 말까?
 	}
 }

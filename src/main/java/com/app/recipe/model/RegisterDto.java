@@ -62,6 +62,6 @@ public class RegisterDto {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "id: " + id;
+		return "[id: " + id + "]";
 	}
 }
