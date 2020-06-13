@@ -96,10 +96,10 @@
 				<div class="row input-group">
 					<button type="button" class="btn btn-sm btn-success" id="btn-gen-male">남자</button>
 					<button type="button" class="btn btn-sm btn-default" id="btn-gen-female"">여자</button>
-					<input type="hidden" id="Mem_gender">
+					<input type="hidden" id="Mem_gender" value="남자">
 				</div>
 				<div class="row">
-				   <input type="text" name="Mem_phone" placeholder="전화번호를 입력하세요 ex) 01011112222">
+				   <input type="text" name="Mem_phone" id="Mem_phone" placeholder="전화번호를 입력하세요 ex) 01011112222">
 				</div>
 				<div class="row">
 				  <button class="btn btn-success btn-lg" type="submit" onclick="signup_check();" id="btn-register">회원가입 완료</button>

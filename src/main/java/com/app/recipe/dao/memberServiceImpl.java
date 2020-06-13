@@ -1,4 +1,4 @@
-package recipe.dao;
+package com.app.recipe.dao;
 
 import javax.inject.Inject;
 

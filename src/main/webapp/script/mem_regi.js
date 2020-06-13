@@ -23,7 +23,7 @@ var main = {
 		var data = {
 			id: $('#Mem_ID').val(),
 			pw: $('#Mem_password').val(),
-			age: $('#Mem_age').val(),
+			age: parseInt($('#Mem_age').val()),
 			favor: $('#Mem_favor').val(),
 			birth: str_birth,
 			gender: $('#Mem_gender').val(),
