@@ -1,9 +1,11 @@
 package com.app.recipe.model;
 
+import java.sql.Date;
+
 public class RegisterDto {
 	private String id;
 	private String pw;
-	private int age;
+	private Date date;
 	private String favor;
 	private String birth;
 	private String gender;
@@ -11,11 +13,11 @@ public class RegisterDto {
 	private String phone;
 	private String check;
 	
-	public int getAge() {
-		return age;
+	public Date getDate() {
+		return date;
 	}
-	public void setAge(int age) {
-		this.age = age;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	public String getFavor() {
 		return favor;

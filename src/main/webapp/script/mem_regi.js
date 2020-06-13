@@ -23,7 +23,7 @@ var main = {
 		var data = {
 			id: $('#Mem_ID').val(),
 			pw: $('#Mem_password').val(),
-			age: parseInt($('#Mem_age').val()),
+			//age: parseInt($('#Mem_age').val()),
 			favor: $('#Mem_favor').val(),
 			birth: str_birth,
 			gender: $('#Mem_gender').val(),
@@ -46,7 +46,7 @@ var main = {
 	},
 	focusOutId:function() {
 		if(false){ //db연동필요: 아이디 중복 체크
-			console.log('사용할 수 없는 아이디입니다.') //UI 표시	
+			console.log('사용할 수 없는 아이디입니다.') //UI 처리해야 함
 		}
 	},
 	pwOverCheck:function(){
@@ -54,7 +54,7 @@ var main = {
 		_pw2 = $('#Mem_password2').val();
 		if(_pw != _pw2){
 			console.log(_pw + ":" + _pw2)
-			console.log('비밀번호가 다릅니다.'); // UI 표시
+			console.log('비밀번호가 다릅니다.'); //UI 처리해야 함
 			return false;
 		}
 		return true;
