@@ -92,6 +92,7 @@
 					<input type="text" name="Mem_favor" id="Mem_favor" placeholder="취향" />
 				</div>
 				<div class="row input-group">
+<<<<<<< HEAD
 					<button type="button" class="btn btn-sm btn-success"
 						id="btn-gen-male">남자</button>
 					<button type="button" class="btn btn-sm btn-default"
@@ -101,6 +102,14 @@
 				<div class="row">
 					<input type="text" name="Mem_phone" id="Mem_phone"
 						placeholder="전화번호를 입력하세요 ex) 01011112222">
+=======
+					<button type="button" class="btn btn-sm btn-success" id="btn-gen-male">남자</button>
+					<button type="button" class="btn btn-sm btn-default" id="btn-gen-female"">여자</button>
+					<input type="hidden" id="Mem_gender" value="남자">
+				</div>
+				<div class="row">
+				   <input type="text" name="Mem_phone" id="Mem_phone" placeholder="전화번호를 입력하세요 ex) 01011112222">
+>>>>>>> 1175f7c9c56abddb3e3d29a5bcd8bfd113d7bedc
 				</div>
 				<!-- 회원가입 버튼 크기 변경 -->
 				<div class="row">
