@@ -1,20 +1,23 @@
 package com.app.recipe.model;
 
+import java.sql.Date;
+
 public class RegisterDto {
 	private String id;
 	private String pw;
-	private int age;
+	private Date date;
 	private String favor;
 	private String birth;
 	private String gender;
 	private String email;
 	private String phone;
+	private String check;
 	
-	public int getAge() {
-		return age;
+	public Date getDate() {
+		return date;
 	}
-	public void setAge(int age) {
-		this.age = age;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	public String getFavor() {
 		return favor;
@@ -57,11 +60,17 @@ public class RegisterDto {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
-	}	
+	}
 	
+	public String getCheck() {
+		return check;
+	}
+	public void setCheck(String check) {
+		this.check = check;
+	}
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "[id: " + id + "]";
+		return String.format("id[%s]", id);
 	}
 }
