@@ -4,6 +4,6 @@ import com.app.recipe.model.RegisterDto;
 
 public interface RegisterDAO {
 	public void update(RegisterDto dto);
-	public RegisterDto select(RegisterDto dto);
+	public RegisterDto select(String id);
 	public void insert(RegisterDto dto);
 }

@@ -1,6 +1,6 @@
 /*
  2020.06.15 월요일 
- */
+ 
 // form 유효성검사 
 function signup_check(){
 	var frm = document.signup_form;
@@ -32,4 +32,4 @@ function signup_check(){
 	}else{
 		frm.submit();
 	}
-}
+}*/

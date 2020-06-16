@@ -18,8 +18,8 @@ public class RegisterServiceImpl implements RegisterService {
 	}
 
 	@Override
-	public boolean idcheck(RegisterDto dto) {
-		if(dao.select(dto) != null) {
+	public boolean idcheck(String id) {
+		if(dao.select(id) == null) {
 			return true;
 		}
 		return false;
@@ -27,7 +27,7 @@ public class RegisterServiceImpl implements RegisterService {
 
 	@Override
 	public boolean login(RegisterDto dto) {
-		if(dao.select(dto).getCheck().equals("T")) {
+		if(dao.select(dto.getId()).getCheck().equals("T")) {
 			//이메일 인증했다면 true반환
 			return true;
 		}

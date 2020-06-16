@@ -19,8 +19,8 @@ public class RegisterDAOImpl implements RegisterDAO {
 	}
 
 	@Override
-	public RegisterDto select(RegisterDto dto) {
-		return sql.selectOne("regi.select", dto);
+	public RegisterDto select(String id) {
+		return sql.selectOne("regi.select", id);
 	}
 
 	@Override
