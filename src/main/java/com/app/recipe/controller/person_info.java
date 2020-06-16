@@ -25,4 +25,10 @@ public class person_info {
 		mv.setViewName("/member/contact.jsp");
 		return mv;
 	}
+	@RequestMapping(value ="/member/index.do", method=RequestMethod.GET)
+	public ModelAndView index_page() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/member/index.jsp");
+		return mv;
+	}
 }

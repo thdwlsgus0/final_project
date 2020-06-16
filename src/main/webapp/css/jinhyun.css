@@ -37,16 +37,20 @@ button{
 	float:right;
 	color:#ffffff;
 }
-
+/*
+ 2020.06.16 css margin-top 수정 완료
+*/
 .login_body{
-	margin-top:300px;
+	margin-top:150px;
 	margin-left:500px;
 }
 
-
+/*
+ 2020.06.16 수정 회원가입 폼 수정
+*/
 .signup_body{
-	margin-top:300px;
-	margin-left:500px;
+	margin-top:150px;
+	margin-left:350px;
 }
 /*
  2020.06.15 추가

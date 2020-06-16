@@ -17,11 +17,11 @@
 
 </head>
 <body>
-	<nav
+		<nav
 		class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top"
 		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand js-scroll-trigger" href="#page-top">달달하조</a>
+			<a class="navbar-brand js-scroll-trigger" href="member/index.do">달달하조</a>
 			<button
 				class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
 				type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -33,17 +33,17 @@
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="../loginForm.do">로그인</a></li>
+						href="member/loginForm.do">로그인</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="signup.do">회원가입</a></li>
+						href="member/signup.do">회원가임</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="contact.do">관리자에게 문의</a></li>
+						href="member/contact.do">관리자문의</a></li>
 				</ul>
 			</div>
 		</div>
-	</nav>
+		</nav>
 	<!-- client_id=앱키  redirect_uri=내 uri-->
 	<div class="login_body">
 		<div class="container">
@@ -58,7 +58,6 @@
 						<input type="text" size="100" placeholder="아이디를 입력하세요">
 					</div>
 				</div>
-
 				<div class="row">
 					<div class="text-center">
 						<input type="text" size="100" placeholder="비밀번호를 입력하세요">

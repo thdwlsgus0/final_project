@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 var main = {
 	init:function(){
 		var _this = this;
@@ -69,7 +69,7 @@ var main = {
 	}
 	
 };
-=======
+
 var main = {
 	init:function(){
 		var _this = this;
@@ -140,5 +140,4 @@ var main = {
 	}
 	
 };
->>>>>>> 1175f7c9c56abddb3e3d29a5bcd8bfd113d7bedc
 main.init();
