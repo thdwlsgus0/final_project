@@ -25,6 +25,7 @@ public class RegisterDAOImpl implements RegisterDAO {
 
 	@Override
 	public void insert(RegisterDto dto) {
+		dto.setCheck("F"); //이메일 인증 여부: F
 		sql.insert("regi.insert", dto);
 	}
 }

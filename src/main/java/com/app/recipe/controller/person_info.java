@@ -31,4 +31,10 @@ public class person_info {
 		mv.setViewName("/member/index.jsp");
 		return mv;
 	}
+	@RequestMapping(value ="/member/search_password.do", method=RequestMethod.GET)
+	public ModelAndView search_password() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/member/search_password.jsp");
+		return mv;
+	}
 }

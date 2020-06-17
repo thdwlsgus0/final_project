@@ -42,7 +42,7 @@ button{
 */
 .login_body{
 	margin-top:150px;
-	margin-left:500px;
+	margin-left:290px;
 }
 
 /*
@@ -50,7 +50,7 @@ button{
 */
 .signup_body{
 	margin-top:150px;
-	margin-left:350px;
+	margin-left:250px;
 }
 /*
  2020.06.15 Ãß°¡
@@ -70,3 +70,12 @@ button{
 	margin-left:10px;
 	margin-top:6px;
 }
+.signup_password{
+	width:67%;
+	margin-top:7px;
+}
+.sign_up{
+  margin-left:-330px;	
+}
+
+@media (max-width:)
