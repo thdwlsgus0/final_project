@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.recipe.dao.memberService;
+import com.app.recipe.model.RegisterDto;
 
 
 @Controller // 컨트롤러 빈 선언
@@ -39,24 +40,23 @@ public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
     
 	@PostMapping(value ="/email/auth.do")
-	public String mailSending(@RequestBody String email, Model model) {
+	public String mailSending(@RequestBody RegisterDto dto, Model model) {
 		System.out.println("mail sending called");
 		Random r = new Random();
 		int dice = r.nextInt(4589362)+49311; // 49311 ~ 49311 + 4589362
 		
-		sendEmail(email, dice);
+		sendEmail(dto.getEmail(), dto.getId(), dice);
 		model.addAttribute("dice", dice);
 		
 		return "/email/email_auth2.jsp";
 	}	
-	public int sendEmail(String email, int dice) {
+	public int sendEmail(String email, String id, int dice) {
 		String host = "smtp.naver.com";
 		String subject = "달달하조 인증번호 전달";
 		String fromName = "달달하조 관리자";
 		String from="thdwlsgus0@naver.com"; //일단 네이버로 하였습니다.
-		String content = "<a href='http://localhost:8080/recipe/member/emailcheck?email=%s&dice=%d'>해당 링크를 눌러주세요</a>";//"인증번호["+dice+"]";
-		String rcontent = String.format(content, email, dice);
-		System.out.println(email + " : "+dice);
+		String content = "링크: http://localhost:8080/recipe/member/emailcheck.do?id=%s&dice=%d";//"인증번호["+dice+"]";
+		String rcontent = String.format(content, id, dice);
 		try {
 			MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");

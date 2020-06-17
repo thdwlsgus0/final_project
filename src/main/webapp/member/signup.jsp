@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,11 +61,9 @@
 					<form action="../email/auth.do">
 						
 					</form>
-					<button type="button" class="btn btn-success authbtn" id="btn-check">인증</button>
-					<div id="div-check">
-						<input type="text" id="Mem_check" placeholder="인증번호를 입력해주세요">
-					</div>
+					<!-- <button type="button" class="btn btn-success authbtn" id="btn-check">인증</button> -->
 				</div>
+				<div id="email_check"></div>
 
 				<div class="row">
 					<input type="text" name="Mem_age" id="Mem_age" placeholder="나이" readonly />

@@ -21,7 +21,6 @@ var main = {
 		$('#Mem_birth').val(new Date().toISOString().substring(0, 10));
 		$('#Mem_email').on('focusout', function(){ _this.emailValid(); })
 		$('#div-check').hide();
-		$('#btn-check').on('click', function(){ _this.emailCheck(); });
 	},
 	emailCheck:function(){
 		var _this = this;
@@ -29,18 +28,21 @@ var main = {
 		
 		alert('이메일로 인증번호를 발송했습니다!')
 		$('#div-check').show();
-		email = $('#Mem_email').val();
+		var data = {
+			id: $('#Mem_ID').val(),
+			email: $('#Mem_email').val()
+		}
 		$.ajax({
 			type: 'POST',
 			url: '/recipe/email/auth.do',
 			dataType: 'text',
-			contentType: 'text/text; charset=utf-8',
-			data: email,
+			contentType: 'application/json; charset=utf-8',
+			data: JSON.stringify(data),
 			async: false
 		}).done(function(res){
 			saveres = res.trim();
-			console.log(saveres);
 		});
+		return saveres;
 	},
 	register:function(){
 		// 해당 함수 내용은 signup.jsp정리되면 폼에서 처리하도록 바꾸는게 좋음
@@ -61,7 +63,8 @@ var main = {
 			birth: str_birth,
 			gender: $('#Mem_gender').val(),
 			email: $('#Mem_email').val(),
-			phone: $('#Mem_phone').val()
+			phone: $('#Mem_phone').val(),
+			check: _this.emailCheck()
 		}
 		$.ajax({
 			type: 'POST',
@@ -131,7 +134,7 @@ var main = {
 		console.log(age);
 		return true;
 		
-		//이하 사용하지 않음
+		//이하 사용하지 않음	
 		age = $('#Mem_age').val();
 		if(!isNaN(age) || age.length > 0) {
 			$('#age_check').html('');
@@ -141,8 +144,14 @@ var main = {
 		return false;
 	},
 	emailValid:function(){
-		//이메일 형식이 올바른지 체크
-		return true;
+		email = $('#Mem_email').val()
+		reg = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+		if(reg.test(email)){
+			$('#email_check').html('');
+			return true;
+		}
+		$('#email_check').html('<font color="red">이메일 형식이 잘못되었습니다.</font>');
+		return false;
 	}
 };
 main.init();

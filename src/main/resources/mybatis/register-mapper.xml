@@ -16,8 +16,8 @@
 	
 	<update id="update" parameterType="regiDto">
 		UPDATE member SET MEM_PASSWORD=#{pw}, 
-		 MEM_FAVOR=#{favor}, MEM_BIRTH=#{birth}, MEM_GENDER=#{gender},
-		 MEM_EMAIL=#{email}, MEM_PHONE=#{phone}, MEM_CHECK=#{check}
+		 MEM_FAVOR=#{favor, jdbcType=VARCHAR}, MEM_BIRTH=#{birth}, MEM_GENDER=#{gender},
+		 MEM_EMAIL=#{email}, MEM_PHONE=#{phone, jdbcType=VARCHAR}, MEM_CHECK=#{check}
 		 WHERE MEM_ID=#{id}
 	</update>
 	
