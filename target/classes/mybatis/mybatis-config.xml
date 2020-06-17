@@ -5,8 +5,10 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.app.recipe.model.RegisterDto" alias="regiDto" />
+		<typeAlias type="com.app.recipe.model.MailCheckDto" alias="mailCheckDto" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="/mybatis/register-mapper.xml" />
+		<mapper resource="/mybatis/mailcheck-mapper.xml" />
 	</mappers>
 </configuration>

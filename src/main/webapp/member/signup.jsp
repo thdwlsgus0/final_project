@@ -6,6 +6,7 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <%@ include file="../template/header.jsp"%>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 </head>
 <body>
 	<nav
@@ -57,19 +58,22 @@
 				<!-- 이메일 인증 연동하는거 구현 필요할 듯 -->
 				<!-- auth button 추가함 -->
 				<div class="row">
-					<input type="text" name="Mem_email" id="Mem_email"
-						placeholder="이메일" />
+					<input type="text" name="Mem_email" id="Mem_email" placeholder="이메일" />
 					<form action="../email/auth.do">
-						<button type="submit" class="btn btn-success authbtn">인증</button>
+						
 					</form>
+					<button type="button" class="btn btn-success authbtn" id="btn-check">인증</button>
+					<div id="div-check">
+						<input type="text" id="Mem_check" placeholder="인증번호를 입력해주세요">
+					</div>
 				</div>
 
 				<div class="row">
-					<input type="text" name="Mem_age" id="Mem_age" placeholder="나이" />
+					<input type="text" name="Mem_age" id="Mem_age" placeholder="나이" readonly />
 				</div>
 				<div id="age_check"></div>
 				<div class="row">
-					<input type="date" id="Mem_birth">
+					<input type="text" id="Mem_birth">
 					<!-- <span class="ps_box">
 						<input type="text" name="Mem_birth_yy" id="Mem_birth_yy" placeholder="연" />
 					</span>
@@ -118,6 +122,7 @@
 		</div>
 	</div>
 	<%@ include file="../template/script.jsp"%>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src="../script/mem_regi.js" charset="UTF-8"></script>
 	<script src="../script/signup.js" charset="UTF-8"></script>
 	<!-- 회원가입 -->

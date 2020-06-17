@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mailcheck">
+	<insert id="insert" parameterType="mailCheckDto">
+		INSERT INTO member(MEM_EMAIL, DICE) 
+		 VALUES (#{email}, #{dice})
+	</insert>
+	
+	<select id="select" parameterType="String" resultMap="mailcheckrsm">
+		SELECT * FROM mailcheck WHERE MEM_EMAIL=#{email}
+	</select>
+	
+	<delete id="delete" parameterType="String">
+		DELETE FROM mailcheck WHERE MEM_EMAIL=#{email}
+	</delete>
+	
+	<resultMap type="regiDto" id="mailcheckrsm">
+		<result property="email" column="MEM_EMAIL"/>
+		<result property="dice" column="DICE"/>
+	</resultMap>
+</mapper>
