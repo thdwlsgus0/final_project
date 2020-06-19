@@ -17,7 +17,7 @@
 
 </head>
 <body>
-		<nav
+	<nav
 		class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top"
 		id="mainNav">
 		<div class="container">
@@ -33,7 +33,7 @@
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="member/loginForm.do">로그인</a></li>
+						href="loginForm.do">로그인</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						href="member/signup.do">회원가임</a></li>
@@ -43,10 +43,11 @@
 				</ul>
 			</div>
 		</div>
-		</nav>
+	</nav>
 	<!-- client_id=앱키  redirect_uri=내 uri-->
-	<div class="login_body">
-		<div class="container">
+
+	<div class="container">
+		<div class="login_body">
 			<div class="row">
 				<div class="login_h3">
 					<h3 class="text-center">로그인</h3>
@@ -55,25 +56,27 @@
 			<form action="">
 				<div class="row">
 					<div class="text-center">
-						<input type="text" size="100" placeholder="아이디를 입력하세요">
+						<input type="text" size="200" placeholder="아이디를 입력하세요">
 					</div>
 				</div>
 				<div class="row">
 					<div class="text-center">
-						<input type="text" size="100" placeholder="비밀번호를 입력하세요">
+						<input type="text" size="200" placeholder="비밀번호를 입력하세요">
 					</div>
 				</div>
 				<div class="row">
-				<button class="btn btn-success login_btn" type="submit">로그인</button>
-			</div>
+					<button class="btn btn-success login_btn" type="submit">로그인</button>
+				</div>
 			</form>
 
-			
+
 			<div class="row">
-				<div class="btn btn-default">
-					<a href="http://localhost:8090/recipe/member/signup.jsp">회원가입</a>
+				<div class="btn btn-Primary">
+					<a href="member/signup.do">회원가입</a>
 				</div>
-				<div class="btn btn-primary">비밀번호찾기</div>
+				<div class="btn btn-danger">
+				  <a href="member/search_password.do">비밀번호찾기</a>
+				</div>
 			</div>
 
 			<div class="row">
