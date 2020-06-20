@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="regi">
+	<insert id="insert" parameterType="regiDto">
+		INSERT INTO member(MEM_ID, MEM_PASSWORD, MEM_FAVOR, MEM_BIRTH, 
+		 MEM_GENDER, MEM_EMAIL, MEM_PHONE, MEM_CHECK, MEM_DAY) 
+		 VALUES (#{id}, #{pw}, #{favor}, #{birth}, #{gender}, 
+		 #{email}, #{phone}, #{check}, SYSDATE)
+	</insert>
+	
+	<select id="select" parameterType="String" resultMap="regirsm">
+		SELECT * FROM member WHERE MEM_ID=#{id}
+	</select>
+	
+	<update id="update" parameterType="regiDto">
+		UPDATE member SET MEM_PASSWORD=#{pw}, 
+		 MEM_FAVOR=#{favor}, MEM_BIRTH=#{birth}, MEM_GENDER=#{gender},
+		 MEM_EMAIL=#{email}, MEM_PHONE=#{phone}, MEM_CHECK=#{check}
+		 WHERE MEM_ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="String">
+		DELETE FROM member WHERE MEM_ID=#{id}
+	</delete>
+	
+	<resultMap type="regiDto" id="regirsm">
+		<result property="id" column="MEM_ID"/>
+		<result property="pw" column="MEM_PASSWORD"/>
+		<result property="age" column="MEM_AGE"/>
+		<result property="favor" column="MEM_FAVOR"/>
+		<result property="birth" column="MEM_BIRTH"/>
+		<result property="gender" column="MEM_GENDER"/>
+		<result property="email" column="MEM_EMAIL"/>
+		<result property="phone" column="MEM_PHONE"/>
+		<result property="check" column="MEM_CHECK"/>
+	</resultMap>
+</mapper>
