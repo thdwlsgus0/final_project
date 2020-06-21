@@ -14,14 +14,12 @@
 <link href="css/style.css" rel="stylesheet" />
 <link href="css/jinhyun.css" rel="stylesheet" />
 <link href="css/login.css" rel="stylesheet" />
-
 </head>
 <body>
-	<nav
-		class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top"
-		id="mainNav">
+	<nav class="navbar navbar-expand-lg nav_container">
 		<div class="container">
-			<a class="navbar-brand js-scroll-trigger" href="member/index.do">달달하조</a>
+			<a class="navbar-brand js-scroll-trigger" href="member/index.do"><img
+				src="img/logo.png" id="img_size"></a>
 			<button
 				class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
 				type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -29,6 +27,11 @@
 				aria-label="Toggle navigation">
 				Menu <i class="fas fa-bars"></i>
 			</button>
+			<!-- 검색창 부분 -->
+			<div class="search-box">
+				<input type="text" class="search-text" placeholder="검색어 입력">
+				<button>레시피 검색</button>
+			</div>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item mx-0 mx-lg-1"><a
@@ -36,18 +39,17 @@
 						href="loginForm.do">로그인</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="member/signup.do">회원가임</a></li>
+						href="member/signup.do">회원가입</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="member/contact.do">관리자문의</a></li>
+						href="member/contact.do">관리자에게 문의</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 	<!-- client_id=앱키  redirect_uri=내 uri-->
 
-	<div class="container">
-		<div class="login_body">
+		<div class="login_body main_body_color">
 			<div class="row">
 				<div class="login_h3">
 					<h3 class="text-center">로그인</h3>
@@ -56,12 +58,12 @@
 			<form action="">
 				<div class="row">
 					<div class="text-center">
-						<input type="text" size="200" placeholder="아이디를 입력하세요">
+						<input type="text" size="95" placeholder="아이디를 입력하세요">
 					</div>
 				</div>
 				<div class="row">
 					<div class="text-center">
-						<input type="text" size="200" placeholder="비밀번호를 입력하세요">
+						<input type="text" size="95" placeholder="비밀번호를 입력하세요">
 					</div>
 				</div>
 				<div class="row">
@@ -105,7 +107,6 @@
 				</a>
 			</div>
 		</div>
-	</div>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script

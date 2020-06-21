@@ -9,11 +9,10 @@
 <%@ include file="../template/header.jsp"%>
 </head>
 <body>
-	<nav
-		class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top"
-		id="mainNav">
+	<nav class="navbar navbar-expand-lg nav_container">
 		<div class="container">
-			<a class="navbar-brand js-scroll-trigger" href="index.do">달달하조</a>
+			<a class="navbar-brand js-scroll-trigger" href="index.do"><img
+				src="../img/logo.png" id="img_size"></a>
 			<button
 				class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
 				type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -21,6 +20,11 @@
 				aria-label="Toggle navigation">
 				Menu <i class="fas fa-bars"></i>
 			</button>
+			<!-- 검색창 부분 -->
+			<div class="search-box">
+				<input type="text" class="search-text" placeholder="검색어 입력">
+				<button>레시피 검색</button>
+			</div>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item mx-0 mx-lg-1"><a

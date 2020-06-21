@@ -13,7 +13,7 @@
 		class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top"
 		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand js-scroll-trigger" href="index.do">달달하조</a>
+			<a class="navbar-brand js-scroll-trigger" href="index.do"><img src="../img/logo.png" id="img_size"></a>
 			<button
 				class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
 				type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -45,13 +45,13 @@
 						placeholder="아이디 입력" />
 					<!-- <button class="btn btn-primary emailcheck" onclick="">중복체크</button> -->
 				</div>
+				<div id="id_check"></div>
 				<div class="row">
 					<input type="text" class="form-control" name="Mem_email"
 						id="Mem_email" placeholder="이메일" />
-					<form action="../email/auth.do">
-						<button type="submit" class="btn btn-success authbtn">인증</button>
-					</form>
+					<button class="btn btn-success">인증</button>
 				</div>
+				<div id="email_check"></div>
 				<div class="row">
 					<button class="btn btn-success signbtn" type="submit"
 						id="btn-register">비밀번호 찾기</button>
@@ -61,8 +61,6 @@
 		</div>
 	</div>
 	<%@ include file="../template/script.jsp"%>
-	<script src="../script/mem_regi.js" charset="UTF-8"></script>
-	<script src="../script/signup.js" charset="UTF-8"></script>
-	<!-- 회원가입 -->
+	<script src="../script/search_password.js" charset="UTF-8"></script>
 </body>
 </html>
