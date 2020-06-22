@@ -34,9 +34,16 @@
 			</div>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item mx-0 mx-lg-1"><a
+				  <c:choose>
+				      <c:when test="${sessionId!=null}">
+				         <h3>'${sessionId}'님 환영합니다!</h3>
+				      </c:when>
+				      <c:otherwise>
+				      	<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						href="loginForm.do">로그인</a></li>
+				      </c:otherwise>
+				  </c:choose>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						href="member/signup.do">회원가입</a></li>
@@ -83,17 +90,16 @@
 
 			<div class="row">
 				<c:if test="${userId eq null}">
-					<a
-						" href="https://kauth.kakao.com/oauth/authorize?client_id=1356aced5c32878850cc1596142752e4&redirect_uri=http://localhost:8090/recipe/login.do&response_type=code">
+					<a href="https://kauth.kakao.com/oauth/authorize?client_id=1356aced5c32878850cc1596142752e4&redirect_uri=http://localhost:8090/recipe/login.do&response_type=code">
 						<img src="img/KakaotalkLogin.png">
 					</a>
 				</c:if>
 				<c:if test="${userId ne null}">
-					<h1>로그인 성공입니다</h1>
+					<h1>카카오 로그인 성공입니다</h1>
 				</c:if>
 			</div>
 			<div class="row">
-				<a href=""> <img src="img/NaverLogin.png">
+				<a href="naverLogin.do"> <img src="img/NaverLogin.png">
 				</a>
 			</div>
 
