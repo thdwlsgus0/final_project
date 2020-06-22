@@ -75,8 +75,6 @@ var main = {
 		}).done(function(){
 			alert('회원가입 성공');
 			window.location.href='/recipe/loginForm.do';
-		}).fail(function(){
-			//
 		});
 	},
 	focusOutId:function() {
@@ -133,15 +131,6 @@ var main = {
 		$('#Mem_age').val(age);
 		console.log(age);
 		return true;
-		
-		//이하 사용하지 않음	
-		age = $('#Mem_age').val();
-		if(!isNaN(age) || age.length > 0) {
-			$('#age_check').html('');
-			return true;
-		}
-		$('#age_check').html('<font color="red"></font>');
-		return false;
 	},
 	emailValid:function(){
 		email = $('#Mem_email').val()
