@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,39 +19,47 @@
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
 	rel="stylesheet">
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="../css/style.css" rel="stylesheet" />
-<link href="../css/jinhyun.css" rel="stylesheet" />
-<link href="../css/index.css" rel="stylesheet" />
+<link href="/recipe/css/style.css" rel="stylesheet" />
+<link href="/recipe/css/jinhyun.css" rel="stylesheet" />
+<link href="/recipe/css/index.css" rel="stylesheet" />
 </head>
 <body id="page-top">
+
+
 	<!-- Navigation-->
 	<nav class="navbar navbar-expand-lg">
 		<div class="container nav_container">
-			<a class="navbar-brand js-scroll-trigger" href="index.do"><img
-				src="../img/logo.png" id="img_size"></a>
-			<button
-				class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
-				type="button" data-toggle="collapse" data-target="#navbarResponsive"
-				aria-controls="navbarResponsive" aria-expanded="false"
-				aria-label="Toggle navigation">
-				Menu <i class="fas fa-bars"></i>
-			</button>
+			<a class="navbar-brand js-scroll-trigger" href="/recipe/member/index.do"><img
+				src="/recipe/img/logo.png" id="img_size"></a>
 			<!-- 검색창 부분 -->
 			<div class="search-box">
 				<input type="text" placeholder="검색어 입력">
-				<button>레시피 검색</button>
+				<button>검색</button>
 			</div>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="../loginForm.do">로그인</a></li>
-					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="signup.do">회원가입</a></li>
-					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="contact.do">관리자에게 문의</a></li>
+					<c:choose>
+						<c:when test="${sessionId != null}">
+							<li class="nav-item mx-0 mx-lg-1"><a
+								class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+								href="profile.do">'${sessionId}'</a></li>
+							<li class="nav-item mx-0 mx-lg-1"><a
+								class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+								href="/recipe/logout.do">로그아웃</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="nav-item mx-0 mx-lg-1"><a
+								class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+								href="/recipe/loginForm.do">로그인</a></li>
+							<li class="nav-item mx-0 mx-lg-1"><a
+								class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+								href="/recipe/member/signup.do">회원가입</a></li>
+							<li class="nav-item mx-0 mx-lg-1"><a
+								class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+								href="/recipe/member/contact.do">관리자에게 문의</a></li>
+						</c:otherwise>
+					</c:choose>
+
 				</ul>
 			</div>
 		</div>
@@ -66,6 +75,9 @@
 		</div>
 	</header>
 	<div class="main_body_color">
+		<div class="container">
+			<div class="text-center">시간 출력</div>
+		</div>
 		<section class="container section_container">
 			<dl>
 				<h3>베스트레시피</h3>
@@ -75,51 +87,47 @@
 				<ul>
 					<li class="pull_left"><a href="#">
 							<div class="thumbs_hb">
-								<img src="../img/logo.png" id="img_data">
+								<img src="/recipe/img/logo.png" id="img_data">
 							</div>
 							<div class="caption">
-							   <h4>[브랜드 특가]</h4>
-							   <span>22,000</span>
-							   <span>원</span>
-							   
+								<h4>[브랜드 특가]</h4>
+								<span>22,000</span> <span>원</span>
+
 							</div>
 					</a></li>
-							<li class="pull_left"><a href="#">
+					<li class="pull_left"><a href="#">
 							<div class="thumbs_hb">
-								<img src="../img/GoogleLogin.png" id="img_data">
+								<img src="/recipe/img/GoogleLogin.png" id="img_data">
 							</div>
 							<div class="caption">
-							   <h4>[브랜드 특가]</h4>
-							   <span>22,000</span>
-							   <span>원</span>
-							   
+								<h4>[브랜드 특가]</h4>
+								<span>22,000</span> <span>원</span>
+
 							</div>
 					</a></li>
-					
-							<li class="pull_left"><a href="#">
+
+					<li class="pull_left"><a href="#">
 							<div class="thumbs_hb">
-								<img src="../img/NaverLogin.png" id="img_data">
+								<img src="/recipe/img/NaverLogin.png" id="img_data">
 							</div>
 							<div class="caption">
-							   <h4>[브랜드 특가]</h4>
-							   <span>22,000</span>
-							   <span>원</span>
-							   
+								<h4>[브랜드 특가]</h4>
+								<span>22,000</span> <span>원</span>
+
 							</div>
 					</a></li>
-					
-							<li class="pull_left"><a href="#">
+
+					<li class="pull_left"><a href="#">
 							<div class="thumbs_hb">
 								<img src="">
 							</div>
 							<div class="caption">
-							   <h4>[브랜드 특가]</h4>
-							   <span>22,000</span>
-							   <span>원</span>
-							   
+								<h4>[브랜드 특가]</h4>
+								<span>22,000</span> <span>원</span>
+
 							</div>
 					</a></li>
-					
+
 				</ul>
 			</dd>
 		</section>
@@ -135,90 +143,71 @@
 								<img src="">
 							</div>
 							<div class="caption">
-							   <h4>[브랜드 특가]</h4>
-							   <span>22,000</span>
-							   <span>원</span>
-							   
+								<h4>[브랜드 특가]</h4>
+								<span>22,000</span> <span>원</span>
+
 							</div>
 					</a></li>
-							<li class="pull_left"><a href="#">
+					<li class="pull_left"><a href="#">
 							<div class="thumbs_hb">
 								<img src="">
 							</div>
 							<div class="caption">
-							   <h4>[브랜드 특가]</h4>
-							   <span>22,000</span>
-							   <span>원</span>
-							   
+								<h4>[브랜드 특가]</h4>
+								<span>22,000</span> <span>원</span>
+
 							</div>
 					</a></li>
-					
-							<li class="pull_left"><a href="#">
+
+					<li class="pull_left"><a href="#">
 							<div class="thumbs_hb">
 								<img src="">
 							</div>
 							<div class="caption">
-							   <h4>[브랜드 특가]</h4>
-							   <span>22,000</span>
-							   <span>원</span>
-							   
+								<h4>[브랜드 특가]</h4>
+								<span>22,000</span> <span>원</span>
+
 							</div>
 					</a></li>
-					
-							<li class="pull_left"><a href="#">
+
+					<li class="pull_left"><a href="#">
 							<div class="thumbs_hb">
 								<img src="">
 							</div>
 							<div class="caption">
-							   <h4>[브랜드 특가]</h4>
-							   <span>22,000</span>
-							   <span>원</span>
-							   
+								<h4>[브랜드 특가]</h4>
+								<span>22,000</span> <span>원</span>
+
 							</div>
 					</a></li>
-					
+
 				</ul>
 			</dd>
 		</section>
 	</div>
 	<!-- Footer-->
-	<footer class="footer text-center">
+	<footer class="footer text-center footer_container">
 		<div class="container">
 			<div class="row">
-				<!-- Footer Location-->
-				<div class="col-lg-4 mb-5 mb-lg-0">
-					<h4 class="text-uppercase mb-4">Location</h4>
-					<p class="lead mb-0">
-						2215 John Daniel Drive<br />Clark, MO 65243
-					</p>
-				</div>
-				<!-- Footer Social Icons-->
-				<div class="col-lg-4 mb-5 mb-lg-0">
-					<h4 class="text-uppercase mb-4">Around the Web</h4>
-					<a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-						class="fab fa-fw fa-facebook-f"></i></a><a
-						class="btn btn-outline-light btn-social mx-1" href="#!"><i
-						class="fab fa-fw fa-twitter"></i></a><a
-						class="btn btn-outline-light btn-social mx-1" href="#!"><i
-						class="fab fa-fw fa-linkedin-in"></i></a><a
-						class="btn btn-outline-light btn-social mx-1" href="#!"><i
-						class="fab fa-fw fa-dribbble"></i></a>
-				</div>
-				<!-- Footer About Text-->
-				<div class="col-lg-4">
-					<h4 class="text-uppercase mb-4">About Freelancer</h4>
-					<p class="lead mb-0">
-						Freelance is a free to use, MIT licensed Bootstrap theme created
-						by <a href="http://startbootstrap.com">Start Bootstrap</a>.
-					</p>
-				</div>
+				<img src="/recipe/img/logo.png" id="footer_logo_img">
+			    <ul class="footer_ul">
+			      <li>
+			       <span></span>
+			       <span></span>
+			       <span></span>
+			      </li>
+			      <li>
+			       <span></span>
+			       </li>
+			      <li></li>
+ 			    </ul>
 			</div>
 		</div>
 	</footer>
 	<!-- Copyright Section-->
-	<div class="copyright py-4 text-center text-white">
+	<div class="copyright py-4 text-center text-black">
 		<div class="container">
-			<small>Copyright © Your Website 2020</small>
+			<small>Copyright © 달달하조 2020</small>
 		</div>
 	</div>
 	<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->

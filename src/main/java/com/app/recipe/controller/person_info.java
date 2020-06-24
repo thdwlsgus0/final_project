@@ -1,18 +1,20 @@
 package com.app.recipe.controller;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.personal.naverLogin.service.NaverLoginBO;
+
 @Controller
 public class person_info {
-	@RequestMapping(value ="/loginForm.do", method=RequestMethod.GET)
-	public ModelAndView login_page() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/login.jsp");
-		return mv;
-	}
+	
+	/* 로그인 지웠음 로그인은 LoginAPI로 이동시킴*/
 	@RequestMapping(value ="/member/signup.do", method=RequestMethod.GET)
 	public ModelAndView signup_page() {
 		ModelAndView mv = new ModelAndView();

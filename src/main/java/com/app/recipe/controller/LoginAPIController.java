@@ -22,7 +22,7 @@ import com.personal.kakaoLogin.service.KakaoAPI;
 import com.personal.naverLogin.service.NaverLoginBO;
 
 /*
- loginAPI È£Ãâ
+ loginAPI È£ï¿½ï¿½
  */
 @Controller
 public class LoginAPIController {
@@ -30,13 +30,20 @@ public class LoginAPIController {
 	@Autowired
 	private KakaoAPI kakao;
 	
-	/* NaverLoginBO */
 	private NaverLoginBO naverLoginBO;
 	private String apiResult = null;
 	
 	@Autowired
 	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
-		this.naverLoginBO = naverLoginBO;
+		this.naverLoginBO= naverLoginBO;
+	}
+	
+	@RequestMapping(value ="/loginForm.do", method=RequestMethod.GET)
+	public String login_page(Model model, HttpSession session) {
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+		System.out.println("ï¿½ï¿½ï¿½Ì¹ï¿½:"+naverAuthUrl);
+		model.addAttribute("url", naverAuthUrl);
+		return "/login.jsp";
 	}
 	
     @RequestMapping(value="/login.do",produces="application/json",method=RequestMethod.GET)
@@ -48,55 +55,47 @@ public class LoginAPIController {
         //System.out.println("controller access_token : " + access_Token);
         if (userInfo.get("email") != null) {
             //session.setAttribute("userId", userInfo.get("email"));
-            session.setAttribute("access_Token", access_Token);
+            session.setAttribute("sessionId", access_Token);
         }
     	
-        return "login";
+        return "/member/index.jsp";
     }
-    @RequestMapping(value="/naverLogin.do", produces="application/json", method={RequestMethod.GET, RequestMethod.POST})
-    public String login(Model model, HttpSession session) {
-    	/* ³×ÀÌ¹ö¾ÆÀÌµð·Î ÀÎÁõ URLÀ» »ý¼ºÇÏ±â À§ÇÏ¿© naverLoginBOÅ¬·¡½ºÀÇ getAuthorizationUrl¸Þ¼Òµå È£Ãâ */
-    	String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-    	System.out.println("³×ÀÌ¹ö:"+naverAuthUrl);
-    	model.addAttribute("url", naverAuthUrl);
-    	return "login/naverlogin.jsp";
-    }
-    // ³×ÀÌ¹ö ·Î±×ÀÎ ¼º°ø½Ã callbackÈ£Ãâ ¸Þ¼Òµå
+    // ï¿½ï¿½ï¿½Ì¹ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ callbackÈ£ï¿½ï¿½ ï¿½Þ¼Òµï¿½
     @RequestMapping(value="/callback.do", method= {RequestMethod.GET, RequestMethod.POST})
     public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws IOException, ParseException{
-    	System.out.println("¿©±â´Â callback");
+    	System.out.println("callback í˜¸ì¶œ");
     	OAuth2AccessToken oauthToken;
     	oauthToken = naverLoginBO.getAccessToken(session, code, state);
     	
-    	// 1. ·Î±×ÀÎ »ç¿ëÀÚ Á¤º¸¸¦ ÀÐ¾î¿Â´Ù.
-    	apiResult = naverLoginBO.getUserProfile(oauthToken); //String Çü½ÄÀÇ json µ¥ÀÌÅÍ
+    	// 1. ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½Â´ï¿½.
+    	apiResult = naverLoginBO.getUserProfile(oauthToken); //String ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ json ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     	
-    	// 2. String Çü½ÄÀÎ apiResult¸¦ jsonÇüÅÂ·Î ¹Ù²Þ
+    	// 2. String ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ apiResultï¿½ï¿½ jsonï¿½ï¿½ï¿½Â·ï¿½ ï¿½Ù²ï¿½
     	JSONParser parser = new JSONParser();
     	Object obj = parser.parse(apiResult);
     	JSONObject jsonObj = (JSONObject) obj;
     	
-    	// 3. µ¥ÀÌÅÍ ÆÄ½Ì
-    	// Top·¹º§ ´Ü°è _response ÆÄ½Ì
+    	// 3. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ä½ï¿½
+    	// Topï¿½ï¿½ï¿½ï¿½ ï¿½Ü°ï¿½ _response ï¿½Ä½ï¿½
     	JSONObject response_obj = (JSONObject)jsonObj.get("response");
-    	// responseÀÇ nickname°ª ÆÄ½Ì
+    	// responseï¿½ï¿½ nicknameï¿½ï¿½ ï¿½Ä½ï¿½
     	String nickname = (String)response_obj.get("nickname");
     	
-    	System.out.println(nickname);
-    	
-    	//4. ÆÄ½Ì ´Ð³×ÀÓ ¼¼¼ÇÀ¸·Î ÀúÀå
-    	session.setAttribute("sessionId", nickname);//¼¼¼Ç ¼³Á¤
+    	System.out.println("ë‹‰ë„¤ìž„:"+nickname);
+    	System.out.println("apiResult:"+apiResult);
+    	//4. ï¿½Ä½ï¿½ ï¿½Ð³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    	session.setAttribute("sessionId", nickname);//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     	
     	model.addAttribute("result", apiResult);
-    	
-    	return "login";	
+    	System.out.println("/member/index.jsp");
+    	return "/member/index.jsp";	
     }
     @RequestMapping(value="/logout.do", method= {RequestMethod.GET, RequestMethod.POST})
     public String logout(HttpSession session)throws IOException{
-    	System.out.println("¿©±â´Â logout");
+    	System.out.println("ë¡œê·¸ì•„ì›ƒ logout");
         session.invalidate();
         
-        return "redirect:index.jsp";
+        return "/login.jsp";
     	
     }
 }

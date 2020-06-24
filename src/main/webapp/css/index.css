@@ -28,8 +28,11 @@ ul{
 	margin-bottom:20px;
 	margin-top:30px;
 }
-.main_body_color{
+.main_body_color, .copyright{
 	background:#EAEAEA;
+}
+.text-black{
+	color:black;
 }
 dl h3{
 	margin-left:30px;
@@ -50,4 +53,17 @@ h3{
 #img_data{
 	width:150px;
 	height:100px;
+}
+.footer_container{
+	background:#1DDB16;
+	height:200px;
+}
+#footer_logo_img{
+	width:200px;
+	height:200px;
+    margin-top:-70px;
+    padding-bottom:0px;
+}
+.footer_ul{
+	float:left;
 }

@@ -23,19 +23,19 @@
 			<!-- 검색창 부분 -->
 			<div class="search-box">
 				<input type="text" class="search-text" placeholder="검색어 입력">
-				<button>레시피 검색</button>
+				<button>검색</button>
 			</div>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="../loginForm.do">로그인</a></li>
+						href="/recipe/loginForm.do">로그인</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="signup.do">회원가입</a></li>
+						href="/recipe/member/signup.do">회원가입</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="contact.do">관리자에게 문의</a></li>
+						href="/recipe/member/contact.do">관리자에게 문의</a></li>
 				</ul>
 			</div>
 		</div>

@@ -15,37 +15,37 @@ import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
 
 public class NaverLoginBO {
-	/* ÀÎÁõ ¿äÃ»¹®À» ±¸¼ºÇÏ´Â ÆÄ¶ó¹ÌÅÍ */
-	// client_id : ¾ÖÇÃ¸®ÄÉÀÌ¼Ç µî·Ï ÈÄ ¹ß±Þ¹ÞÀº Å¬¶óÀÌ¾ðÆ® ¾ÆÀÌµð
-	// response_type: ÀÎÁõ °úÁ¤¿¡ ´ëÇÑ ±¸ºÐ°ª, code·Î °ªÀÌ °íÁ¤µÅ ÀÖ½À´Ï´Ù.
-	// redirect_uri : ³×ÀÌ¹ö ·Î±×ÀÎ ÀÎÁõÀÇ °á°ú¸¦ Àü´Þ¹ÞÀ» ÄÝ¹é URL(URL ÀÎÄÚµù). ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀ» µî·ÏÇÒ ¶§ Callback
-	// URL¿¡ ¼³Á¤ÇÑ Á¤º¸ÀÔ´Ï´Ù.
-	// state : ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀÌ »ý¼ºÇÑ »ý¼º ÅäÅ«
+	/* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ */
+	// client_id : ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ß±Þ¹ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½Ìµï¿½
+	// response_type: ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ð°ï¿½, codeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½.
+	// redirect_uri : ï¿½ï¿½ï¿½Ì¹ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Þ¹ï¿½ï¿½ï¿½ ï¿½Ý¹ï¿½ URL(URL ï¿½ï¿½ï¿½Úµï¿½). ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Callback
+	// URLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
+	// state : ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å«
 
 	private final static String CLIENT_ID = "DQJ3vlBLXWzVnPlopGM2";
 	private final static String CLIENT_SECRET = "EPVhrY873q";
-	private final static String REDIRECT_URI = "http://localhost:8090/recipe/member/index.do";
+	private final static String REDIRECT_URI = "http://localhost:8090/recipe/callback.do";
 	private final static String SESSION_STATE = "oauth_state";
-	/* ÇÁ·ÎÇÊ Á¶È¸ API URL */
+	/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ API URL */
 	private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me";
 
-	/* ³×ÀÌ¹ö ¾ÆÀÌµð·Î ÀÎÁõ URL »ý¼º Method */
+	/* ï¿½ï¿½ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ URL ï¿½ï¿½ï¿½ï¿½ Method */
 	public String getAuthorizationUrl(HttpSession session) {
 
 		String state = generateRandomString();
-		/* »ý¼ºÇÑ ³­¼ö °ªÀ» session¿¡ ÀúÀå */
+		/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ sessionï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 		setSession(session, state);
 
-		/* Scribe¿¡¼­ Á¦°øÇÏ´Â ÀÎÁõ URL »ý¼º ±â´ÉÀ» ÀÌ¿ëÇÏ¿© ³×¾Æ·Î ÀÎÁõ URL »ý¼º */
+		/* Scribeï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ URL ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ï¿ï¿½ ï¿½×¾Æ·ï¿½ ï¿½ï¿½ï¿½ï¿½ URL ï¿½ï¿½ï¿½ï¿½ */
 
 		OAuth20Service oauthService = new ServiceBuilder().apiKey(CLIENT_ID).apiSecret(CLIENT_SECRET)
 				.callback(REDIRECT_URI).state(state).build(NaverLoginApi.instance());
 		return oauthService.getAuthorizationUrl();
 	}
 
-	/* ³×ÀÌ¹ö ¾ÆÀÌµð·Î Callback Ã³¸® ¹× AccessToken È¹µæ Method */
+	/* ï¿½ï¿½ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ Callback Ã³ï¿½ï¿½ ï¿½ï¿½ AccessToken È¹ï¿½ï¿½ Method */
 	public OAuth2AccessToken getAccessToken(HttpSession session, String code, String state) throws IOException {
-		/* CallbackÀ¸·Î Àü´Þ¹ÞÀº ¼¼¼Ç°ËÁõ¿ë ³­¼ö°ª°ú ¼¼¼Ç¿¡ ÀúÀåµÇ¾îÀÖ´Â °ªÀÌ ÀÏÄ¡ÇÏ´ÂÁö È®ÀÎ */
+		/* Callbackï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Þ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç¿ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Ï´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ */
 		String sessionState = getSession(session);
 		if (StringUtils.pathEquals(sessionState, state)) {
 			OAuth20Service oauthService = new ServiceBuilder().apiKey(CLIENT_ID).apiSecret(CLIENT_SECRET)
@@ -56,12 +56,13 @@ public class NaverLoginBO {
 		return null;
 	}
 
-	/* ¼¼¼Ç À¯È¿¼º °ËÁõÀ» À§ÇÑ ³­¼ö »ý¼º±â */
+	/* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	private String generateRandomString() {
+		// UUIDï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Äºï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½
 		return UUID.randomUUID().toString();
 	}
 
-	/* http session¿¡ µ¥ÀÌÅÍ ÀúÀå */
+	/* http sessionï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	public void setSession(HttpSession session, String state) {
 		session.setAttribute(SESSION_STATE, state);
 	}
