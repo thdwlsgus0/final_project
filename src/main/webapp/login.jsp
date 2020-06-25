@@ -17,7 +17,7 @@
 
 </head>
 <body>
-		<nav
+	<nav
 		class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top"
 		id="mainNav">
 		<div class="container">
@@ -43,7 +43,7 @@
 				</ul>
 			</div>
 		</div>
-		</nav>
+	</nav>
 	<!-- client_id=앱키  redirect_uri=내 uri-->
 	<div class="login_body">
 		<div class="container">
@@ -64,11 +64,11 @@
 					</div>
 				</div>
 				<div class="row">
-				<button class="btn btn-success login_btn" type="submit">로그인</button>
-			</div>
+					<button class="btn btn-success login_btn" type="submit">로그인</button>
+				</div>
 			</form>
 
-			
+
 			<div class="row">
 				<div class="btn btn-default">
 					<a href="http://localhost:8090/recipe/member/signup.jsp">회원가입</a>
@@ -98,18 +98,21 @@
 			</div>
 
 			<div class="row">
-				<a id="btn-google" href="#"> <img src="img/GoogleLogin.png">
+				<a id="btn-google" href="#" onclick="google_login(true);"> <img src="img/GoogleLogin.png">
 				</a>
 			</div>
 		</div>
 	</div>
-	
+
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="/recipe/login/google/google_sign.js"></script>
+	<script src="https://apis.google.com/js/platform.js?onload=google_init" async
+		defer></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-	<script src="script/google-login.js" charset="UTF-8"></script>
 </body>
 </html>

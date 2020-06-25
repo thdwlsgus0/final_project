@@ -5,6 +5,11 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<style type="text/css">
+.readonly{
+	background-color: #b1b9bd;
+}
+</style>
 <%@ include file="../template/header.jsp"%>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 </head>
@@ -117,6 +122,7 @@
 					<!-- onclick="signup_check();" -->
 				</div>
 				<input type="hidden" id="Mem_profile">
+				<input type="hidden" id="Mem_auth">
 			</form>
 		</div>
 	</div>
@@ -127,11 +133,17 @@
 		$(function(){
 			email = '${regi_email}';
 			if(!email || 0 === email.length) return;
-			name = '${regi_name}';
-			profile = '${regi_profile}';
-			$('#Mem_profile').val(profile);
-			$('#Mem_ID').val(name);
+			
+			$('#Mem_auth').val('${auth}');
+			$('#Mem_profile').val('${regi_profile}');
+			readonly($('#Mem_ID'), '${regi_name}   ');
+			readonly($('#Mem_email'), email);
 		});
+		function readonly(selector, value){
+			selector.val(value);
+			selector.attr('readonly', 'readonly');
+			selector.addClass('readonly');
+		}
 	</script>
 	<!-- 회원가입 -->
 </body>

@@ -5,9 +5,10 @@
 <mapper namespace="regi">
 	<insert id="insert" parameterType="regiDto">
 		INSERT INTO member(MEM_ID, MEM_PASSWORD, MEM_FAVOR, MEM_BIRTH, 
-		 MEM_GENDER, MEM_EMAIL, MEM_PHONE, MEM_CHECK, MEM_DAY, MEM_PROFILE) 
-		 VALUES (#{id}, #{pw}, #{favor}, #{birth}, #{gender}, 
-		 #{email}, #{phone}, #{check}, SYSDATE, #{profile})
+		 MEM_GENDER, MEM_EMAIL, MEM_PHONE, MEM_CHECK, MEM_DAY, MEM_PROFILE, MEM_AUTH) 
+		 VALUES (#{id}, #{pw}, #{favor, jdbcType=VARCHAR}, #{birth}, #{gender}, 
+		 #{email}, #{phone, jdbcType=VARCHAR}, #{check}, 
+		 SYSDATE, #{profile, jdbcType=VARCHAR}, #{auth, jdbcType=VARCHAR})
 	</insert>
 	
 	<select id="select" parameterType="String" resultMap="regirsm">
@@ -21,7 +22,7 @@
 		UPDATE member SET MEM_PASSWORD=#{pw}, 
 		 MEM_FAVOR=#{favor, jdbcType=VARCHAR}, MEM_BIRTH=#{birth}, MEM_GENDER=#{gender},
 		 MEM_EMAIL=#{email}, MEM_PHONE=#{phone, jdbcType=VARCHAR}, MEM_CHECK=#{check},
-		 MEM_PROFILE=#{profile} WHERE MEM_ID=#{id}	
+		 MEM_PROFILE=#{profile, jdbcType=VARCHAR} WHERE MEM_ID=#{id}	
 	</update>
 	
 	<delete id="delete" parameterType="String">

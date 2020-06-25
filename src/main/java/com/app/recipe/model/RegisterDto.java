@@ -17,6 +17,8 @@ public class RegisterDto {
 	private String profile;
 	private String auth;
 	
+	
+	public RegisterDto() {}
 	public RegisterDto(String id, String auth) {
 		this.id = id;
 		this.auth = auth;

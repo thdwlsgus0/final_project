@@ -56,6 +56,7 @@ var main = {
 				birth.getMonth() + 
 				birth.getDate() + '';
 		if(!_this.pwOverCheck()) return;
+		console.log($('#Mem_auth').val());
 		var data = {
 			id: $('#Mem_ID').val(),
 			pw: $('#Mem_password').val(),
@@ -64,7 +65,9 @@ var main = {
 			gender: $('#Mem_gender').val(),
 			email: $('#Mem_email').val(),
 			phone: $('#Mem_phone').val(),
-			check: _this.emailCheck()
+			check: _this.emailCheck(),
+			profile: $('#Mem_profile').val(),
+			auth: $('#Mem_auth').val()
 		}
 		$.ajax({
 			type: 'POST',
@@ -129,7 +132,6 @@ var main = {
 		selYear = new Date($('#Mem_birth').val()).getFullYear();
 		age = curYear - selYear + 1;
 		$('#Mem_age').val(age);
-		console.log(age);
 		return true;
 	},
 	emailValid:function(){

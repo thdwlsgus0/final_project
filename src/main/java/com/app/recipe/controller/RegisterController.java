@@ -8,9 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.recipe.dao.RegisterService;
 import com.app.recipe.model.RegisterDto;
@@ -20,7 +18,8 @@ import com.app.recipe.model.RegisterDto;
 public class RegisterController {
 	@Inject
 	private RegisterService svc;
-	
+
+	@ResponseBody
 	@PostMapping("/member/regist.do")
 	public String regist(@RequestBody RegisterDto dto) {
 		svc.register(dto);

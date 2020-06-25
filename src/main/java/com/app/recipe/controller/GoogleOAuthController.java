@@ -18,7 +18,7 @@ public class GoogleOAuthController {
 
 	@Inject
 	private RegisterService svc;
-
+	
 	@PostMapping("/login/google.do")
 	public @ResponseBody HashMap<String, Object> login(@RequestBody HashMap<String, Object> map,
 			HttpServletRequest request) {
@@ -26,7 +26,6 @@ public class GoogleOAuthController {
 		String email = map.get("email").toString();
 		String name = map.get("name").toString();
 		String profile = map.get("imageUrl").toString();
-		
 		// 로그인 체크
 		HashMap<String, Object> ret = new HashMap<String, Object>();
 		if (svc.idcheck(email, "google")) {
@@ -42,6 +41,7 @@ public class GoogleOAuthController {
 			session.setAttribute("profile", profile);
 			ret.put("login", true);
 		}
+		session.setAttribute("auth", "google");
 		return ret;
 	}
 }
