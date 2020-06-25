@@ -1,0 +1,72 @@
+/* 
+ 2020.06.15 
+ css 변경 회원가입 버튼 위치 조정 
+*/
+.search-box {
+	margin-left:200px;
+	border: 1px solid #1b5ac2;
+	height:45px;
+}
+
+input:-ms-input-placeholder {
+	color: #a8a8a8;
+}
+
+input::-webkit-input-placeholer {
+	color: #a8a8a8;
+}
+
+input::-moz-placeholder {
+	color: #a8a8a8;
+}
+
+input{
+	font-size: 16px;
+	width:325px;
+	padding:10px;
+	border: 0px;
+	outline: none;
+	float:left;
+}
+button{
+	width: 50px;
+	height: 100%;
+	border: 0px;
+	background: #01DF01;
+	outline:none;
+	float:right;
+	color:#ffffff;
+}
+/*
+ 2020.06.16 css margin-top 수정 완료
+*/
+.login_body{
+	margin-top:150px;
+	margin-left:500px;
+}
+
+/*
+ 2020.06.16 수정 회원가입 폼 수정
+*/
+.signup_body{
+	margin-top:150px;
+	margin-left:350px;
+}
+/*
+ 2020.06.15 추가
+*/
+.signbtn{
+	width:67%;
+}
+.authbtn{
+	width:80px;
+	height:50px;
+	margin-left:10px;
+	margin-top:6px;
+}
+.emailcheck{
+	width:80px;
+	height:50px;
+	margin-left:10px;
+	margin-top:6px;
+}
