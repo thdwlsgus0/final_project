@@ -36,8 +36,37 @@ function login(){
 function viewprofile(){
 	var gauth = gapi.auth2.getAuthInstance();
 	if(gauth.isSignedIn.get() == true){
-		var email = gauth.currentUser.get().getBasicProfile().getEmail();
+		var profile = gauth.currentUser.get().getBasicProfile();
+		var name = profile.getName();
+		var email = profile.getEmail();
+		var imageUrl = profile.getImageUrl();
 		$('#get_email').html('logined email: ' + email);
+		console.log('imageUrl: ' + imageUrl);
+		console.log('name: ' + name);
+		sendprofiletocontrol(email, name, imageUrl);
 	}
 	else $('#get_email').html('');
+}
+function sendprofiletocontrol(email, name, imageUrl){
+	// profile = gapi.auth2.getAuthInstance().gauth.currentUser.get().getBasicProfile()
+	console.log("email: " + email);
+	var data = {
+		email: email,
+		name: name,
+		imageUrl: imageUrl
+	}
+	$.ajax({
+		type: 'POST',
+		url: '/recipe/login/google.do',
+		dataType: 'json',
+		contentType: 'application/json; charset=utf-8',
+		data: JSON.stringify(data),
+		async: false
+	}).done(function(res){
+		flag = res['login'];
+	});
+	return;
+	
+	if(flag) document.location.href = '/recipe/loginForm.do';
+	else document.location.href = '/recipe/member/signup.do';
 }

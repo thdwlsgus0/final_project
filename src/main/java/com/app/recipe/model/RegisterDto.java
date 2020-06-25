@@ -15,7 +15,18 @@ public class RegisterDto {
 	private String phone;
 	private String check;
 	private String profile;
+	private String auth;
 	
+	public RegisterDto(String id, String auth) {
+		this.id = id;
+		this.auth = auth;
+	}
+	public String getAuth() {
+		return auth;
+	}
+	public void setAuth(String auth) {
+		this.auth = auth;
+	}
 	public String getProfile() {
 		return profile;
 	}

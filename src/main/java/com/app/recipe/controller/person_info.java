@@ -16,7 +16,7 @@ public class person_info {
 	@RequestMapping(value ="/member/signup.do", method=RequestMethod.GET)
 	public ModelAndView signup_page() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/member/signup.jsp");
+		mv.setViewName("/signup/signup.jsp");
 		return mv;
 	}
 	@RequestMapping(value ="/member/contact.do", method=RequestMethod.GET)

@@ -22,6 +22,12 @@ public class RegisterServiceImpl implements RegisterService {
 		if(dao.select(id) == null) return true;
 		return false;
 	}
+	
+	@Override
+	public boolean idcheck(String id, String auth) {
+		if(dao.select(id, auth) == null) return true;
+		return false;
+	}
 
 	@Override
 	public boolean login(RegisterDto dto) {

@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="../script/google_sign.js"></script>
+<script type="text/javascript" src="/recipe/login/google/google_sign.js"></script>
 <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 </head>
 <body>

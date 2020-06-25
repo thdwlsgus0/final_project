@@ -8,6 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.app.recipe.dao.RegisterService;
 import com.app.recipe.model.RegisterDto;
@@ -21,14 +24,14 @@ public class RegisterController {
 	@PostMapping("/member/regist.do")
 	public String regist(@RequestBody RegisterDto dto) {
 		svc.register(dto);
-		return "/member/signup_check.jsp";
+		return "/signup/signup_check.jsp";
 	}
 	
 	@PostMapping("/member/idcheck.do")
 	public String idcheck(@RequestBody String id, Model model) {
 		if(svc.idcheck(id)) model.addAttribute("idcheck", true);
 		else model.addAttribute("idcheck", false);
-		return "/member/signup_idcheck.jsp";
+		return "/signup/signup_idcheck.jsp";
 	}
 	
 	@GetMapping("/member/emailcheck.do")
@@ -45,6 +48,6 @@ public class RegisterController {
 		else model.addAttribute("check", false);
 		} catch(Exception e) { System.out.println(String.format(
 				"잘못된 접근 들어옴 >> id[%s], dice[%s] >> %s", id, dice, e.getMessage())); }
-		return "/member/signup_dice.jsp";
+		return "/signup/signup_dice.jsp";
 	}
 }

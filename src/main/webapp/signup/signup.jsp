@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -115,13 +116,23 @@
 					<button class="btn btn-success signbtn" type="submit" id="btn-register">회원가입 완료</button>
 					<!-- onclick="signup_check();" -->
 				</div>
+				<input type="hidden" id="Mem_profile">
 			</form>
 		</div>
 	</div>
 	<%@ include file="../template/script.jsp"%>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-	<script src="../script/mem_regi.js" charset="UTF-8"></script>
-	<script src="../script/signup.js" charset="UTF-8"></script>
+	<script src="/recipe/signup/signup.js" charset="UTF-8"></script>
+	<script type="text/javascript">
+		$(function(){
+			email = '${regi_email}';
+			if(!email || 0 === email.length) return;
+			name = '${regi_name}';
+			profile = '${regi_profile}';
+			$('#Mem_profile').val(profile);
+			$('#Mem_ID').val(name);
+		});
+	</script>
 	<!-- 회원가입 -->
 </body>
 </html>
