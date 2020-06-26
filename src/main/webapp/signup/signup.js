@@ -45,18 +45,16 @@ var main = {
 		return saveres;
 	},
 	register:function(){
-		// 해당 함수 내용은 signup.jsp정리되면 폼에서 처리하도록 바꾸는게 좋음
 		var _this = this;
 		if(!_this.focusOutId() || !_this.pwOverCheck() || 
 				!_this.focusOutAge() || !_this.emailValid())
-			return;
+			return false;
 		
 		var birth = new Date($('#Mem_birth').val());
 		var str_birth =  birth.getFullYear() +
 				birth.getMonth() + 
 				birth.getDate() + '';
 		if(!_this.pwOverCheck()) return;
-		console.log($('#Mem_auth').val());
 		var data = {
 			id: $('#Mem_ID').val(),
 			pw: $('#Mem_password').val(),
@@ -65,14 +63,14 @@ var main = {
 			gender: $('#Mem_gender').val(),
 			email: $('#Mem_email').val(),
 			phone: $('#Mem_phone').val(),
-			check: _this.emailCheck(),
+			check: eval(_this.emailCheck()),
 			profile: $('#Mem_profile').val(),
 			auth: $('#Mem_auth').val()
 		}
 		$.ajax({
 			type: 'POST',
 			url: '/recipe/member/regist.do',
-			dataType: 'text',
+			dataType: 'json',
 			contentType: 'application/json; charset=utf-8',
 			data: JSON.stringify(data)
 		}).done(function(){

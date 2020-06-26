@@ -44,7 +44,7 @@ public class MemberController {
 		System.out.println("mail sending called");
 		Random r = new Random();
 		int dice = r.nextInt(4589362)+49311; // 49311 ~ 49311 + 4589362
-		
+		System.out.println(">>>>>>>>>>>>>>>>>>>>" + dice);
 		sendEmail(dto.getEmail(), dto.getId(), dice);
 		model.addAttribute("dice", dice);
 		

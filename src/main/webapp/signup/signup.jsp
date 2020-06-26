@@ -6,7 +6,7 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style type="text/css">
-.readonly{
+input[readonly='readonly']{
 	background-color: #b1b9bd;
 }
 </style>
@@ -43,10 +43,10 @@
 	</nav>
 	<div class="signup_body">
 		<div class="container">
-			<form method="post" action="#" id="signup_form">
+			<form action="#">
 				<h1 class="signup_h1">회원가입</h1>
 				<div class="row">
-					<input type="text" name="Mem_ID" id="Mem_ID" placeholder="아이디 입력" />
+					<input type="text" name="Mem_ID" id="Mem_ID" placeholder="아이디 입력" value="${regi_name}" />
 					<!-- <button class="btn btn-primary emailcheck" onclick="">중복체크</button> -->
 				</div>
 				<div id="id_check"></div>
@@ -63,16 +63,13 @@
 				<!-- 이메일 인증 연동하는거 구현 필요할 듯 -->
 				<!-- auth button 추가함 -->
 				<div class="row">
-					<input type="text" name="Mem_email" id="Mem_email" placeholder="이메일" />
-					<form action="../email/auth.do">
-						
-					</form>
+					<input type="text" name="Mem_email" id="Mem_email" placeholder="이메일" value="${regi_email}" />
 					<!-- <button type="button" class="btn btn-success authbtn" id="btn-check">인증</button> -->
 				</div>
 				<div id="email_check"></div>
 
 				<div class="row">
-					<input type="text" name="Mem_age" id="Mem_age" placeholder="나이" readonly />
+					<input type="text" name="Mem_age" id="Mem_age" placeholder="나이" readonly='readonly' />
 				</div>
 				<div id="age_check"></div>
 				<div class="row">
@@ -118,32 +115,27 @@
 				<div id="input_check"></div>
 				<!-- 회원가입 버튼 크기 변경 -->
 				<div class="row">
-					<button class="btn btn-success signbtn" type="submit" id="btn-register">회원가입 완료</button>
-					<!-- onclick="signup_check();" -->
+					<input type="button" class="btn btn-success signbtn" id="btn-register" value="회원가입 완료">
 				</div>
-				<input type="hidden" id="Mem_profile">
-				<input type="hidden" id="Mem_auth">
+				<input type="hidden" id="Mem_profile" value="${regi_profile}">
+				<input type="hidden" id="Mem_auth" value="${auth}">
 			</form>
 		</div>
 	</div>
 	<%@ include file="../template/script.jsp"%>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src="/recipe/signup/signup.js" charset="UTF-8"></script>
 	<script type="text/javascript">
 		$(function(){
-			email = '${regi_email}';
+			email = $('#Mem_email').val();
 			if(!email || 0 === email.length) return;
-			
-			$('#Mem_auth').val('${auth}');
-			$('#Mem_profile').val('${regi_profile}');
-			readonly($('#Mem_ID'), '${regi_name}   ');
-			readonly($('#Mem_email'), email);
+			$('#Mem_email').attr('readonly', 'readonly');
+			$('#Mem_ID').attr('readonly', 'readonly');
+			<% session.setAttribute("regi_email", null);
+			session.setAttribute("regi_name", null);
+			session.setAttribute("regi_profile", null); %>
 		});
-		function readonly(selector, value){
-			selector.val(value);
-			selector.attr('readonly', 'readonly');
-			selector.addClass('readonly');
-		}
 	</script>
 	<!-- 회원가입 -->
 </body>

@@ -1,5 +1,7 @@
 package com.app.recipe.controller;
 
+import java.util.HashMap;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,9 +23,10 @@ public class RegisterController {
 
 	@ResponseBody
 	@PostMapping("/member/regist.do")
-	public String regist(@RequestBody RegisterDto dto) {
+	public HashMap<String, Object> regist(@RequestBody RegisterDto dto) {
 		svc.register(dto);
-		return "/signup/signup_check.jsp";
+		return new HashMap<String, Object>();
+		//return "/signup/signup_check.jsp";
 	}
 	
 	@PostMapping("/member/idcheck.do")

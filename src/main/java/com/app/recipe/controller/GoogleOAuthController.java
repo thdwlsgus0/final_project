@@ -31,7 +31,7 @@ public class GoogleOAuthController {
 		if (svc.idcheck(email, "google")) {
 			// - 가입하지 않았다면 가입창으로
 			session.setAttribute("regi_email", email);
-			session.setAttribute("regi_name", name);
+			session.setAttribute("regi_name", name + "   ");
 			session.setAttribute("regi_profile", profile);
 			ret.put("login", false);
 		} else {

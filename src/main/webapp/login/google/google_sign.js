@@ -64,6 +64,6 @@ function google_sendprofiletocontrol(email, name, imageUrl){
 	});
 	google_login(false);
 	
-	if(flag) document.location.href = '/recipe/loginForm.do';
-	else document.location.href = '/recipe/member/signup.do';
+	if(flag) window.location.href = '/recipe/loginForm.do';
+	else window.location.href = '/recipe/member/signup.do';
 }
