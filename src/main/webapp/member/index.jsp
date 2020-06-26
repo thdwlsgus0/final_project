@@ -24,13 +24,12 @@
 <link href="/recipe/css/index.css" rel="stylesheet" />
 </head>
 <body id="page-top">
-
-
 	<!-- Navigation-->
 	<nav class="navbar navbar-expand-lg">
 		<div class="container nav_container">
-			<a class="navbar-brand js-scroll-trigger" href="/recipe/member/index.do"><img
-				src="/recipe/img/logo.png" id="img_size"></a>
+			<a class="navbar-brand js-scroll-trigger"
+				href="/recipe/member/index.do"><img src="/recipe/img/logo.png"
+				id="img_size"></a>
 			<!-- 검색창 부분 -->
 			<div class="search-box">
 				<input type="text" placeholder="검색어 입력">
@@ -59,7 +58,6 @@
 								href="/recipe/member/contact.do">관리자에게 문의</a></li>
 						</c:otherwise>
 					</c:choose>
-
 				</ul>
 			</div>
 		</div>
@@ -75,9 +73,32 @@
 		</div>
 	</header>
 	<div class="main_body_color">
-		<div class="container">
-			<div class="text-center">시간 출력</div>
-		</div>
+		<section class="container section_category">
+			<div class="cate_arrow">
+				<img src="/recipe/img/left_arrow.png">
+			</div>
+			<div class="ingre_img">
+				<ul>
+					<li><img src="/recipe/img/beef.png" class="beef_size">
+						<p class="text-center">쇠고기</p></li>
+					<li><img src="/recipe/img/radish.png" class="radish_size">
+						<p class="text-center">무</p></li>
+					<li><img src="/recipe/img/tofu.png" class="tofu_size">
+						<p class="text-center">두부</p></li>
+					<li><img src="/recipe/img/rice.png" class="rice_size">
+						<p class="text-center">밥</p></li>
+					<li><img src="/recipe/img/squid.png" class="squid_size">
+						<p class="text-center">오징어</p></li>
+					<li><img src="/recipe/img/pork.png" class="pork_size">
+						<p class="text-center">돼지고기</p></li>
+					<li><img src="/recipe/img/mushroom.png" class="mushroom_size">
+						<p class="text-center">표고버섯</p></li>
+				</ul>
+			</div>
+			<div class="cate_arrow">
+				<img src="/recipe/img/right_arrow.png">
+			</div>
+		</section>
 		<section class="container section_container">
 			<dl>
 				<h3>베스트레시피</h3>
@@ -92,7 +113,6 @@
 							<div class="caption">
 								<h4>[브랜드 특가]</h4>
 								<span>22,000</span> <span>원</span>
-
 							</div>
 					</a></li>
 					<li class="pull_left"><a href="#">
@@ -102,10 +122,8 @@
 							<div class="caption">
 								<h4>[브랜드 특가]</h4>
 								<span>22,000</span> <span>원</span>
-
 							</div>
 					</a></li>
-
 					<li class="pull_left"><a href="#">
 							<div class="thumbs_hb">
 								<img src="/recipe/img/NaverLogin.png" id="img_data">
@@ -113,7 +131,44 @@
 							<div class="caption">
 								<h4>[브랜드 특가]</h4>
 								<span>22,000</span> <span>원</span>
+							</div>
+					</a></li>
+					<li class="pull_left"><a href="#">
+							<div class="thumbs_hb">
+								<img src="">
+							</div>
+							<div class="caption">
+								<h4>[브랜드 특가]</h4>
+								<span>22,000</span> <span>원</span>
+							</div>
+					</a></li>
 
+				</ul>
+			</dd>
+		</section>
+		<section class="container section_container">
+			<dl>
+				<h3>추천 레시피</h3>
+				<div class="btn btn-success btn-more">더보기</div>
+			</dl>
+			<dd>
+				<ul>
+					<li class="pull_left"><a href="#">
+							<div class="thumbs_hb">
+								<img src="">
+							</div>
+							<div class="caption">
+								<h4>[브랜드 특가]</h4>
+								<span>22,000</span> <span>원</span>
+
+							</div></li>
+					<li class="pull_left"><a href="#">
+							<div class="thumbs_hb">
+								<img src="">
+							</div>
+							<div class="caption">
+								<h4>[브랜드 특가]</h4>
+								<span>22,000</span> <span>원</span>
 							</div>
 					</a></li>
 
@@ -127,7 +182,15 @@
 
 							</div>
 					</a></li>
-
+					<li class="pull_left"><a href="#">
+							<div class="thumbs_hb">
+								<img src="">
+							</div>
+							<div class="caption">
+								<h4>[브랜드 특가]</h4>
+								<span>22,000</span> <span>원</span>
+							</div>
+					</a></li>
 				</ul>
 			</dd>
 		</section>
@@ -190,17 +253,12 @@
 		<div class="container">
 			<div class="row">
 				<img src="/recipe/img/logo.png" id="footer_logo_img">
-			    <ul class="footer_ul">
-			      <li>
-			       <span></span>
-			       <span></span>
-			       <span></span>
-			      </li>
-			      <li>
-			       <span></span>
-			       </li>
-			      <li></li>
- 			    </ul>
+				<ul class="footer_ul">
+					<li><img src=""> <span>총 쉐프수</span> <b>2,372</b></li>
+					<li><img src=""> <span>총 레시피수</span> <b>139,498</b></li>
+					<li><img src=""> <span>총 레시피 조회수</span> <b>1,828,388,044</b>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</footer>
