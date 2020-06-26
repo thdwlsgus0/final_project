@@ -28,13 +28,14 @@ public class GoogleOAuthController {
 		String profile = map.get("imageUrl").toString();
 		// 로그인 체크
 		HashMap<String, Object> ret = new HashMap<String, Object>();
-		if (svc.idcheck(email, "google")) {
+		if (svc.idcheck(name, "google")) {
 			// - 가입하지 않았다면 가입창으로
 			session.setAttribute("regi_email", email);
 			session.setAttribute("regi_name", name + "   ");
 			session.setAttribute("regi_profile", profile);
 			ret.put("login", false);
 		} else {
+			System.out.println("가입한 상태임");
 			// - 가입한 상태라면 메인으로
 			session.setAttribute("email", email);
 			session.setAttribute("name", name);

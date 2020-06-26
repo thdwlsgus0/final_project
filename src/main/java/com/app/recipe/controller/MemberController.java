@@ -64,6 +64,7 @@ public class MemberController {
             messageHelper.setTo(email); // 받는사람 이메일
             messageHelper.setSubject(subject); // 메일제목은 생략이 가능하다
             messageHelper.setText(rcontent); // 메일 내용
+            // 스레드로 만들던가 하기
             mailSender.send(message);
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block

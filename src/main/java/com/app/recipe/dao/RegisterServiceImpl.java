@@ -14,6 +14,7 @@ public class RegisterServiceImpl implements RegisterService {
 	
 	@Override
 	public void register(RegisterDto dto) {
+		dto.setId(dto.getId().trim());
 		dao.insert(dto);
 	}
 
