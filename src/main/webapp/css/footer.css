@@ -1,0 +1,23 @@
+.footer_container{
+	background:#1DDB16 !important;
+	height:200px;
+}
+#footer_logo_img{
+	width:200px;
+	height:200px;
+    margin-top:-70px;
+    padding-bottom:0px;
+    margin-left:70px;
+}
+.footer_ul li{
+	float:left;
+	font-size:23px;
+	color:#fdff51;
+	width:150px;
+	height:300px;
+	margin-top:-45px;
+	margin-left:100px;
+}
+.footer_ul div{
+	color:#fff !important;
+}

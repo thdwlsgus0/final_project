@@ -1,23 +1,8 @@
 /*
- loginºÎºÐ css
+ loginï¿½Îºï¿½ css
  2020.06.09 by.jin
 */
 
-input[type=text] {
-    margin-left:-20px;
-	width: 67%;
-	padding: 12px 20px;
-	margin: 8px 0;
-	display: inline-block;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	box-sizing: border-box;
-	float : left;
-}
-.search-text{
-	width:325px !important;
-	margin: -4px !important;
-}
 .login_btn{
 	width:575px;
 	padding: 12px 20px;
@@ -25,10 +10,32 @@ input[type=text] {
 }
 .login_h3, .signup_h1{
 	margin-left:230px;
-	padding-top:-100px;
 }
 
 
 body{
+	background-color:#fff;
+}
+.main_body_color{
 	background-color:#EAEAEA;
+}
+.main_content{
+	height:700px;
+	padding-top:100px;
+	margin-left:300px;
+}
+
+.login_input{
+	width:573px;
+}
+div.row {
+	margin-bottom:10px;
+}
+.main_content{
+	clear:both;
+}
+@media (min-width: 0px) {
+  .menu {
+    min-width: 1550px;
+  }
 }

@@ -68,6 +68,7 @@ body {
   color: #212529;
   text-align: left;
   background-color: #fff;
+
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -547,25 +548,15 @@ pre code {
   margin-right: auto;
   margin-left: auto;
 }
-@media (min-width: 576px) {
+
+@media (min-width: 0px) {
   .container {
-    max-width: 540px;
+    min-width: 1200px;
   }
-}
-@media (min-width: 768px) {
-  .container {
-    max-width: 720px;
+  .section_category{
+    min-width: 1200px;
   }
-}
-@media (min-width: 992px) {
-  .container {
-    max-width: 960px;
-  }
-}
-@media (min-width: 1200px) {
-  .container {
-    max-width: 1140px;
-  }
+
 }
 
 .container-fluid, .container-xl, .container-lg, .container-md, .container-sm {
@@ -3979,7 +3970,6 @@ input[type=button].btn-block {
 
 .navbar {
   position: relative;
-  display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;

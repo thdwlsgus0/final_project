@@ -5,3 +5,4 @@
 <link href="../css/style.css" rel="stylesheet" />
 <link href="../css/jinhyun.css" rel="stylesheet" />
 <link href="../css/login.css" rel="stylesheet"/>
+<link href="../css/index.css" rel="stylesheet"/>

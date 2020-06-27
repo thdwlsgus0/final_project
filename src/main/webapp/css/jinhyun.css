@@ -1,6 +1,6 @@
 /* 
  2020.06.15 
- css º¯°æ È¸¿ø°¡ÀÔ ¹öÆ° À§Ä¡ Á¶Á¤ 
+ css ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ 
 */
 .search-box {
 	border: 1px solid #1b5ac2;
@@ -37,7 +37,7 @@ button{
 	color:#ffffff;
 }
 /*
- 2020.06.16 css margin-top ¼öÁ¤ ¿Ï·á
+ 2020.06.16 css margin-top ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½
 */
 .login_body{
 	margin-top:150px;
@@ -45,14 +45,14 @@ button{
 }
 
 /*
- 2020.06.16 ¼öÁ¤ È¸¿ø°¡ÀÔ Æû ¼öÁ¤
+ 2020.06.16 ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 */
 .signup_body{
 	margin-top:150px;
 	margin-left:250px;
 }
 /*
- 2020.06.15 Ãß°¡
+ 2020.06.15 ï¿½ß°ï¿½
 */
 .signbtn{
 	width:67%;
@@ -82,7 +82,4 @@ button{
 	height:100px;
 	padding-bottom:0px;
 	margin-left:150px;
-}
-.nav_container{
-	background:white;
 }

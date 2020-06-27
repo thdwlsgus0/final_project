@@ -1,88 +1,67 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=0.25">
 <title>Insert title here</title>
-<%@ include file="../template/header.jsp"%>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link href="/recipe/css/header.css" rel="stylesheet"/>
+<link href="/recipe/css/footer.css" rel="stylesheet"/>
+<link href="/recipe/css/jinhyun.css" rel="stylesheet"/>
+<link href="/recipe/css/style.css" rel="stylesheet"/>
+<link href="/recipe/css/signup.css" rel="stylesheet"/>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg nav_container">
-		<div class="container">
-			<a class="navbar-brand js-scroll-trigger" href="index.do"><img
-				src="../img/logo.png" id="img_size"></a>
-			<button
-				class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
-				type="button" data-toggle="collapse" data-target="#navbarResponsive"
-				aria-controls="navbarResponsive" aria-expanded="false"
-				aria-label="Toggle navigation">
-				Menu <i class="fas fa-bars"></i>
-			</button>
-			<!-- °Ë»öÃ¢ ºÎºÐ -->
-			<div class="search-box">
-				<input type="text" class="search-text" placeholder="°Ë»ö¾î ÀÔ·Â">
-				<button>°Ë»ö</button>
-			</div>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="/recipe/loginForm.do">·Î±×ÀÎ</a></li>
-					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="/recipe/member/signup.do">È¸¿ø°¡ÀÔ</a></li>
-					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="/recipe/member/contact.do">°ü¸®ÀÚ¿¡°Ô ¹®ÀÇ</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-	<div class="container">
+	<%@ include file="../template/nav.jsp"%>
+	<div class="container main_body_color">
 		<div class="signup_body">
 			<form method="post" action="#" id="signup_form">
-				<h4 class="text-center sign_up">È¸¿ø°¡ÀÔ</h4>
+				<h4 class="text-center sign_up">íšŒì›ê°€ìž…</h4>
 				<div class="row">
-					<input type="text" class="form-control" name="Mem_ID" id="Mem_ID"
-						placeholder="¾ÆÀÌµð ÀÔ·Â" />
-					<!-- <button class="btn btn-primary emailcheck" onclick="">Áßº¹Ã¼Å©</button> -->
+					<input type="text" class="signup_input form-control" name="Mem_ID" id="Mem_ID"
+						placeholder="ì•„ì´ë”” ìž…ë ¥" />
+					<!-- <button class="btn btn-primary emailcheck" onclick="">ì¤‘ë³µì²´í¬</button> -->
 				</div>
 				<div id="id_check"></div>
-				<!-- ºñ¹Ð¹øÈ£ È®ÀÎ ÇÊ¿äÇÒ µí-->
+				<!-- ë¹„ë°€ë²ˆí˜¸ í™•ì¸ í•„ìš”í•  ë“¯-->
 				<div class="row">
-					<input type="password" class="signup_password form-control"
-						name="Mem_password" id="Mem_password" placeholder="ºñ¹Ð¹øÈ£ ÀÔ·Â" />
+					<input type="password" class="signup_input signup_password form-control"
+						name="Mem_password" id="Mem_password" placeholder="ë¹„ë°€ë²ˆí˜¸ ìž…ë ¥" />
 				</div>
 				<div class="row">
-					<input type="password" class="signup_password form-control"
-						name="Mem_password2" id="Mem_password2" placeholder="È®ÀÎ ºñ¹Ð¹øÈ£ ÀÔ·Â" />
+					<input type="password" class="signup_input signup_password form-control"
+						name="Mem_password2" id="Mem_password2" placeholder="í™•ì¸ ë¹„ë°€ë²ˆí˜¸ ìž…ë ¥" />
 				</div>
 				<div id="pw_check"></div>
-				<!-- ÀÌ¸ÞÀÏ ÀÎÁõ ¿¬µ¿ÇÏ´Â°Å ±¸Çö ÇÊ¿äÇÒ µí -->
-				<!-- auth button Ãß°¡ÇÔ -->
+				<!-- ì´ë©”ì¼ ì¸ì¦ ì—°ë™í•˜ëŠ”ê±° êµ¬í˜„ í•„ìš”í•  ë“¯ -->
+				<!-- auth button ì¶”ê°€í•¨ -->
 				<div class="row">
-					<input type="text" class="form-control" name="Mem_email"
-						id="Mem_email" placeholder="ÀÌ¸ÞÀÏ" />
+					<input type="text" class="signup_input form-control" name="Mem_email"
+						id="Mem_email" placeholder="ì´ë©”ì¼" />
 					<form action="../email/auth.do">
-						<button type="submit" class="btn btn-success authbtn">ÀÎÁõ</button>
+						<button type="submit" class="btn btn-success authbtn">ì¸ì¦</button>
 					</form>
 				</div>
 
 				<div class="row">
-					<input type="text" class="form-control" name="Mem_age" id="Mem_age"
-						placeholder="³ªÀÌ" readonly />
+					<input type="text" class="signup_input form-control" name="Mem_age" id="Mem_age"
+						placeholder="ë‚˜ì´" readonly />
 				</div>
 				<div id="age_check"></div>
 				<div class="row">
-					<input type="text" id="Mem_birth" class="form-control">
+					<input type="text" id="Mem_birth" class="signup_input form-control">
 					<!-- <span class="ps_box">
-						<input type="text" name="Mem_birth_yy" id="Mem_birth_yy" placeholder="¿¬" />
+						<input type="text" name="Mem_birth_yy" id="Mem_birth_yy" placeholder="ì—°" />
 					</span>
 					<span class="ps_box"> 
-						<input type="text" name="Mem_birth_mm" id="Mem_birth_mm" placeholder="¿ù" /> 
-						<select id="Mem_birth_mm" aria-label="¿ù">
+						<input type="text" name="Mem_birth_mm" id="Mem_birth_mm" placeholder="ì›”" /> 
+						<select id="Mem_birth_mm" aria-label="ì›”">
 						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>
@@ -98,37 +77,39 @@
 					</select>
 					</span>
 					<span class="ps_box">
-						<input type="text" name="Mem_birth_dd" id="Mem_birth_dd" placeholder="ÀÏ" />
+						<input type="text" name="Mem_birth_dd" id="Mem_birth_dd" placeholder="ì¼" />
 					</span> -->
 				</div>
 				<div class="row">
-					<input type="text" class="form-control" name="Mem_favor"
-						id="Mem_favor" placeholder="ÃëÇâ" />
+					<input type="text" class="signup_input form-control" name="Mem_favor"
+						id="Mem_favor" placeholder="ì·¨í–¥" />
 				</div>
 				<div class="row input-group">
 					<button type="button" class="btn btn-sm btn-success"
-						id="btn-gen-male">³²ÀÚ</button>
+						id="btn-gen-male">ë‚¨ìž</button>
 					<button type="button" class="btn btn-sm btn-default"
-						id="btn-gen-female"">¿©ÀÚ</button>
-					<input type="hidden" id="Mem_gender" value="³²ÀÚ">
+						id="btn-gen-female"">ì—¬ìž</button>
+					<input type="hidden" id="Mem_gender" class="signup_input" value="ë‚¨ìž">
 				</div>
 				<div class="row">
-					<input type="text" class="form-control" name="Mem_phone"
-						id="Mem_phone" placeholder="ÀüÈ­¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä ex) 01011112222">
+					<input type="text" class="form-control signup_input" name="Mem_phone"
+						id="Mem_phone" placeholder="ì „í™”ë²ˆí˜¸ë¥¼ ìž…ë ¥í•˜ì„¸ìš” ex) 01011112222">
 				</div>
 				<div id="input_check"></div>
-				<!-- È¸¿ø°¡ÀÔ ¹öÆ° Å©±â º¯°æ -->
+				<!-- íšŒì›ê°€ìž… ë²„íŠ¼ í¬ê¸° ë³€ê²½ -->
 				<div class="row">
 					<button class="btn btn-success signbtn" type="submit"
-						id="btn-register">È¸¿ø°¡ÀÔ ¿Ï·á</button>
+						id="btn-register">íšŒì›ê°€ìž… ì™„ë£Œ</button>
 					<!-- onclick="signup_check();" -->
+				
 				</div>
 			</form>
 		</div>
 	</div>
+	<%@ include file="../template/footer.jsp"%>
 	<%@ include file="../template/script.jsp"%>
 	<script src="../script/mem_regi.js" charset="UTF-8"></script>
 	<script src="../script/signup.js" charset="UTF-8"></script>
-	<!-- È¸¿ø°¡ÀÔ -->
+	<!-- íšŒì›ê°€ìž… -->
 </body>
 </html>

@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=0.25" />
 <title>Insert title here</title>
 <!-- 우아한민족 주아체 -->
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
@@ -14,42 +16,14 @@
 <link href="css/style.css" rel="stylesheet" />
 <link href="css/jinhyun.css" rel="stylesheet" />
 <link href="css/login.css" rel="stylesheet" />
+<link href="css/header.css" rel="stylesheet"/>
+<link href="css/footer.css" rel="stylesheet"/>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg nav_container">
-		<div class="container">
-			<a class="navbar-brand js-scroll-trigger" href="member/index.do"><img
-				src="img/logo.png" id="img_size"></a>
-			<button
-				class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
-				type="button" data-toggle="collapse" data-target="#navbarResponsive"
-				aria-controls="navbarResponsive" aria-expanded="false"
-				aria-label="Toggle navigation">
-				Menu <i class="fas fa-bars"></i>
-			</button>
-			<!-- 검색창 부분 -->
-			<div class="search-box">
-				<input type="text" class="search-text" placeholder="검색어 입력">
-				<button>검색</button>
-			</div>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="/recipe/loginForm.do">로그인</a></li>
-					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="/recipe/member/signup.do">회원가입</a></li>
-					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="/recipe/member/contact.do">관리자에게 문의</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+	<%@ include file="template/nav.jsp"%>
 	<!-- client_id=앱키  redirect_uri=내 uri-->
-
-		<div class="login_body main_body_color">
+	<div class="main_body_color container">
+		<div class="main_content">
 			<div class="row">
 				<div class="login_h3">
 					<h3 class="text-center">로그인</h3>
@@ -58,12 +32,12 @@
 			<form action="">
 				<div class="row">
 					<div class="text-center">
-						<input type="text" size="95" placeholder="아이디를 입력하세요">
+						<input type="text" size="200" class="login_input" placeholder="아이디를 입력하세요">
 					</div>
 				</div>
 				<div class="row">
 					<div class="text-center">
-						<input type="text" size="95" placeholder="비밀번호를 입력하세요">
+						<input type="text" size="200" class="login_input" placeholder="비밀번호를 입력하세요">
 					</div>
 				</div>
 				<div class="row">
@@ -73,31 +47,16 @@
 
 
 			<div class="row">
-				<div class="btn btn-Primary">
+				<div class="btn btn-dark">
 					<a href="member/signup.do">회원가입</a>
 				</div>
 				<div class="btn btn-danger">
-				  <a href="member/search_password.do">비밀번호찾기</a>
+					<a href="member/search_password.do">비밀번호찾기</a>
 				</div>
 			</div>
 
 			<div class="row">
-				<c:if test="${userId eq null}">
-					<a href="https://kauth.kakao.com/oauth/authorize?client_id=1356aced5c32878850cc1596142752e4&redirect_uri=http://localhost:8090/recipe/login.do&response_type=code">
-						<img src="img/KakaotalkLogin.png">
-					</a>
-				</c:if>
-				<c:if test="${userId ne null}">
-					<h1>카카오 로그인 성공입니다</h1>
-				</c:if>
-			</div>
-			<div class="row">
 				<a href="${url}"> <img src="img/NaverLogin.png">
-				</a>
-			</div>
-
-			<div class="row">
-				<a href=""> <img src="img/FacebookLogin.png">
 				</a>
 			</div>
 
@@ -106,6 +65,8 @@
 				</a>
 			</div>
 		</div>
+	</div>
+	<%@ include file="template/footer.jsp"%>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script
