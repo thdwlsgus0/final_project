@@ -77,10 +77,6 @@ public class MemberController {
 			e.printStackTrace();
 		}
 	}
-//	@RequestMapping("/email/email.do")
-//	public String email() {
-//		return "email/email";
-//	}
 	
 	@RequestMapping(value = "/email/join_injeung.do", method = RequestMethod.POST)
 	public ModelAndView join_injeung(HttpServletRequest request,String email_injeung,  HttpServletResponse response_equals) throws IOException{

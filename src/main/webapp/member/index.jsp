@@ -29,26 +29,40 @@
 		<section class="container section_category">
 			<div class="category_item">
 				<div class="cate_arrow">
-					<a href="javascript:void(0);" onclick="efg_prev();"> <img
-						src="/recipe/img/left_arrow.png">
-					</a>
+				    <button onclick="efg_prev();" style="background-color:#fff;" >
+				       <img src="/recipe/img/left_arrow.png">
+				    </button>
 				</div>
 				<div class="ingre_img">
 					<ul>
-						<li><img src="/recipe/img/beef.png" class="beef_size">
+						<li class="display_block"><img src="/recipe/img/beef.png" class="beef_size">
 							<p class="text-center">쇠고기</p></li>
-						<li><img src="/recipe/img/radish.png" class="radish_size">
+						<li class="display_block"><img src="/recipe/img/radish.png" class="radish_size">
 							<p class="text-center">무</p></li>
-						<li><img src="/recipe/img/tofu.png" class="tofu_size">
+						<li class="display_block"><img src="/recipe/img/tofu.png" class="tofu_size">
 							<p class="text-center">두부</p></li>
-						<li><img src="/recipe/img/rice.png" class="rice_size">
+						<li class="display_block"><img src="/recipe/img/rice.png" class="rice_size">
 							<p class="text-center">밥</p></li>
-						<li><img src="/recipe/img/squid.png" class="squid_size">
+						<li class="display_block"><img src="/recipe/img/squid.png" class="squid_size">
 							<p class="text-center">오징어</p></li>
-						<li><img src="/recipe/img/pork.png" class="pork_size">
+						<li class="display_block"><img src="/recipe/img/pork.png" class="pork_size">
 							<p class="text-center">돼지고기</p></li>
-						<li><img src="/recipe/img/mushroom.png" class="mushroom_size">
+						<li class="display_block"><img src="/recipe/img/mushroom.png" class="mushroom_size">
 							<p class="text-center">표고버섯</p></li>
+						<li class="display_none"><img src="/recipe/img/flour.png" class="beef_size">
+							<p class="text-center">밀가루</p></li>
+						<li class="display_none"><img src="/recipe/img/콩나물.png" class="radish_size">
+							<p class="text-center">콩나물</p></li>
+						<li class="display_none"><img src="/recipe/img/onion.png" class="tofu_size">
+							<p class="text-center">양파</p></li>
+						<li class="display_none"><img src="/recipe/img/cucumber.png" class="rice_size">
+							<p class="text-center">오이</p></li>
+						<li class="display_none"><img src="/recipe/img/shrimp.png" class="squid_size">
+							<p class="text-center">새우</p></li>
+						<li class="display_none"><img src="/recipe/img/egg.png" class="pork_size">
+							<p class="text-center">계란</p></li>
+						<li class="display_none"><img src="/recipe/img/potato.png" class="mushroom_size">
+							<p class="text-center">감자</p></li>					
 					</ul>
 				</div>
 				<div class="cate_arrow">
@@ -207,7 +221,8 @@
 			</dd>
 		</section>
 	</div>	
-	<script src="../script/script.js"></script>
+	<script src="../script/index.js"></script>
+
 	<%@ include file="../template/footer.jsp"%>
 </body>
 </html>

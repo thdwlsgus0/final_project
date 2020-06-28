@@ -106,3 +106,9 @@ h3{
 .category_item{
 	clear:both;
 }
+.display_none{
+	display:none;
+}
+.display_block{
+	display:block;
+}

@@ -41,9 +41,9 @@
 	<header>
 		<div class="menu">
 			<ul class="nav_list">
-				<li class=""><a href="#" class="active li_font">홈</a></li>
-				<li class=""><a href="#" class="li_font">레시피</a></li>
-				<li class=""><a href="#" class="li_font">쉐프</a></li>
+				<li class=""><a href="/recipe/member/index.do" class="active li_font">홈</a></li>
+				<li class=""><a href="/recipe/recipe/method.do" class="li_font">레시피</a></li>
+				<li class=""><a href="/recipe/cook/chef.do" class="li_font">쉐프</a></li>
 			</ul>
 		</div>
 	</header>
