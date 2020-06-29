@@ -1,21 +1,21 @@
-/* ÄÁÅ×ÀÌ³Ê ±âº» Æ² ¼³Á¤ (div ¿µ¿ª) */
+/* ì»¨í…Œì´ë„ˆ ê¸°ë³¸ í‹€ ì„¤ì • (div ì˜ì—­) */
 .container_frame {
 	width: 100%;
 	margin: 15px auto;
 	border: 1px solid #e6e7e8;
 	background: white;
 }
-/* ¼­ºê ÅÇ ¿µ¿ª(div ÅÂ±×) */
+/* ì„œë¸Œ íƒ­ ì˜ì—­(div íƒœê·¸) */
 .sub_tabs {
 	width: 100%;
 	height: 117px;
 	padding: 25px 0 0;
 }
-/* ¼­ºê ÅÇ ul */
+/* ì„œë¸Œ íƒ­ ul */
 .sub_tabs ul {
-	margin: 0 30px;
+	margin: 0 10px;
 }
-/* ¼­ºê ÅÇ ul li */
+/* ì„œë¸Œ íƒ­ ul li */
 .sub_tabs ul li {
 	float: left;
 	display: table;
@@ -26,7 +26,7 @@
 	height: 88px;
 }
 
-/* °¢ ¼­ºê ÅÇ a */
+/* ê° ì„œë¸Œ íƒ­ a */
 .sub_tabs ul li a {
 	display: table-cell;
 	width: 100%;
@@ -38,69 +38,77 @@
 	text-decoration: none;
 }
 
-/* ½¦ÇÁÀÇ ·¹½ÃÇÇ °Ë»ö ¿µ¿ª */
+/* ì‰í”„ì˜ ë ˆì‹œí”¼ ê²€ìƒ‰ ì˜ì—­ */
 .sub_search {
 	width: 100%;
 	height: 80px;
 	background-color: white;
+	margin-top: 20px;
 }
 
-/* ½¦ÇÁÀÇ ·¹½ÃÇÇ °Ë»ö ÀÔ·ÂÃ¢ */
+/* ì‰í”„ì˜ ë ˆì‹œí”¼ ê²€ìƒ‰ ì…ë ¥ì°½ */
 .sub_search input[type='text'] {
 	width: 41%;
-	height: 35px;
-	float: left;
-	margin-left: 30%;
-	margin-top: 10px;
+    height: 46px;
+    float: left;
+    margin-left: 28%;
+    border: 1px solid #e6e7e8;
 }
 
-/* ½¦ÇÁÀÇ ·¹½ÃÇÇ °Ë»ö ½ÇÇà ¹öÆ° */
+/* ì‰í”„ì˜ ë ˆì‹œí”¼ ê²€ìƒ‰ ì‹¤í–‰ ë²„íŠ¼ */
 .sub_search button {
 	float: left;
-	margin-top: 10px;
-	width: 39px;
-	height: 38px;
+	width: 46px;
+	height: 46px;
 }
 
-/* ½¦ÇÁÀÇ ·¹½ÃÇÇ °Ô½Ã¹° Ç¥½Ã ¿µ¿ª(div) */
+/* ì‰í”„ì˜ ë ˆì‹œí”¼ ê²Œì‹œë¬¼ í‘œì‹œ ì˜ì—­(div) */
 .content_list {
 	width: 100%;
 	height: 100%;
 	margin-left:-50px;
 }
-/* ¸®½ºÆ® ¿µ¿ª */
+/* ë¦¬ìŠ¤íŠ¸ ì˜ì—­ */
 .content_list ul {
 	width: 100%;
 	margin: 0 60px;
 }
-/* °¢ ¸®½ºÆ® Ç×¸ñ º° ¿µ¿ª */
-.content_list ul li {
+/* ê° ë¦¬ìŠ¤íŠ¸ í•­ëª© ë³„ ì˜ì—­ */
+.content_list li {
 	float: left;
 	padding: 0;
 	margin: 0px 15px 35px 0px;
 	width: 256px;
-	height: 290px;
+	height: 270px;
 	border: 1px solid #e6e7e8;
 }
-/* °¢ ¸®½ºÆ® Ç×¸ñ º°  ·¹½ÃÇÇ ¸í + ½¦ÇÁ ¸í Ç¥½Ã ¿µ¿ª(div) */
+
+.content_list img {
+	width: 100%; height: 70%;
+}
+
+.content_list h3 {
+	width: 100%
+}
+
+/* ê° ë¦¬ìŠ¤íŠ¸ í•­ëª© ë³„  ë ˆì‹œí”¼ ëª… + ì‰í”„ ëª… í‘œì‹œ ì˜ì—­(div) */
 .recipe_subject {
 	padding: 5px 20px;
-	margin-top: 5px;
-	margin-bottom: 5px;
+	margin-top: 10px;
 	height: 27%;
 }
-/* ·¹½ÃÇÇ ¸í(h3 ÅÂ±×) */
+/* ë ˆì‹œí”¼ ëª…(h3 íƒœê·¸) */
 .recipe_subject h3 {
 	font-size: 15px;
 	font-weight: bold;
 }
 
-/* ½¦ÇÁ ¸í(p ÅÂ±×) */
+/* ì‰í”„ ëª…(p íƒœê·¸) */
 .recipe_subject p {
 	font-size: 12px;
 }
 
-/* °Ô½Ã¹° ÆäÀÌÂ¡ ¿µ¿ª(div) */
+/* ê²Œì‹œë¬¼ í˜ì´ì§• ì˜ì—­(div) */
 .paging {
 	position: relative;
 	text-align: center;
