@@ -55,7 +55,7 @@
 	            	<ul>
 	            		<li>
 	            			<a href="#">
-	            				<img src="sample/img/photo1_thum.jpg" style="width: 100%;">
+	            				<img src="sample/img/photo1_thum.jpg">
 	            				<div class="recipe_subject">
 	            					<h3>레시피 명 1</h3>
 	            					<p>by 쉐프 명</p>
@@ -65,7 +65,7 @@
 	            		
 	            		<li>
 	            			<a href="#">
-	            				<img src="sample/img/photo2_thum.jpg" style="width: 100%;">
+	            				<img src="sample/img/photo2_thum.jpg">
 	            				<div class="recipe_subject">
 	            					<h3>레시피 명 1</h3>
 	            					<p>by 쉐프 명</p>
@@ -75,7 +75,7 @@
 	            		
 	            		<li>
 	            			<a href="#">
-	            				<img src="sample/img/photo3_thum.jpg" style="width: 100%;">
+	            				<img src="sample/img/photo3_thum.jpg">
 	            				<div class="recipe_subject">
 	            					<h3>레시피 명 1</h3>
 	            					<p>by 쉐프 명</p>
@@ -85,7 +85,7 @@
 	            		
 	            		<li>
 	            			<a href="#">
-	            				<img src="sample/img/photo4_thum.jpg" style="width: 100%;">
+	            				<img src="sample/img/photo4_thum.jpg">
 	            				<div class="recipe_subject">
 	            					<h3>레시피 명 1</h3>
 	            					<p>by 쉐프 명</p>
@@ -95,7 +95,7 @@
 	            		
 	            		<li>
 	            			<a href="#">
-	            				<img src="sample/img/photo5_thum.jpg" style="width: 100%;">
+	            				<img src="sample/img/photo5_thum.jpg">
 	            				<div class="recipe_subject">
 	            					<h3>레시피 명 1</h3>
 	            					<p>by 쉐프 명</p>
@@ -105,7 +105,7 @@
 	            		
 	            		<li>
 	            			<a href="#">
-	            				<img src="sample/img/photo1_thum.jpg" style="width: 100%;">
+	            				<img src="sample/img/photo1_thum.jpg">
 	            				<div class="recipe_subject">
 	            					<h3>레시피 명 1</h3>
 	            					<p>by 쉐프 명</p>
@@ -115,7 +115,7 @@
 	            		
 	            		<li>
 	            			<a href="#">
-	            				<img src="sample/img/photo2_thum.jpg" style="width: 100%;">
+	            				<img src="sample/img/photo2_thum.jpg">
 	            				<div class="recipe_subject">
 	            					<h3>레시피 명 1</h3>
 	            					<p>by 쉐프 명</p>
@@ -125,7 +125,7 @@
 	            		
 	            		<li>
 	            			<a href="#">
-	            				<img src="sample/img/photo3_thum.jpg" style="width: 100%;">
+	            				<img src="sample/img/photo3_thum.jpg">
 	            				<div class="recipe_subject">
 	            					<h3>레시피 명 1</h3>
 	            					<p>by 쉐프 명</p>
@@ -135,7 +135,7 @@
 	            		
 	            		<li>
 	            			<a href="#">
-	            				<img src="sample/img/photo4_thum.jpg" style="width: 100%;">
+	            				<img src="sample/img/photo4_thum.jpg">
 	            				<div class="recipe_subject">
 	            					<h3>레시피 명 1</h3>
 	            					<p>by 쉐프 명</p>
@@ -145,7 +145,7 @@
 	            		
 	            		<li>
 	            			<a href="#">
-	            				<img src="sample/img/photo5_thum.jpg" style="width: 100%;">
+	            				<img src="sample/img/photo5_thum.jpg">
 	            				<div class="recipe_subject">
 	            					<h3>레시피 명 1</h3>
 	            					<p>by 쉐프 명</p>
