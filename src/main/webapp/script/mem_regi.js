@@ -1,22 +1,54 @@
 var main = {
 	init:function(){
 		var _this = this;
+		$.datepicker.setDefaults({
+	        dateFormat: 'yy-mm-dd', prevText: '이전 달', nextText: '다음 달',
+	        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+	        monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+	        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+	        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+	        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+	        showMonthAfterYear: true, yearSuffix: '년', yearRange: "-100:+0",
+	        onClose: function() { _this.focusOutAge(); }
+	    });
 		$('#btn-register').on('click', function(){ _this.register(); });
 		$('#Mem_ID').on('focusout', function(){ _this.focusOutId(); });
 		$('#Mem_password').on('focusout', function(){ _this.pwOverCheck(); });
 		$('#Mem_password2').on('focusout', function(){ _this.pwOverCheck(); });
 		$('#btn-gen-male').on('click', function(){ _this.gender(true); });
 		$('#btn-gen-female').on('click', function(){ _this.gender(false); });
+		$('#Mem_birth').datepicker({changeMonth: true, changeYear: true});
 		$('#Mem_birth').val(new Date().toISOString().substring(0, 10));
-		$('#Mem_age').on('focusout', function(){ _this.focusOutAge(); });
 		$('#Mem_email').on('focusout', function(){ _this.emailValid(); })
+		$('#div-check').hide();
+	},
+	emailCheck:function(){
+		var _this = this;
+		if(!_this.emailValid()) return;
+		
+		alert('이메일로 인증번호를 발송했습니다!')
+		$('#div-check').show();
+		var data = {
+			id: $('#Mem_ID').val(),
+			email: $('#Mem_email').val()
+		}
+		$.ajax({
+			type: 'POST',
+			url: '/recipe/email/gauth.do',
+			dataType: 'text',
+			contentType: 'application/json; charset=utf-8',
+			data: JSON.stringify(data),
+			async: false
+		}).done(function(res){
+			saveres = res.trim();
+		});
+		return saveres;
 	},
 	register:function(){
-		// 해당 함수 내용은 signup.jsp정리되면 폼에서 처리하도록 바꾸는게 좋음
 		var _this = this;
 		if(!_this.focusOutId() || !_this.pwOverCheck() || 
 				!_this.focusOutAge() || !_this.emailValid())
-			return;
+			return false;
 		
 		var birth = new Date($('#Mem_birth').val());
 		var str_birth =  birth.getFullYear() +
@@ -26,24 +58,24 @@ var main = {
 		var data = {
 			id: $('#Mem_ID').val(),
 			pw: $('#Mem_password').val(),
-			//age: parseInt($('#Mem_age').val()),
 			favor: $('#Mem_favor').val(),
 			birth: str_birth,
 			gender: $('#Mem_gender').val(),
 			email: $('#Mem_email').val(),
-			phone: $('#Mem_phone').val()
+			phone: $('#Mem_phone').val(),
+			check: eval(_this.emailCheck()),
+			profile: $('#Mem_profile').val(),
+			auth: $('#Mem_auth').val()
 		}
 		$.ajax({
 			type: 'POST',
 			url: '/recipe/member/regist.do',
-			dataType: 'text',
+			dataType: 'json',
 			contentType: 'application/json; charset=utf-8',
 			data: JSON.stringify(data)
 		}).done(function(){
 			alert('회원가입 성공');
 			window.location.href='/recipe/loginForm.do';
-		}).fail(function(){
-			//
 		});
 	},
 	focusOutId:function() {
@@ -94,16 +126,21 @@ var main = {
 		}
 	},
 	focusOutAge:function() {
-		if(!isNaN($('#Mem_age').val())) {
-			$('#age_check').html('');
-			return true;
-		}
-		$('#age_check').html('<font color="red">숫자만 입력 가능합니다.</font>');
-		return false;
+		curYear = new Date().getFullYear();
+		selYear = new Date($('#Mem_birth').val()).getFullYear();
+		age = curYear - selYear + 1;
+		$('#Mem_age').val(age);
+		return true;
 	},
 	emailValid:function(){
-		//이메일 형식이 올바른지 체크
-		return true;
+		email = $('#Mem_email').val()
+		reg = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+		if(reg.test(email)){
+			$('#email_check').html('');
+			return true;
+		}
+		$('#email_check').html('<font color="red">이메일 형식이 잘못되었습니다.</font>');
+		return false;
 	}
 };
 main.init();

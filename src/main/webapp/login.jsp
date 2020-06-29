@@ -9,15 +9,13 @@
 	content="width=device-width, initial-scale=1.0, maximum-scale=0.25" />
 <title>Insert title here</title>
 <!-- 우아한민족 주아체 -->
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link href="css/style.css" rel="stylesheet" />
 <link href="css/jinhyun.css" rel="stylesheet" />
 <link href="css/login.css" rel="stylesheet" />
-<link href="css/header.css" rel="stylesheet"/>
-<link href="css/footer.css" rel="stylesheet"/>
+<link href="css/header.css" rel="stylesheet" />
+<link href="css/footer.css" rel="stylesheet" />
 </head>
 <body>
 	<%@ include file="template/nav.jsp"%>
@@ -32,12 +30,14 @@
 			<form action="">
 				<div class="row">
 					<div class="text-center">
-						<input type="text" size="200" class="login_input" placeholder="아이디를 입력하세요">
+						<input type="text" size="200" class="login_input"
+							placeholder="아이디를 입력하세요">
 					</div>
 				</div>
 				<div class="row">
 					<div class="text-center">
-						<input type="text" size="200" class="login_input" placeholder="비밀번호를 입력하세요">
+						<input type="text" size="200" class="login_input"
+							placeholder="비밀번호를 입력하세요">
 					</div>
 				</div>
 				<div class="row">
@@ -61,17 +61,16 @@
 			</div>
 
 			<div class="row">
-				<a href=""> <img src="img/GoogleLogin.png">
+				<a href="#" onclick="google_login(true);"> <img src="img/GoogleLogin.png">
 				</a>
 			</div>
 		</div>
 	</div>
 	<%@ include file="template/footer.jsp"%>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/recipe/login/google_sign.js"></script>
+	<script src="https://apis.google.com/js/platform.js?onload=google_init" async defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
 </html>

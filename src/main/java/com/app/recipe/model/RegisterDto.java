@@ -14,7 +14,27 @@ public class RegisterDto {
 	private String email;
 	private String phone;
 	private String check;
+	private String profile;
+	private String auth;
 	
+	
+	public RegisterDto() {}
+	public RegisterDto(String id, String auth) {
+		this.id = id;
+		this.auth = auth;
+	}
+	public String getAuth() {
+		return auth;
+	}
+	public void setAuth(String auth) {
+		this.auth = auth;
+	}
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
 	public Date getDate() {
 		return date;
 	}
