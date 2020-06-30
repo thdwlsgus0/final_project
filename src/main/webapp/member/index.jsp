@@ -74,7 +74,7 @@
 		</section>
 		<section class="container section_container">
 			<dl>
-				<h3>베스트레시피</h3>
+				<a href=""><h3>베스트레시피</h3></a>
 				<div class="btn btn-success btn-more">더보기</div>
 			</dl>
 			<dd>
@@ -121,7 +121,7 @@
 		</section>
 		<section class="container section_container">
 			<dl>
-				<h3>추천 레시피</h3>
+				<a href=""><h3>추천 레시피</h3></a>
 				<div class="btn btn-success btn-more">더보기</div>
 			</dl>
 			<dd>
@@ -169,7 +169,7 @@
 		</section>
 		<section class="container section_container">
 			<dl>
-				<h3>쉐프</h3>
+				<a href=""><h3>쉐프</h3></a>
 				<div class="btn btn-success btn-more">더보기</div>
 			</dl>
 			<dd>
