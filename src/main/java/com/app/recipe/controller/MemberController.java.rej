@@ -1,9 +1,0 @@
-diff a/src/main/java/com/app/recipe/controller/MemberController.java b/src/main/java/com/app/recipe/controller/MemberController.java	(rejected hunks)
-@@ -24,6 +24,7 @@
- import org.springframework.web.servlet.ModelAndView;
- 
- import com.app.recipe.dao.memberService;
-+import com.app.recipe.model.RegisterDto;
- 
- 
- @Controller // ��Ʈ�ѷ� �� ����
