@@ -45,7 +45,6 @@ function google_viewprofile(){
 	else $('#get_email').html('');
 }
 function google_sendprofiletocontrol(email, name, imageUrl){
-	// profile = gapi.auth2.getAuthInstance().gauth.currentUser.get().getBasicProfile()
 	var data = {
 		email: email,
 		name: name,
@@ -68,6 +67,6 @@ function google_sendprofiletocontrol(email, name, imageUrl){
 		window.location.href = '/recipe/member/signup.do';
 		return;
 	}
-	if(flag_login) window.location.href = '/recipe/loginForm.do';
+	if(flag_login) window.location.href = '/recipe/member/index.do';
 	else alert('이메일 인증을 받아주세요!');
 }

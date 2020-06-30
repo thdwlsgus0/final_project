@@ -28,7 +28,7 @@ import com.personal.kakaoLogin.service.KakaoAPI;
 import com.personal.naverLogin.service.NaverLoginBO;
 
 /*
- loginAPI 호占쏙옙
+ loginAPI 호출
  */
 @Controller
 public class LoginAPIController {
@@ -47,58 +47,53 @@ public class LoginAPIController {
 	@RequestMapping(value ="/loginForm.do", method=RequestMethod.GET)
 	public String login_page(Model model, HttpSession session) {
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-		System.out.println("占쏙옙占싱뱄옙:"+naverAuthUrl);
 		model.addAttribute("url", naverAuthUrl);
 		return "/login.jsp";
 	}
 	
     @RequestMapping(value="/login.do",produces="application/json",method=RequestMethod.GET)
     public String login(@RequestParam("code") String code,RedirectAttributes ra,HttpSession session,HttpServletResponse response)throws IOException {
-        
+    	/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
     	String access_Token = kakao.getAccessToken(code);
     	HashMap<String, Object> userInfo = kakao.getUserInfo(access_Token);
-        //System.out.println("code : " + code);
-        //System.out.println("controller access_token : " + access_Token);
         if (userInfo.get("email") != null) {
-            //session.setAttribute("userId", userInfo.get("email"));
             session.setAttribute("sessionId", access_Token);
         }
     	
         return "/member/index.jsp";
     }
-    // 占쏙옙占싱뱄옙 占싸깍옙占쏙옙 占쏙옙占쏙옙占쏙옙 callback호占쏙옙 占쌨소듸옙
+    // 네이버 로그인 성공시 callback호출 메소드
     @RequestMapping(value="/callback.do", method= {RequestMethod.GET, RequestMethod.POST})
     public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws IOException, ParseException{
-    	System.out.println("callback �샇異�");
+    	System.out.println("callback 호출");
     	OAuth2AccessToken oauthToken;
     	oauthToken = naverLoginBO.getAccessToken(session, code, state);
     	
-    	// 1. 占싸깍옙占쏙옙 占쏙옙占쏙옙占� 占쏙옙占쏙옙占쏙옙 占싻억옙쨈占�.
-    	apiResult = naverLoginBO.getUserProfile(oauthToken); //String 占쏙옙占쏙옙占쏙옙 json 占쏙옙占쏙옙占쏙옙
+    	// 1. 로그인 사용자 정보를 읽어온다.
+    	apiResult = naverLoginBO.getUserProfile(oauthToken); //String 형식의 json 데이터
     	
-    	// 2. String 占쏙옙占쏙옙占쏙옙 apiResult占쏙옙 json占쏙옙占승뤄옙 占쌕뀐옙
+    	// 2. String 형식인 apiResult를 json형태로 바꿈
     	JSONParser parser = new JSONParser();
     	Object obj = parser.parse(apiResult);
     	JSONObject jsonObj = (JSONObject) obj;
     	
-    	// 3. 占쏙옙占쏙옙占쏙옙 占식쏙옙
-    	// Top占쏙옙占쏙옙 占쌤곤옙 _response 占식쏙옙
+    	// 3. 데이터 파싱
+    	// Top레벨 단계 _response 파싱
     	JSONObject response_obj = (JSONObject)jsonObj.get("response");
-    	// response占쏙옙 nickname占쏙옙 占식쏙옙
+    	// response의 nickname값 파싱
     	String nickname = (String)response_obj.get("nickname");
-    	
-    	System.out.println("�땳�꽕�엫:"+nickname);
-    	System.out.println("apiResult:"+apiResult);
-    	//4. 占식쏙옙 占싻놂옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙
-    	session.setAttribute("sessionId", nickname);//占쏙옙占쏙옙 占쏙옙占쏙옙
-    	
+    	String email = response_obj.get("email").toString();
+    	String profile = response_obj.get("profile_image").toString();    	
     	model.addAttribute("result", apiResult);
-    	System.out.println("/member/index.jsp");
-    	return "/member/index.jsp";	
+    	
+    	HashMap<String, Object> hash = logincheck(nickname, email, profile, "naver", session);
+    	if((boolean) hash.get("regi")) return "/recipe/member/signup.do";
+    	if((boolean) hash.get("login")) return "/recipe/member/index.do";
+    	else return "recipe/member/emailcheck.jsp";
     }
     @RequestMapping(value="/logout.do", method= {RequestMethod.GET, RequestMethod.POST})
     public String logout(HttpSession session)throws IOException{
-    	System.out.println("濡쒓렇�븘�썐 logout");
+    	System.out.println("로그아웃 logout");
         session.invalidate();
         
         return "/login.jsp";
@@ -115,9 +110,14 @@ public class LoginAPIController {
 		String email = map.get("email").toString();
 		String name = map.get("name").toString();
 		String profile = map.get("imageUrl").toString();
+		
+		return logincheck(name, email, profile, "google", session);
+	}
+	
+	public HashMap<String, Object> logincheck(String name, String email, String profile, String auth_str, HttpSession session){
 		// 로그인 체크
 		HashMap<String, Object> ret = new HashMap<String, Object>();
-		if (svc.idcheck(name, "google")) {
+		if (svc.idcheck(name, auth_str)) {
 			// - 가입하지 않았다면 가입창으로
 			session.setAttribute("regi_email", email);
 			session.setAttribute("regi_name", name + "   ");
@@ -126,9 +126,8 @@ public class LoginAPIController {
 		} else {
 			if(svc.select(name).getAuth().equals("T")) {
 				// - 가입&인증된 상태라면 메인으로
-				System.out.println("가입한 상태임");
 				session.setAttribute("email", email);
-				session.setAttribute("name", name);
+				session.setAttribute("sessionId", name);
 				session.setAttribute("profile", profile);
 				ret.put("login", true);	
 			}
@@ -137,7 +136,7 @@ public class LoginAPIController {
 				ret.put("login", false);
 			}
 		}
-		session.setAttribute("auth", "google");
+		session.setAttribute("auth", auth_str);
 		return ret;
 	}
 }
