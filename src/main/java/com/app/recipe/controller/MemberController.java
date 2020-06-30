@@ -16,11 +16,14 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.recipe.dao.memberService;
+import com.app.recipe.model.RegisterDto;
 
 
 @Controller // 컨트롤러 빈 선언
@@ -35,27 +38,33 @@ public class MemberController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
     
-	@RequestMapping(value ="/email/auth.do", method=RequestMethod.POST)
-	// ModelAndView는 데이터를 전송해주는 타입
-	public ModelAndView mailSending(HttpServletRequest request, String e_mail, HttpServletResponse response_email) throws IOException{
+	@PostMapping("/email/gauth.do")
+	public ModelAndView gmails(@RequestBody RegisterDto dto) {
+		System.out.println("dto: " + dto.getEmail());
+		return dice(dto.getEmail());
+	}
+	
+	private ModelAndView dice(String email) {
 		Random r = new Random();
 		int dice = r.nextInt(4589362)+49311; // 49311 ~ 49311 + 4589362
-		// 보내는 이메일 주소
-		String tomail = request.getParameter("e_mail");
-		sendEmail(tomail, dice);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/email/email_auth.jsp");
 		mv.addObject("dice", dice);
 		
-		System.out.println("mv : "+mv);
-		response_email.setContentType("text/html; charset=UTF-8");
-		PrintWriter out_email = response_email.getWriter();
-		out_email.println("<script>alert('이메일이 발송되었습니다. 인증번호를 입력해주세요.');</script>");
-		out_email.flush();
+		sendEmail(email, dice);
 		
 		return mv;
 	}
+	
+	@RequestMapping(value ="/email/auth.do", method=RequestMethod.POST)
+	// ModelAndView는 데이터를 전송해주는 타입
+	public ModelAndView mailSending(HttpServletRequest request, String e_mail, HttpServletResponse response_email) throws IOException{
+		// 보내는 이메일 주소
+		String tomail = request.getParameter("e_mail");
+		return dice(tomail);
+	}
+	
 	public void sendEmail(String email, int dice) {
 		String host = "smtp.naver.com";
 		String subject = "달달하조 인증번호 전달";

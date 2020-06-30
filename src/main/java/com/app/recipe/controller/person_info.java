@@ -1,11 +1,17 @@
 package com.app.recipe.controller;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-/* signup_page, contact_page, search_password ∆‰¿Ã¡ˆ */
+import com.personal.naverLogin.service.NaverLoginBO;
+
 @Controller
 public class person_info {
 	
@@ -31,18 +37,5 @@ public class person_info {
 		mv.setViewName("/member/search_password.jsp");
 		return mv;
 	}
-	/* 2020.06.29 profile controller */
-	@RequestMapping(value="/member/profile.do", method=RequestMethod.GET)
-	public ModelAndView myprofile() throws Exception{
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/member/profile.jsp");
-		return mv;
-	}
-	/* 2020.06.29 recipe_create controller */
-	@RequestMapping(value="/recipe/method_create.do", method=RequestMethod.GET)
-	public ModelAndView my_method_create() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/recipe/method_create.jsp");
-		return mv;
-	}
+
 }

@@ -14,23 +14,41 @@ public class RegisterServiceImpl implements RegisterService {
 	
 	@Override
 	public void register(RegisterDto dto) {
+		dto.setId(dto.getId().trim());
 		dao.insert(dto);
 	}
 
 	@Override
 	public boolean idcheck(String id) {
-		if(dao.select(id) == null) {
-			return true;
-		}
+		if(dao.select(id) == null) return true;
+		return false;
+	}
+	
+	@Override
+	public boolean idcheck(String id, String auth) {
+		if(dao.select(id, auth) == null) return true;
 		return false;
 	}
 
 	@Override
 	public boolean login(RegisterDto dto) {
-		if(dao.select(dto.getId()).getCheck().equals("T")) {
-			//이메일 인증했다면 true반환
-			return true;
-		}
+		if(dao.select(dto.getId()).getCheck().equals("T")) return true;
+		else return false;
+	}
+
+	@Override
+	public boolean dicecheck(String id, String dice) {
+		if(dao.select(id).getCheck().equals(dice)) return true;
 		return false;
+	}
+
+	@Override
+	public void update(RegisterDto dto) {
+		dao.update(dto);
+	}
+
+	@Override
+	public RegisterDto select(String id) {
+		return dao.select(id);
 	}
 }
