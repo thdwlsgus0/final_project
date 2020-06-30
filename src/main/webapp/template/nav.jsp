@@ -16,7 +16,10 @@
 						<c:when test="${sessionId != null}">
 							<li class="nav-item mx-0 mx-lg-1"><a
 								class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-								href="profile.do">'${sessionId}'</a></li>
+								href="/recipe/member/profile.do">마이페이지(${sessionId})</a></li>
+						   <li class="nav-item mx-0 mx-lg-1"><a
+								class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+								href="/recipe/recipe/method_create.do">레시피 등록</a></li>
 							<li class="nav-item mx-0 mx-lg-1"><a
 								class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 								href="/recipe/logout.do">로그아웃</a></li>

@@ -1,21 +1,21 @@
-/* ì»¨í…Œì´ë„ˆ ê¸°ë³¸ í‹€ ì„¤ì • (div ì˜ì—­) */
+/* ÄÁÅ×ÀÌ³Ê ±âº» Æ² ¼³Á¤ (div ¿µ¿ª) */
 .container_frame {
 	width: 100%;
 	margin: 15px auto;
 	border: 1px solid #e6e7e8;
 	background: white;
 }
-/* ì„œë¸Œ íƒ­ ì˜ì—­(div íƒœê·¸) */
+/* ¼­ºê ÅÇ ¿µ¿ª(div ÅÂ±×) */
 .sub_tabs {
 	width: 100%;
 	height: 117px;
 	padding: 25px 0 0;
 }
-/* ì„œë¸Œ íƒ­ ul */
+/* ¼­ºê ÅÇ ul */
 .sub_tabs ul {
-	margin: 0 10px;
+	margin: 0 30px;
 }
-/* ì„œë¸Œ íƒ­ ul li */
+/* ¼­ºê ÅÇ ul li */
 .sub_tabs ul li {
 	float: left;
 	display: table;
@@ -26,7 +26,7 @@
 	height: 88px;
 }
 
-/* ê° ì„œë¸Œ íƒ­ a */
+/* °¢ ¼­ºê ÅÇ a */
 .sub_tabs ul li a {
 	display: table-cell;
 	width: 100%;
@@ -38,77 +38,69 @@
 	text-decoration: none;
 }
 
-/* ì‰í”„ì˜ ë ˆì‹œí”¼ ê²€ìƒ‰ ì˜ì—­ */
+/* ½¦ÇÁÀÇ ·¹½ÃÇÇ °Ë»ö ¿µ¿ª */
 .sub_search {
 	width: 100%;
 	height: 80px;
 	background-color: white;
-	margin-top: 20px;
 }
 
-/* ì‰í”„ì˜ ë ˆì‹œí”¼ ê²€ìƒ‰ ì…ë ¥ì°½ */
+/* ½¦ÇÁÀÇ ·¹½ÃÇÇ °Ë»ö ÀÔ·ÂÃ¢ */
 .sub_search input[type='text'] {
 	width: 41%;
-    height: 46px;
-    float: left;
-    margin-left: 28%;
-    border: 1px solid #e6e7e8;
+	height: 35px;
+	float: left;
+	margin-left: 30%;
+	margin-top: 10px;
 }
 
-/* ì‰í”„ì˜ ë ˆì‹œí”¼ ê²€ìƒ‰ ì‹¤í–‰ ë²„íŠ¼ */
+/* ½¦ÇÁÀÇ ·¹½ÃÇÇ °Ë»ö ½ÇÇà ¹öÆ° */
 .sub_search button {
 	float: left;
-	width: 46px;
-	height: 46px;
+	margin-top: 10px;
+	width: 39px;
+	height: 38px;
 }
 
-/* ì‰í”„ì˜ ë ˆì‹œí”¼ ê²Œì‹œë¬¼ í‘œì‹œ ì˜ì—­(div) */
+/* ½¦ÇÁÀÇ ·¹½ÃÇÇ °Ô½Ã¹° Ç¥½Ã ¿µ¿ª(div) */
 .content_list {
 	width: 100%;
 	height: 100%;
 	margin-left:-50px;
 }
-/* ë¦¬ìŠ¤íŠ¸ ì˜ì—­ */
+/* ¸®½ºÆ® ¿µ¿ª */
 .content_list ul {
 	width: 100%;
 	margin: 0 60px;
 }
-/* ê° ë¦¬ìŠ¤íŠ¸ í•­ëª© ë³„ ì˜ì—­ */
-.content_list li {
+/* °¢ ¸®½ºÆ® Ç×¸ñ º° ¿µ¿ª */
+.content_list ul li {
 	float: left;
 	padding: 0;
 	margin: 0px 15px 35px 0px;
 	width: 256px;
-	height: 270px;
+	height: 290px;
 	border: 1px solid #e6e7e8;
 }
-
-.content_list img {
-	width: 100%; height: 70%;
-}
-
-.content_list h3 {
-	width: 100%
-}
-
-/* ê° ë¦¬ìŠ¤íŠ¸ í•­ëª© ë³„  ë ˆì‹œí”¼ ëª… + ì‰í”„ ëª… í‘œì‹œ ì˜ì—­(div) */
+/* °¢ ¸®½ºÆ® Ç×¸ñ º°  ·¹½ÃÇÇ ¸í + ½¦ÇÁ ¸í Ç¥½Ã ¿µ¿ª(div) */
 .recipe_subject {
 	padding: 5px 20px;
-	margin-top: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 	height: 27%;
 }
-/* ë ˆì‹œí”¼ ëª…(h3 íƒœê·¸) */
+/* ·¹½ÃÇÇ ¸í(h3 ÅÂ±×) */
 .recipe_subject h3 {
 	font-size: 15px;
 	font-weight: bold;
 }
 
-/* ì‰í”„ ëª…(p íƒœê·¸) */
+/* ½¦ÇÁ ¸í(p ÅÂ±×) */
 .recipe_subject p {
 	font-size: 12px;
 }
 
-/* ê²Œì‹œë¬¼ í˜ì´ì§• ì˜ì—­(div) */
+/* °Ô½Ã¹° ÆäÀÌÂ¡ ¿µ¿ª(div) */
 .paging {
 	position: relative;
 	text-align: center;
@@ -131,4 +123,18 @@
 	padding: 9px 15px;
 	margin: 0 8px;
 	border: 1px solid #e6e7e8;
+}
+/* ÀüÃ¼ ¹è°æ»ö Èò»ö */ 
+body{
+	background-color:#fff;
+}
+/* 
+/* º»¹® »ö±ò È¸»öÀ¸·Î ¸ÂÃß±â À§ÇØ¼­ ¼³Á¤ */
+.main_content{
+	width:100%;
+	background-color:#EAEAEA;
+}
+.method_num{
+	color:#088A29;
+	font-size:2rem;
 }

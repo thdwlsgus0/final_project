@@ -29,7 +29,6 @@ import com.personal.kakaoLogin.service.KakaoAPI;
 import com.personal.naverLogin.service.NaverLoginBO;
 
 /*
- loginAPI 호출
  */
 @Controller
 public class LoginAPIController {
@@ -54,7 +53,6 @@ public class LoginAPIController {
 	
     @RequestMapping(value="/login.do",produces="application/json",method=RequestMethod.GET)
     public String login(@RequestParam("code") String code,RedirectAttributes ra,HttpSession session,HttpServletResponse response)throws IOException {
-    	/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
     	String access_Token = kakao.getAccessToken(code);
     	HashMap<String, Object> userInfo = kakao.getUserInfo(access_Token);
         if (userInfo.get("email") != null) {
@@ -67,41 +65,36 @@ public class LoginAPIController {
     // 네이버 로그인 성공시 callback호출 메소드
     @RequestMapping(value="/callback.do", method= {RequestMethod.GET, RequestMethod.POST})
     public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws IOException, ParseException{
-    	System.out.println("callback 호출");
     	OAuth2AccessToken oauthToken;
     	oauthToken = naverLoginBO.getAccessToken(session, code, state);
     	
-    	// 1. 로그인 사용자 정보를 읽어온다.
-    	apiResult = naverLoginBO.getUserProfile(oauthToken); //String 형식의 json 데이터
+    	apiResult = naverLoginBO.getUserProfile(oauthToken); //String �삎�떇�쓽 json �뜲�씠�꽣
     	
-    	// 2. String 형식인 apiResult를 json형태로 바꿈
     	JSONParser parser = new JSONParser();
     	Object obj = parser.parse(apiResult);
     	JSONObject jsonObj = (JSONObject) obj;
     	
-    	// 3. 데이터 파싱
-    	// Top레벨 단계 _response 파싱
+
     	JSONObject response_obj = (JSONObject)jsonObj.get("response");
-    	// response의 nickname값 파싱
     	String nickname = (String)response_obj.get("nickname");
     	String email = response_obj.get("email").toString();
     	String profile = response_obj.get("profile_image").toString();
     	model.addAttribute("result", apiResult);
-    	
     	HashMap<String, Object> hash = logincheck(nickname, email, profile, "naver", session);
+
     	if(hash.containsKey("regi")) if((boolean) hash.get("regi")) return "/member/signup.do";
     	if((boolean) hash.get("login")) return "/member/index.do";
     	return "/member/emailcheck.jsp";
     }
     @RequestMapping(value="/logout.do", method= {RequestMethod.GET, RequestMethod.POST})
     public String logout(HttpSession session)throws IOException{
-    	System.out.println("로그아웃 logout");
+    	System.out.println("濡쒓렇�븘�썐 logout");
         session.invalidate();
         
         return "/login.jsp";
     }
     
-    // 이하 구글
+
 	@Inject
 	private RegisterService svc;
 	
@@ -117,10 +110,10 @@ public class LoginAPIController {
 	}
 	
 	public HashMap<String, Object> logincheck(String name, String email, String profile, String auth_str, HttpSession session){
-		// 로그인 체크
+		
 		HashMap<String, Object> ret = new HashMap<String, Object>();
 		if (svc.idcheck(name, auth_str)) {
-			// - 가입하지 않았다면 가입창으로
+
 			session.setAttribute("regi_email", email);
 			session.setAttribute("regi_name", name);
 			session.setAttribute("regi_profile", profile);
@@ -134,7 +127,6 @@ public class LoginAPIController {
 				ret.put("login", true);	
 			}
 			else {
-				// - 인증되지 않았음
 				ret.put("login", false);
 			}
 		}
