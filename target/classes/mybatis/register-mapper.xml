@@ -17,6 +17,9 @@
 	<select id="selectauth" parameterType="regiDto" resultMap="regirsm">
 		SELECT * FROM member WHERE MEM_ID=#{id} AND MEM_AUTH=#{auth}
 	</select>
+	<select id="selectori" parameterType="regiDto" resultMap="regirsm">
+		SELECT * FROM member WHERE MEM_ID=#{id} AND MEM_PASSWORD=#{pw}
+	</select>
 	
 	<update id="update" parameterType="regiDto">
 		UPDATE member SET MEM_PASSWORD=#{pw}, 

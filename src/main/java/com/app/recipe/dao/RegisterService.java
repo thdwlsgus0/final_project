@@ -10,4 +10,5 @@ public interface RegisterService {
 	public boolean dicecheck(String id, String dice);
 	public void update(RegisterDto dto);
 	public RegisterDto select(String id);
+	public RegisterDto select(String id, String pw);
 }

@@ -70,3 +70,25 @@ function google_sendprofiletocontrol(email, name, imageUrl){
 	if(flag_login) window.location.href = '/recipe/member/index.do';
 	else alert('이메일 인증을 받아주세요!');
 }
+function normal_login(){
+	id = $('#mem_id').val();
+	pw = $('#mem_pw').val();
+	data = {
+		id: id,
+		pw: pw
+	}
+	$.ajax({
+		type: 'POST',
+		url: '/recipe/member/login.do',
+		dataType: 'text',
+		contentType: 'application/json; charset=utf-8',
+		data: JSON.stringify(data),
+		async: false
+	}).done(function(){
+		flag = true;
+	}).fail(function(){
+		flag = false;
+	});
+	if(flag) window.location.href = '/recipe/member/index.do';
+	else alert('로그인 실패!');
+}

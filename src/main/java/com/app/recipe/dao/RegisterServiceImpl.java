@@ -51,4 +51,9 @@ public class RegisterServiceImpl implements RegisterService {
 	public RegisterDto select(String id) {
 		return dao.select(id);
 	}
+	
+	@Override
+	public RegisterDto select(String id, String pw) {
+		return dao.select_login(id, pw);
+	}
 }

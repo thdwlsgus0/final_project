@@ -30,18 +30,18 @@
 			<form action="">
 				<div class="row">
 					<div class="text-center">
-						<input type="text" size="200" class="login_input"
+						<input type="text" size="200" class="login_input" id="mem_id"
 							placeholder="아이디를 입력하세요">
 					</div>
 				</div>
 				<div class="row">
 					<div class="text-center">
-						<input type="text" size="200" class="login_input"
+						<input type="text" size="200" class="login_input" id="mem_pw"
 							placeholder="비밀번호를 입력하세요">
 					</div>
 				</div>
 				<div class="row">
-					<button class="btn btn-success login_btn" type="submit">로그인</button>
+					<input class="btn btn-success login_btn" type="button" onclick="normal_login();" value="로그인">
 				</div>
 			</form>
 
@@ -68,7 +68,7 @@
 	</div>
 	<%@ include file="template/footer.jsp"%>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script type="text/javascript" src="/recipe/login/google_sign.js"></script>
+	<script type="text/javascript" src="/recipe/script/google_sign.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=google_init" async defer></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>

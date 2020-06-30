@@ -78,8 +78,10 @@ var main = {
 			window.location.href='/recipe/loginForm.do';
 		});
 	},
-	focusOutId:function() {
-		id = $('#Mem_ID').val()
+	focusOutId:function(fullid) {
+		var _this = this;
+		if(isNaN(fullid)) id = $('#Mem_ID').val()
+		else id = fullid;
 		if(id.length < 5 || id.length > 20){
 			$('#id_check').html('<font color="red">id는 5~20자이어야 합니다.</font>');
 			return false;
@@ -96,6 +98,14 @@ var main = {
 			$('#id_check').html(saveres);
 		});
 		if(saveres.includes('green')) return true;
+		if(_this.getCookie('regi_email') != null){
+			fullid = id;
+			id = fullid.split('_')[0];
+			num = _this.numpad(fullid.split('_')[1], 3);
+			fullid = id + '_' + num;
+			$('#Mem_ID').val(fullid);
+			return _this.focusOutId(fullid);
+		}
 		return false;
 	},
 	pwOverCheck:function(){
@@ -141,6 +151,24 @@ var main = {
 		}
 		$('#email_check').html('<font color="red">이메일 형식이 잘못되었습니다.</font>');
 		return false;
+	},
+	getCookie:function(cname) {
+		var name = cname + "=";
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var ca = decodedCookie.split(';');
+		for(var i = 0; i <ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') { c = c.substring(1); }
+			if (c.indexOf(name) == 0) { return c.substring(name.length, c.length); }
+		}
+		return null;
+	},
+	numpad:function(n, width) {
+		if(isNaN(n)) n = 0;
+		n = parseInt(n) + 1;
+		n = n + '';
+		width = parseInt(width);
+		return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
 	}
 };
 main.init();
