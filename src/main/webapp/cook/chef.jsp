@@ -20,139 +20,91 @@
 <link href="/recipe/css/style.css" rel="stylesheet" />
 <link href="/recipe/css/jinhyun.css" rel="stylesheet" />
 <link href="/recipe/css/index.css" rel="stylesheet" />
-<link href="/recipe/css/header.css" rel="stylesheet" />
-<link href="/recipe/css/footer.css" rel="stylesheet" />
-<link href="/recipe/css/chef.css" rel="stylesheet" />
+<link href="/recipe/css/header.css" rel="stylesheet"/>
+<link href="/recipe/css/footer.css" rel="stylesheet"/>
+<link href="/recipe/css/chef.css" rel="stylesheet"/>
 </head>
 
 <body>
-	<%@ include file="../template/nav.jsp"%>
+  <%@ include file="../template/nav.jsp" %> 
 
+	
 	<!-- 컨테이너 영역 : 쉐프 상세 영역 -->
-	<div class="main_content">
-		<div class="container">
-			<!-- 컨테이너 기본 틀 -->
-			<div class="container_frame">
-				<!-- 서브 탭 영역 -->
-				<div class="sub_tabs">
-					<ul>
-						<li><a href="#">🔪레시피</a></li>
-						<li><a href="#">💬댓글</a></li>
-					</ul>
-				</div>
-
-				<!-- 쉐프의 레시피 검색 영역 -->
-				<div class="sub_search">
-					<input type="text" name="recipe_sub_search">
-
-					<button type="submit" onclick="doSearch()">
-						<img src="img/pngwing.png">
-					</button>
-				</div>
-
-				<!-- 쉐프의 레시피 게시물 표시 -->
-				<div class="content_list">
-					<ul>
-						<li><a href="#"> <img src="sample/img/photo1_thum.jpg"
-								style="width: 100%;">
-								<div class="recipe_subject">
-									<h3>레시피 명 1</h3>
-									<p>by 쉐프 명</p>
-								</div>
-						</a></li>
-
-						<li><a href="#"> <img src="sample/img/photo2_thum.jpg"
-								style="width: 100%;">
-								<div class="recipe_subject">
-									<h3>레시피 명 1</h3>
-									<p>by 쉐프 명</p>
-								</div>
-						</a></li>
-
-						<li><a href="#"> <img src="sample/img/photo3_thum.jpg"
-								style="width: 100%;">
-								<div class="recipe_subject">
-									<h3>레시피 명 1</h3>
-									<p>by 쉐프 명</p>
-								</div>
-						</a></li>
-
-						<li><a href="#"> <img src="sample/img/photo4_thum.jpg"
-								style="width: 100%;">
-								<div class="recipe_subject">
-									<h3>레시피 명 1</h3>
-									<p>by 쉐프 명</p>
-								</div>
-						</a></li>
-
-						<li><a href="#"> <img src="sample/img/photo5_thum.jpg"
-								style="width: 100%;">
-								<div class="recipe_subject">
-									<h3>레시피 명 1</h3>
-									<p>by 쉐프 명</p>
-								</div>
-						</a></li>
-
-						<li><a href="#"> <img src="sample/img/photo1_thum.jpg"
-								style="width: 100%;">
-								<div class="recipe_subject">
-									<h3>레시피 명 1</h3>
-									<p>by 쉐프 명</p>
-								</div>
-						</a></li>
-
-						<li><a href="#"> <img src="sample/img/photo2_thum.jpg"
-								style="width: 100%;">
-								<div class="recipe_subject">
-									<h3>레시피 명 1</h3>
-									<p>by 쉐프 명</p>
-								</div>
-						</a></li>
-
-						<li><a href="#"> <img src="sample/img/photo3_thum.jpg"
-								style="width: 100%;">
-								<div class="recipe_subject">
-									<h3>레시피 명 1</h3>
-									<p>by 쉐프 명</p>
-								</div>
-						</a></li>
-
-						<li><a href="#"> <img src="sample/img/photo4_thum.jpg"
-								style="width: 100%;">
-								<div class="recipe_subject">
-									<h3>레시피 명 1</h3>
-									<p>by 쉐프 명</p>
-								</div>
-						</a></li>
-
-						<li><a href="#"> <img src="sample/img/photo5_thum.jpg"
-								style="width: 100%;">
-								<div class="recipe_subject">
-									<h3>레시피 명 1</h3>
-									<p>by 쉐프 명</p>
-								</div>
-						</a></li>
-					</ul>
-					<!-- .content_list ul -->
-
-				</div>
-				<!-- content_list -->
-
-				<!-- 게시물 페이징 영역 -->
-				<div class="paging">
-					<ul>
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-					</ul>
-				</div>
-				<!-- paging -->
-			</div>
-		</div>
-		<!-- container -->
-	</div>
-	<!-- container_wrap -->
-	<%@ include file="../template/footer.jsp"%>
+	<div class="container">
+		<!-- 컨테이너 기본 틀 -->
+	    <div class="container_frame">
+	    		<!-- 서브 탭 영역 -->
+	        	<div class="sub_tabs"> 
+	        		<ul>
+	        			<li><a href="chef.do?pg=1">🔪레시피</a></li>
+	        			<li><a href="#">💬댓글</a></li>
+	        		</ul>
+		        </div><!-- sub_tabs -->
+				
+				<!-- 쉐프의 레시피 검색 영역 -->		        
+		        <form action="chef.do" method="get">
+		            <div class="sub_search">
+						<input type="text" name="keyword">
+																					    
+						<button type="submit">
+							<img src="img/pngwing.png">
+						</button>
+						
+						<input type="hidden" name="mem_id" value="${mem_id }">
+		            </div><!-- sub_search -->
+	            </form>
+	            
+	            <!-- 쉐프의 레시피 게시물 표시 -->
+	            <div class="content_list">
+	            	<ul>
+	            		<c:forEach var="recipeDTO" items="${list }">
+	            		<li>
+	            			<a href="#">
+	            				<img src="${recipeDTO.img_url }">
+	            				<div class="recipe_subject">
+	            					<h3>${recipeDTO.recipe_nm_ko }</h3>
+	            					<p>by ${recipeDTO.mem_id }</p>
+	            				</div>
+	            			</a>
+	            		</li>
+	            		</c:forEach>
+	            	</ul><!-- .content_list ul -->
+	            	
+	            </div><!-- content_list -->
+	            
+	        <!-- 게시물 페이징 영역 -->
+	        <div class="paging">
+	        	<ul>
+	        		<c:if test="${startPage > 5}">
+	        			<li>
+	        				<a class="turnPaging" href="chef.do?pg=${startPage - 1}&keyword=${keyword }">이전</a>
+	        			</li>
+	        		</c:if>
+	        		
+	        		<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
+	        			<c:choose>
+	        				<c:when test="${pg==i }">
+        					<li>
+								<a class="currentPaging" href="chef.do?pg=${i }"&keyword=${keyword }>${i }</a>
+							</li>			
+	        				</c:when>
+	        				<c:otherwise>
+	        				<li>
+								<a href="chef.do?pg=${i }&keyword=${keyword }">${i }</a>
+							</li>
+	        				</c:otherwise>
+	        			</c:choose>
+	        		</c:forEach>
+	        		
+					<c:if test="${endPage < totalP}">
+	        			<li>
+	        				<a class="turnPaging" href="chef.do?pg=${endPage + 1}&keyword=${keyword }">다음</a>
+	        			</li>
+	        		</c:if>
+	        	</ul>
+	        </div><!-- paging -->
+	        
+	    </div><!-- container -->
+	</div><!-- container_wrap -->
+  <%@ include file="../template/footer.jsp" %>
 </body>
