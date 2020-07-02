@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.app.recipe.dao.RegisterService;
+import com.app.recipe.service.RegisterService;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.personal.kakaoLogin.service.KakaoAPI;
 import com.personal.naverLogin.service.NaverLoginBO;
@@ -60,6 +60,8 @@ public class LoginAPIController {
     	
         return "/member/index.jsp";
     }
+    
+    // 네이버 로그인 성공시 callback호출 메소드
     @RequestMapping(value="/callback.do", method= {RequestMethod.GET, RequestMethod.POST})
     public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws IOException, ParseException{
     	OAuth2AccessToken oauthToken;
@@ -75,12 +77,13 @@ public class LoginAPIController {
     	JSONObject response_obj = (JSONObject)jsonObj.get("response");
     	String nickname = (String)response_obj.get("nickname");
     	String email = response_obj.get("email").toString();
-    	String profile = response_obj.get("profile_image").toString();    	
+    	String profile = response_obj.get("profile_image").toString();
     	model.addAttribute("result", apiResult);
     	HashMap<String, Object> hash = logincheck(nickname, email, profile, "naver", session);
-    	if((boolean) hash.get("regi")) return "/recipe/member/signup.do";
-    	if((boolean) hash.get("login")) return "/recipe/member/index.do";
-    	else return "/recipe/member/emailcheck.jsp";
+
+    	if(hash.containsKey("regi")) if((boolean) hash.get("regi")) return "/member/signup.do";
+    	if((boolean) hash.get("login")) return "/member/index.do";
+    	return "/member/emailcheck.jsp";
     }
     @RequestMapping(value="/logout.do", method= {RequestMethod.GET, RequestMethod.POST})
     public String logout(HttpSession session)throws IOException{
@@ -111,12 +114,12 @@ public class LoginAPIController {
 		if (svc.idcheck(name, auth_str)) {
 
 			session.setAttribute("regi_email", email);
-			session.setAttribute("regi_name", name + "   ");
+			session.setAttribute("regi_name", name);
 			session.setAttribute("regi_profile", profile);
 			ret.put("regi", true);
 		} else {
-			if(svc.select(name).getAuth().equals("T")) {
-
+			if(svc.select(name).getCheck().equals("T")) {
+				// - 가입&인증된 상태라면 메인으로
 				session.setAttribute("email", email);
 				session.setAttribute("sessionId", name);
 				session.setAttribute("profile", profile);

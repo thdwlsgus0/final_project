@@ -15,15 +15,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.app.recipe.dao.memberService;
 import com.app.recipe.model.RegisterDto;
+import com.app.recipe.service.memberService;
 
 
 @Controller // 컨트롤러 빈 선언
@@ -41,10 +40,10 @@ public class MemberController {
 	@PostMapping("/email/gauth.do")
 	public ModelAndView gmails(@RequestBody RegisterDto dto) {
 		System.out.println("dto: " + dto.getEmail());
-		return dice(dto.getEmail());
+		return dice(dto);
 	}
 	
-	private ModelAndView dice(String email) {
+	private ModelAndView dice(RegisterDto dto) {
 		Random r = new Random();
 		int dice = r.nextInt(4589362)+49311; // 49311 ~ 49311 + 4589362
 		
@@ -52,7 +51,8 @@ public class MemberController {
 		mv.setViewName("/email/email_auth.jsp");
 		mv.addObject("dice", dice);
 		
-		sendEmail(email, dice);
+		String id = dto.getId() == null ? dto.getEmail() : dto.getId();
+		sendEmail(dto.getEmail(), id, dice);
 		
 		return mv;
 	}
@@ -62,29 +62,29 @@ public class MemberController {
 	public ModelAndView mailSending(HttpServletRequest request, String e_mail, HttpServletResponse response_email) throws IOException{
 		// 보내는 이메일 주소
 		String tomail = request.getParameter("e_mail");
-		return dice(tomail);
+		return dice(new RegisterDto(tomail));
 	}
 	
-	public void sendEmail(String email, int dice) {
+	public int sendEmail(String email, String id, int dice) {
 		String host = "smtp.naver.com";
 		String subject = "달달하조 인증번호 전달";
 		String fromName = "달달하조 관리자";
 		String from="thdwlsgus0@naver.com"; //일단 네이버로 하였습니다.
-		String content = "인증번호["+dice+"]";
-		System.out.println(email + " : "+dice);
+		String content = "링크: http://localhost:8080/recipe/member/emailcheck.do?id=%s&dice=%d";//"인증번호["+dice+"]";
+		String rcontent = String.format(content, id, dice);
 		try {
 			MimeMessage message = mailSender.createMimeMessage();
-            MimeMessageHelper messageHelper = new MimeMessageHelper(message,
-                    true, "UTF-8");
+            MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
             messageHelper.setFrom(from); // 보내는사람 생략하면 정상작동을 안함
             messageHelper.setTo(email); // 받는사람 이메일
             messageHelper.setSubject(subject); // 메일제목은 생략이 가능하다
-            messageHelper.setText(content); // 메일 내용
+            messageHelper.setText(rcontent); // 메일 내용
             mailSender.send(message);
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return dice;
 	}
 	
 	@RequestMapping(value = "/email/join_injeung.do", method = RequestMethod.POST)

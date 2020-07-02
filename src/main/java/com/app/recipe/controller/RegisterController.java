@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,14 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.app.recipe.dao.RegisterService;
 import com.app.recipe.model.RegisterDto;
+import com.app.recipe.service.RegisterService;
 
 
 @Controller
 public class RegisterController {
 	@Inject
-	private RegisterService svc;
+	private static RegisterService svc;
 
 	@ResponseBody
 	@PostMapping("/member/regist.do")
@@ -32,6 +33,17 @@ public class RegisterController {
 	public String idcheck(@RequestBody String id, Model model) {
 		if(svc.idcheck(id)) model.addAttribute("idcheck", true);
 		else model.addAttribute("idcheck", false);
+		return "/member/signup_idcheck.jsp";
+	}
+	
+	@PostMapping("/member/login.do")
+	public String login(@RequestBody RegisterDto dto, HttpSession session) {
+		RegisterDto dto2 = svc.select(dto.getId(), dto.getPw());
+		if(dto2 == null) return "/member/null";
+		
+		session.setAttribute("email", dto2.getEmail());
+		session.setAttribute("sessionId", dto2.getId());
+		session.setAttribute("profile", dto2.getProfile());
 		return "/member/signup_idcheck.jsp";
 	}
 	

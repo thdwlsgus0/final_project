@@ -36,33 +36,33 @@
 				<div class="ingre_img">
 					<ul>
 						<li class="display_block"><img src="/recipe/img/beef.png" class="beef_size">
-							<p class="text-center">쇠고기</p></li>
+							<p class="text-center"><a class="text-center" href="../recipe/method.do?food=쇠고기">쇠고기</a></p></li>
 						<li class="display_block"><img src="/recipe/img/radish.png" class="radish_size">
-							<p class="text-center">무</p></li>
+							<p class="text-center"><a class="text-center" href="../recipe/method.do?food=무">무</a></p></li>
 						<li class="display_block"><img src="/recipe/img/tofu.png" class="tofu_size">
-							<p class="text-center">두부</p></li>
+							<p class="text-center"><a class="text-center" href="../recipe/method.do?food=두부">두부</a></p></li>
 						<li class="display_block"><img src="/recipe/img/rice.png" class="rice_size">
-							<p class="text-center">밥</p></li>
+							<p class="text-center"><a class="text-center" href="../recipe/method.do?food=밥">밥</a></p></li>
 						<li class="display_block"><img src="/recipe/img/squid.png" class="squid_size">
-							<p class="text-center">오징어</p></li>
+							<p class="text-center"><a class="text-center" href="../recipe/method.do?food=오징어">오징어</a></p></li>
 						<li class="display_block"><img src="/recipe/img/pork.png" class="pork_size">
-							<p class="text-center">돼지고기</p></li>
+							<p class="text-center"><a class="text-center" href="../recipe/method.do?food=돼지고기">돼지고기</a></p></li>
 						<li class="display_block"><img src="/recipe/img/mushroom.png" class="mushroom_size">
-							<p class="text-center">표고버섯</p></li>
+							<p class="text-center"><a class="text-center" href="../recipe/method.do?food=버섯">버섯</a></p></li>
 						<li class="display_none"><img src="/recipe/img/flour.png" class="beef_size">
-							<p class="text-center">밀가루</p></li>
+							<p class="text-center"><a class="text-center" href="../recipe/method.do?food=밀가루">밀가루</a></p></li>
 						<li class="display_none"><img src="/recipe/img/콩나물.png" class="radish_size">
-							<p class="text-center">콩나물</p></li>
+							<p class="text-center"><a class="text-center" href="../recipe/method.do?food=콩나물">콩나물</a></p></li>
 						<li class="display_none"><img src="/recipe/img/onion.png" class="tofu_size">
-							<p class="text-center">양파</p></li>
+							<p class="text-center"><a class="text-center" href="../recipe/method.do?food=양파">양파</a></p></li>
 						<li class="display_none"><img src="/recipe/img/cucumber.png" class="rice_size">
-							<p class="text-center">오이</p></li>
+							<p class="text-center"><a class="text-center" href="../recipe/method.do?food=오이">오이</a></p></li>
 						<li class="display_none"><img src="/recipe/img/shrimp.png" class="squid_size">
-							<p class="text-center">새우</p></li>
+							<p class="text-center"><a class="text-center" href="../recipe/method.do?food=새우">새우</a></p></li>
 						<li class="display_none"><img src="/recipe/img/egg.png" class="pork_size">
-							<p class="text-center">계란</p></li>
+							<p class="text-center"><a class="text-center" href="../recipe/method.do?food=계란">계란</a></p></li>
 						<li class="display_none"><img src="/recipe/img/potato.png" class="mushroom_size">
-							<p class="text-center">감자</p></li>					
+							<p class="text-center"><a class="text-center" href="../recipe/method.do?food=김치">김치</a></p></li>				
 					</ul>
 				</div>
 				<div class="cate_arrow">
@@ -222,7 +222,6 @@
 		</section>
 	</div>	
 	<script src="../script/index.js"></script>
-
-	<%@ include file="../template/footer.jsp"%>
+    <jsp:include page="../template/footer.jsp"/>
 </body>
 </html>

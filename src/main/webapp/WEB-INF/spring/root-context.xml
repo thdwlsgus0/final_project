@@ -25,22 +25,36 @@
 			</props>
 		</property>
 	</bean>
-	<bean id="KakaoAPI" class="com.personal.kakaoLogin.service.KakaoAPI"></bean>
-	
+	<bean id="KakaoAPI"
+		class="com.personal.kakaoLogin.service.KakaoAPI"></bean>
+
 	<!-- datasource, mybatis -->
-	<context:property-placeholder location="classpath:mybatis/db.properties"/>
-	<bean id="dataSource"
-	       class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-	       <property name="driverClassName"  value="${jdbc.driver}"></property>
-	       <property name="url" value="${jdbc.url}"></property>
-	       <property name="username" value="${jdbc.id}"></property>
-	       <property name="password" value="${jdbc.pw}"></property>
+	<context:property-placeholder
+		location="classpath:mybatis/db.properties" />
+	<bean id="dataSourceSpied"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.driver}"></property>
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="username" value="${jdbc.id}"></property>
+		<property name="password" value="${jdbc.pw}"></property>
 	</bean>
-	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-       <property name="dataSource" ref="dataSource"/>
-       <property name="configLocation"  value="classpath:mybatis/mybatis-config.xml"/>
+	<bean id="sessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation"
+			value="classpath:mybatis/mybatis-config.xml" />
 	</bean>
 	<bean class="org.mybatis.spring.SqlSessionTemplate">
-	       <constructor-arg ref="sessionFactory"/>
+		<constructor-arg ref="sessionFactory" />
+	</bean>
+	<bean id="dataSource"
+		class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+		<constructor-arg ref="dataSourceSpied" />
+		<property name="logFormatter">
+			<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+				<property name="loggingType" value="MULTI_LINE" />
+				<property name="sqlPrefix" value="SQL : " />
+			</bean>
+		</property>
 	</bean>
 </beans>

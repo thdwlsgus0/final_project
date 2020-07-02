@@ -5,8 +5,10 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.app.recipe.model.RegisterDto" alias="regiDto" />
+		<typeAlias type="com.app.recipe.model.RecipeDTO" alias="recipeDTO"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="/mybatis/register-mapper.xml" />
+		<mapper resource="/mybatis/recipe-mapper.xml" />
 	</mappers>
 </configuration>

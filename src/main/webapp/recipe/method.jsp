@@ -33,7 +33,7 @@
 			<!-- 컨테이너 기본 틀 -->
 			<div class="container_frame">
 				<div>
-					총<b class="method_num">211</b>개의 맛있는 레시피가 있습니다.
+					총 <b class="method_num">${food_cnt}</b>개의 ${food_name}레시피가 있습니다.
 				</div>
 				<!-- 쉐프의 레시피 게시물 표시 -->
 				<div class="content_list">

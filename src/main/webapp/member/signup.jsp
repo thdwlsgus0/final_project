@@ -79,16 +79,18 @@
 	<%@ include file="../template/script.jsp"%>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-	<script src="../script/mem_regi.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="/recipe/script/mem_regi.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			email = $('#Mem_email').val();
 			if(!email || 0 === email.length) return;
 			readonly('#Mem_email');
 			readonly('#Mem_ID');
-			<% session.setAttribute("regi_email", null);
+			<% response.addCookie(new Cookie("regi_email", "${regi_email}")); 
+			session.setAttribute("regi_email", null);
 			session.setAttribute("regi_name", null);
-			session.setAttribute("regi_profile", null); %>
+			session.setAttribute("regi_profile", null);
+			session.setAttribute("auth", null);%>
 		});
 		function readonly(selector){
 			$(selector).attr('readonly', 'readonly');

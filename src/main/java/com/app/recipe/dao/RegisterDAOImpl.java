@@ -27,7 +27,16 @@ public class RegisterDAOImpl implements RegisterDAO {
 	public RegisterDto select(String id, String auth) {
 		return sql.selectOne("regi.selectauth", new RegisterDto(id, auth));
 	}
-
+	
+	@Override
+	public RegisterDto select_login(String id, String pw) {
+		return sql.selectOne("regi.selectori", new RegisterDto(id, pw, null));
+	}
+   
+    @Override
+	public int chef_select() {
+	   return sql.selectOne("regi.selectcnt");
+	}
 	@Override
 	public void insert(RegisterDto dto) {
 		sql.insert("regi.insert", dto);

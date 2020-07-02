@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="recipeDTO">
+	<select id="selectcnt" resultType="int">
+		SELECT COUNT(*) FROM recipe_info
+	</select>
+	<select id="select_total_cnt" resultType="int">
+	    select sum(hit) from recipe_info
+	</select>
+	<select id="select_food_cnt" parameterType="String" resultType="int">
+	    select COUNT(*) from recipe_ingredient_info where irdnt_nm=#{irdnt_nm}
+	</select>
+</mapper>

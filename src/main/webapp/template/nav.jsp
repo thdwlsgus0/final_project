@@ -40,6 +40,7 @@
 			</div>
 		</div>
 	</nav>
+	
 	<!-- Masthead-->
 	<header>
 		<div class="menu">

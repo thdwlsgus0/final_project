@@ -19,9 +19,16 @@ public class RegisterDto {
 	
 	
 	public RegisterDto() {}
+	public RegisterDto(String email) {
+		this.email = email;
+	}
 	public RegisterDto(String id, String auth) {
 		this.id = id;
 		this.auth = auth;
+	}
+	public RegisterDto(String id, String pw, String null_val) {
+		this.id = id;
+		this.pw = pw;
 	}
 	public String getAuth() {
 		return auth;
