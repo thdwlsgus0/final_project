@@ -37,6 +37,13 @@ public class RegisterDto {
 		this.auth = auth;
 		this.pw = pw;
 	}
+	public RegisterDto(MemberModVo vo) {
+		pw = vo.getPw();
+		favor = vo.getFavor();
+		phone = vo.getPhone();
+		profile = vo.getOrifile();
+	}
+	
 	public String getAuth() {
 		return auth;
 	}

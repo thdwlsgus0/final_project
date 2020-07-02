@@ -43,6 +43,7 @@ public class RegisterController {
 		
 		session.setAttribute("email", dto2.getEmail());
 		session.setAttribute("sessionId", dto2.getId());
+		session.setAttribute("realId", dto2.getId());
 		session.setAttribute("profile", dto2.getProfile());
 		return "/member/signup_idcheck.jsp";
 	}

@@ -24,17 +24,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.app.recipe.dao.RegisterService;
+import com.app.recipe.model.RegisterDto;
 import com.github.scribejava.core.model.OAuth2AccessToken;
-import com.personal.kakaoLogin.service.KakaoAPI;
 import com.personal.naverLogin.service.NaverLoginBO;
 
 /*
  */
 @Controller
 public class LoginAPIController {
-	
-	@Autowired
-	private KakaoAPI kakao;
 	
 	private NaverLoginBO naverLoginBO;
 	private String apiResult = null;
@@ -51,16 +48,15 @@ public class LoginAPIController {
 		return "/login.jsp";
 	}
 	
-    @RequestMapping(value="/login.do",produces="application/json",method=RequestMethod.GET)
+    /*@RequestMapping(value="/login.do",produces="application/json",method=RequestMethod.GET)
     public String login(@RequestParam("code") String code,RedirectAttributes ra,HttpSession session,HttpServletResponse response)throws IOException {
     	String access_Token = kakao.getAccessToken(code);
     	HashMap<String, Object> userInfo = kakao.getUserInfo(access_Token);
         if (userInfo.get("email") != null) {
             session.setAttribute("sessionId", access_Token);
-        }
-    	
+        }    	
         return "/member/index.jsp";
-    }
+    }*/
     
     // 네이버 로그인 성공시 callback호출 메소드
     @RequestMapping(value="/callback.do", method= {RequestMethod.GET, RequestMethod.POST})
@@ -78,7 +74,6 @@ public class LoginAPIController {
     	JSONObject response_obj = (JSONObject)jsonObj.get("response");
     	String nickname = (String)response_obj.get("nickname");
     	String email = response_obj.get("email").toString();
-    	System.out.println(">>>>>>>>>>>>>email: " + email);
     	String profile = response_obj.get("profile_image").toString();
     	model.addAttribute("result", apiResult);
     	HashMap<String, Object> hash = logincheck(nickname, email, profile, "naver", session);
@@ -89,9 +84,7 @@ public class LoginAPIController {
     }
     @RequestMapping(value="/logout.do", method= {RequestMethod.GET, RequestMethod.POST})
     public String logout(HttpSession session)throws IOException{
-    	System.out.println("濡쒓렇�븘�썐 logout");
-        session.invalidate();
-        
+        session.invalidate();        
         return "redirect:/login.jsp";
     }
     
@@ -118,10 +111,12 @@ public class LoginAPIController {
 			session.setAttribute("regi_profile", profile);
 			ret.put("regi", true);
 		} else {
-			if(svc.select(email, auth_str).getCheck().equals("T")) {
+			RegisterDto dto = svc.select(email, auth_str);
+			if(dto.getCheck().equals("T")) {
 				// - 가입&인증된 상태라면 메인으로
 				session.setAttribute("email", email);
 				session.setAttribute("sessionId", name);
+				session.setAttribute("realId", dto.getId());
 				session.setAttribute("profile", profile);
 				ret.put("login", true);	
 			}
