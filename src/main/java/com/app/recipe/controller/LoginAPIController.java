@@ -78,20 +78,21 @@ public class LoginAPIController {
     	JSONObject response_obj = (JSONObject)jsonObj.get("response");
     	String nickname = (String)response_obj.get("nickname");
     	String email = response_obj.get("email").toString();
+    	System.out.println(">>>>>>>>>>>>>email: " + email);
     	String profile = response_obj.get("profile_image").toString();
     	model.addAttribute("result", apiResult);
     	HashMap<String, Object> hash = logincheck(nickname, email, profile, "naver", session);
 
-    	if(hash.containsKey("regi")) if((boolean) hash.get("regi")) return "/member/signup.do";
-    	if((boolean) hash.get("login")) return "/member/index.do";
-    	return "/member/emailcheck.jsp";
+    	if(hash.containsKey("regi")) if((boolean) hash.get("regi")) return "redirect:/member/signup.do";
+    	if((boolean) hash.get("login")) return "redirect:/member/index.do";
+    	return "redirect:/member/emailcheck.jsp";
     }
     @RequestMapping(value="/logout.do", method= {RequestMethod.GET, RequestMethod.POST})
     public String logout(HttpSession session)throws IOException{
     	System.out.println("濡쒓렇�븘�썐 logout");
         session.invalidate();
         
-        return "/login.jsp";
+        return "redirect:/login.jsp";
     }
     
 
@@ -110,16 +111,14 @@ public class LoginAPIController {
 	}
 	
 	public HashMap<String, Object> logincheck(String name, String email, String profile, String auth_str, HttpSession session){
-		
 		HashMap<String, Object> ret = new HashMap<String, Object>();
-		if (svc.idcheck(name, auth_str)) {
-
+		if (svc.idcheck(email, auth_str)) {
 			session.setAttribute("regi_email", email);
 			session.setAttribute("regi_name", name);
 			session.setAttribute("regi_profile", profile);
 			ret.put("regi", true);
 		} else {
-			if(svc.select(name).getCheck().equals("T")) {
+			if(svc.select(email, auth_str).getCheck().equals("T")) {
 				// - 가입&인증된 상태라면 메인으로
 				session.setAttribute("email", email);
 				session.setAttribute("sessionId", name);

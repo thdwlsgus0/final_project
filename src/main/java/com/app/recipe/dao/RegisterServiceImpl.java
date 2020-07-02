@@ -14,7 +14,6 @@ public class RegisterServiceImpl implements RegisterService {
 	
 	@Override
 	public void register(RegisterDto dto) {
-		dto.setId(dto.getId().trim());
 		dao.insert(dto);
 	}
 
@@ -25,15 +24,9 @@ public class RegisterServiceImpl implements RegisterService {
 	}
 	
 	@Override
-	public boolean idcheck(String id, String auth) {
-		if(dao.select(id, auth) == null) return true;
+	public boolean idcheck(String email, String auth) {
+		if(dao.select(email, auth) == null) return true;
 		return false;
-	}
-
-	@Override
-	public boolean login(RegisterDto dto) {
-		if(dao.select(dto.getId()).getCheck().equals("T")) return true;
-		else return false;
 	}
 
 	@Override
@@ -53,7 +46,12 @@ public class RegisterServiceImpl implements RegisterService {
 	}
 	
 	@Override
-	public RegisterDto select(String id, String pw) {
+	public RegisterDto login(String id, String pw) {
 		return dao.select_login(id, pw);
+	}
+
+	@Override
+	public RegisterDto select(String email, String auth) {
+		return dao.select(email, auth);
 	}
 }

@@ -38,7 +38,7 @@ public class RegisterController {
 	
 	@PostMapping("/member/login.do")
 	public String login(@RequestBody RegisterDto dto, HttpSession session) {
-		RegisterDto dto2 = svc.select(dto.getId(), dto.getPw());
+		RegisterDto dto2 = svc.login(dto.getId(), dto.getPw());
 		if(dto2 == null) return "/member/null";
 		
 		session.setAttribute("email", dto2.getEmail());

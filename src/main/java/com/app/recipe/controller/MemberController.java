@@ -49,7 +49,7 @@ public class MemberController {
 		int dice = r.nextInt(4589362)+49311; // 49311 ~ 49311 + 4589362
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/email/email_auth.jsp");
+		mv.setViewName("/email/email_auth2.jsp");
 		mv.addObject("dice", dice);
 		
 		String id = dto.getId() == null ? dto.getEmail() : dto.getId();
@@ -71,7 +71,7 @@ public class MemberController {
 		String subject = "달달하조 인증번호 전달";
 		String fromName = "달달하조 관리자";
 		String from="thdwlsgus0@naver.com"; //일단 네이버로 하였습니다.
-		String content = "링크: http://localhost:8080/recipe/member/emailcheck.do?id=%s&dice=%d";//"인증번호["+dice+"]";
+		String content = "링크: http://localhost:8090/recipe/member/emailcheck.do?id=%s&dice=%d";//"인증번호["+dice+"]";
 		String rcontent = String.format(content, id, dice);
 		try {
 			MimeMessage message = mailSender.createMimeMessage();

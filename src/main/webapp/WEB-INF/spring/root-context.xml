@@ -28,7 +28,7 @@
 	<bean id="KakaoAPI"
 		class="com.personal.kakaoLogin.service.KakaoAPI"></bean>
 
-	<!-- datasource, mybatis -->
+	<!-- datasource, mybatis, log -->
 	<context:property-placeholder
 		location="classpath:mybatis/db.properties" />
 	<bean id="dataSourceSpied"
