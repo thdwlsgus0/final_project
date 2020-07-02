@@ -1,0 +1,45 @@
+body{
+  min-width:960px !important;
+}
+
+header {
+	background-color: #1DDB16;
+}
+
+.nav_div{
+	padding: 0;
+}
+
+.nav_ul {
+	min-width: 0;
+}
+
+.nav_ul li {
+	min-width: 0;
+}
+
+.nav_container{
+	justify-content: start !important;
+	padding: 0;
+}
+.menu{
+	width:100%;
+	height:50px;
+	margin-top:30px;
+}
+ul{
+	list-style-type:none;
+}
+.nav_list li{
+	display:inline-block;
+	float:left;
+	width:370px;
+	padding-top:15px;
+	text-align: center;
+}
+.active{
+	color:red;
+}
+.li_font{
+	color:white;
+}

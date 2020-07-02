@@ -1,0 +1,146 @@
+/* 而⑦���대�� 湲곕낯 �� �ㅼ�� (div ����) */
+.container_frame {
+	width: 100%;
+	margin: 15px auto;
+	border: 1px solid #e6e7e8;
+	background: white;
+}
+/* ��釉� �� ����(div ��洹�) */
+.sub_tabs {
+	width: 100%;
+	height: 117px;
+	padding: 25px 0 0;
+}
+/* ��釉� �� ul */
+.sub_tabs ul {
+	margin: 0 10px;
+}
+/* ��釉� �� ul li */
+.sub_tabs ul li {
+	float: left;
+	display: table;
+	padding: 0;
+	margin-right: 5px;
+	width: 256px;
+	background: #e6e7e8;
+	height: 88px;
+}
+
+/* 媛� ��釉� �� a */
+.sub_tabs ul li a {
+	display: table-cell;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 25px;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+/* ������ ������ 寃��� ���� */
+.sub_search {
+	width: 100%;
+	height: 80px;
+	background-color: white;
+	margin-top: 20px;
+}
+
+/* ������ ������ 寃��� ���μ갹 */
+.sub_search input[type='text'] {
+	width: 41%;
+    height: 46px;
+    float: left;
+    margin-left: 28%;
+    border: 1px solid #e6e7e8;
+}
+
+/* ������ ������ 寃��� �ㅽ�� 踰��� */
+.sub_search button {
+	float: left;
+	width: 46px;
+	height: 46px;
+}
+
+/* ������ ������ 寃���臾� ���� ����(div) */
+.content_list {
+	width: 100%;
+	height: 100%;
+	margin-left:-50px;
+}
+/* 由ъ�ㅽ�� ���� */
+.content_list ul {
+	width: 100%;
+	margin: 0 60px;
+}
+/* 媛� 由ъ�ㅽ�� ��紐� 蹂� ���� */
+.content_list li {
+	float: left;
+	padding: 0;
+	margin: 0px 15px 35px 0px;
+	width: 256px;
+	height: 270px;
+	border: 1px solid #e6e7e8;
+}
+
+.content_list img {
+	width: 100%; height: 70%;
+}
+
+.content_list h3 {
+	width: 100%
+}
+
+/* 媛� 由ъ�ㅽ�� ��紐� 蹂�  ������ 紐� + ���� 紐� ���� ����(div) */
+.recipe_subject {
+	padding: 5px 20px;
+	margin-top: 10px;
+	height: 27%;
+}
+/* ������ 紐�(h3 ��洹�) */
+.recipe_subject h3 {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+/* ���� 紐�(p ��洹�) */
+.recipe_subject p {
+	font-size: 12px;
+}
+
+/* 寃���臾� ���댁� ����(div) */
+.paging {
+	position: relative;
+	text-align: center;
+	clear: both;
+}
+
+.paging ul {
+	display: inline-block;
+	padding-left: 0;
+	margin: 30px 0;
+	border-radius: 0;
+}
+
+.paging ul li {
+	display: inline;
+}
+
+.paging ul li a {
+	min-width: 50px;
+	height: 50px;
+	float: left;
+	padding: 9px 15px;
+	margin: 0 8px;
+	border: 1px solid #e6e7e8;
+	text-decoration: none;
+}
+
+.paging ul li .currentPaging {
+	color: #fff;
+	background: #84accb;
+}
+
+.paging ul li .turnPaging {
+	width: 70px;
+}

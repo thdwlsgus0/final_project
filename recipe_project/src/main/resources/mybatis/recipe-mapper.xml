@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- 이지원 추가 -->
+<mapper namespace="recipe">
+
+	<select id="getTotalArticle" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select COUNT(*) as cnt from recipe_info where recipe_nm_ko like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+	</select>
+	
+	<select id="getRecipeList" parameterType="java.util.Map" resultType="recipeDTO">
+		<![CDATA[
+		select * from 
+		    (select ROWNUM as rn, tt.* from
+		        (select * from recipe_info
+		        where mem_id=#{mem_id, jdbcType=VARCHAR} and recipe_nm_ko like '%'||#{keyword, jdbcType=VARCHAR}||'%' order by seq desc) tt)
+		where rn >= #{startNum, jdbcType=NUMERIC} and rn <= #{endNum, jdbcType=NUMERIC} 
+		]]>
+	</select>
+</mapper>
