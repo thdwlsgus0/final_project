@@ -36,21 +36,21 @@
 	    		<!-- 서브 탭 영역 -->
 	        	<div class="sub_tabs"> 
 	        		<ul>
-	        			<li><a href="chef.do?pg=1">🔪레시피</a></li>
+	        			<li><a href="chef.do?mem_id=${mem_id }">🔪레시피</a></li>
 	        			<li><a href="#">💬댓글</a></li>
 	        		</ul>
 		        </div><!-- sub_tabs -->
 				
 				<!-- 쉐프의 레시피 검색 영역 -->		        
-		        <form action="chef.do" method="get">
+		        <form action="/recipe/cook/chef.do" method="get">
+		        	<input type="hidden" name="mem_id" value="${mem_id }">
 		            <div class="sub_search">
-						<input type="text" name="keyword">
+						<input type="text" name="keyword" placeholder="레시피 또는 재료명을 입력하세요..">
 																					    
 						<button type="submit">
 							<img src="img/pngwing.png">
 						</button>
 						
-						<input type="hidden" name="mem_id" value="${mem_id }">
 		            </div><!-- sub_search -->
 	            </form>
 	            
@@ -77,7 +77,7 @@
 	        	<ul>
 	        		<c:if test="${startPage > 5}">
 	        			<li>
-	        				<a class="turnPaging" href="chef.do?pg=${startPage - 1}&keyword=${keyword }">이전</a>
+	        				<a class="turnPaging" href="chef.do?mem_id=${mem_id }&keyword=${keyword }&pg=${startPage - 1}">이전</a>
 	        			</li>
 	        		</c:if>
 	        		
@@ -85,12 +85,12 @@
 	        			<c:choose>
 	        				<c:when test="${pg==i }">
         					<li>
-								<a class="currentPaging" href="chef.do?pg=${i }"&keyword=${keyword }>${i }</a>
+								<a class="currentPaging" href="chef.do?mem_id=${mem_id }&keyword=${keyword }&pg=${i }">${i }</a>
 							</li>			
 	        				</c:when>
 	        				<c:otherwise>
 	        				<li>
-								<a href="chef.do?pg=${i }&keyword=${keyword }">${i }</a>
+								<a href="chef.do?mem_id=${mem_id }&keyword=${keyword }&pg=${i }">${i }</a>
 							</li>
 	        				</c:otherwise>
 	        			</c:choose>
@@ -98,7 +98,7 @@
 	        		
 					<c:if test="${endPage < totalP}">
 	        			<li>
-	        				<a class="turnPaging" href="chef.do?pg=${endPage + 1}&keyword=${keyword }">다음</a>
+	        				<a class="turnPaging" href="chef.do?mem_id=${mem_id }&keyword=${keyword }&pg=${endPage + 1}">다음</a>
 	        			</li>
 	        		</c:if>
 	        	</ul>

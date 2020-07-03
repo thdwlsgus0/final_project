@@ -9,8 +9,9 @@
 				<!-- 이지원 추가 : jinhyun.css 의  #img_size{...} 내 padding-bottom: 0px; margin-left: 150px; 제거할 것!-->
 				<img src="/recipe/img/logo.png" id="img_size">
 			</a>
+			
 			<!-- 검색창 부분 -->
-			<form action="" method="get">
+			<form action="search_keyword.do" method="get">
 				<div class=" search-box">
 					<!-- 이지원 추가 -->
 					<select name="options" style="float: left;
@@ -19,10 +20,10 @@
 				        <option value="all" <c:out value="${options == 'all'?'selected':''}" /> >
 							전체
 			            </option>
-			            <option value="title" <c:out value="${options == 'title'?'selected':''}" /> >
+			            <option value="recipe" <c:out value="${options == 'title'?'selected':''}" /> >
 							레시피
 						</option>
-			            <option value="content" <c:out value="${options == 'content'?'selected':''}" /> >
+			            <option value="ingredient" <c:out value="${options == 'content'?'selected':''}" /> >
 							재료
 			            </option>
 			            <option value="writer" <c:out value="${option == 'writer'?'selected':''}" /> >
@@ -73,7 +74,7 @@
 			<!-- 이지원 추가 : header.css의 .nav_list li{...} 내 width: 370px로 변경, text-align: center; 추가, margin-left 제거  -->
 				<li class=""><a href="/recipe/member/index.do" class="active li_font">홈</a></li>
 				<li class=""><a href="/recipe/recipe/method.do" class="li_font">레시피</a></li>
-				<li class=""><a href="/recipe/cook/chef.do" class="li_font">쉐프</a></li>
+				<li class=""><a href="/recipe/cook/chefList.do?mem_id=${mem_id }" class="li_font">쉐프</a></li>
 			</ul>
 		</div>
 	</header>

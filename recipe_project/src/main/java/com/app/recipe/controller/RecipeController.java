@@ -24,8 +24,8 @@ public class RecipeController {
 									@RequestParam(defaultValue = "") String keyword) {
 		// 데이터 처리
 		String str_pg = request.getParameter("pg");
-//		String mem_id = request.getParameter("mem_id");
-		String mem_id = "admin";
+		String mem_id = request.getParameter("mem_id");
+//		String mem_id = "이지원";
 		int pg = 1;
 		
 		if(str_pg != null) {
@@ -45,7 +45,7 @@ public class RecipeController {
 		List<RecipeDTO> list = recipeService.getRecipeList(startNum, endNum, mem_id, keyword);
 		
 		// 페이징 처리
-		int totalA = recipeService.getTotalArticle(keyword);
+		int totalA = recipeService.getTotalArticle(mem_id, keyword);
 		int totalP = (totalA+(20-1))/20;	// 'total Page' : 총 페이지 수
 		
 		// 페이지 블럭을 최대 5개까지 표시

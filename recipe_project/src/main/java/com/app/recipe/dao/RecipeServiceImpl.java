@@ -13,8 +13,8 @@ public class RecipeServiceImpl implements RecipeService {
 	private RecipeDAO recipeDAO;
 	
 	@Override
-	public int getTotalArticle(String keyword) {
-		return recipeDAO.getTotalArticle(keyword);
+	public int getTotalArticle(String mem_id, String keyword) {
+		return recipeDAO.getTotalArticle(mem_id, keyword);
 	}
 	
 	@Override

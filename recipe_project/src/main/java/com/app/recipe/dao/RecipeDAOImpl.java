@@ -1,5 +1,6 @@
 package com.app.recipe.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,8 +29,11 @@ public class RecipeDAOImpl implements RecipeDAO {
 	
 
 	@Override
-	public int getTotalArticle(String keyword) {
-		return sqlSessionTemplate.selectOne("recipe.getTotalArticle", keyword);
+	public int getTotalArticle(String mem_id, String keyword) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("mem_id", mem_id);
+		map.put("keyword", keyword);
+		return sqlSessionTemplate.selectOne("recipe.getTotalArticle", map);
 	}
 
 	@Override
