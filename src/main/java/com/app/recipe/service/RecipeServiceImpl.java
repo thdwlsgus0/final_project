@@ -1,15 +1,20 @@
 package com.app.recipe.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.recipe.dao.RecipeDAO;
+import com.app.recipe.model.RecipeDTO;
 
 @Service
 public class RecipeServiceImpl implements RecipeService{
 	@Inject
 	RecipeDAO dao;
+	
 	
 	public int recipe_select() {
 		System.out.println("service»£√‚");
@@ -22,7 +27,28 @@ public class RecipeServiceImpl implements RecipeService{
 	}
 
 	@Override
-	public int recipe_food_result(String food_name) {
-		return dao.recipe_food_result(food_name);
+	public int recipe_food_result(String keyword) {
+		System.out.println("hi");
+		return dao.recipe_food_result(keyword);
+	}
+	
+	@Override
+	public int getTotalArticle(String keyword) {
+		return dao.getTotalArticle(keyword);
+	}
+	
+	@Override
+	public List<RecipeDTO> getRecipeList(int startNum, int endNum, String mem_id, String keyword) {
+		return dao.getRecipeList(startNum, endNum, mem_id, keyword);
+	}
+
+	@Override
+	public List<RecipeDTO> getKeywordList(int startNum, int endNum, String keyword) {
+        return dao.getKeywordList(startNum, endNum, keyword);
+	}
+
+	@Override
+	public List<RecipeDTO> getAllList(int startNum, int endNum) {
+		return dao.getAllList(startNum, endNum);
 	}
 }

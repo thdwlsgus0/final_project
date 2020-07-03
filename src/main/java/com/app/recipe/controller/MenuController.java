@@ -44,26 +44,5 @@ public class MenuController {
 		hm.put("total_recipe_cnt", total_recipe_cnt);
         return hm;
 	}
-	// 레시피 
-	@RequestMapping(value ="/recipe/method.do", method=RequestMethod.GET)
-	public ModelAndView method_page(HttpServletRequest request) {
-		String food_name = request.getParameter("food");
-		ModelAndView mv = new ModelAndView();
-		int food_cnt = 0;
-		if(food_name == null) {
-			food_cnt = rsc.recipe_select();
-			food_name="전체";
-		}else food_cnt = rsc.recipe_food_result(food_name);
-		mv.addObject("food_cnt", food_cnt);
-		mv.addObject("food_name", food_name);
-		mv.setViewName("/recipe/method.jsp");
-		return mv;
-	}
-	@RequestMapping(value ="/cook/chef.do", method=RequestMethod.GET)
-	public ModelAndView chef_page() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/cook/chef.jsp");
-		return mv;
-	}
 	
 }
