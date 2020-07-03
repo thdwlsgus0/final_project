@@ -18,13 +18,13 @@ public class RegisterDAOImpl implements RegisterDAO {
 	SqlSession sql;
 	
 	@Override
-	public void update(RegisterDto dto) {
-		RegisterDto dto2 = select(dto.getId());
-		dto2.setPw(dto.getPw());
-		dto2.setFavor(dto.getFavor());
-		dto2.setPhone(dto.getPhone());
-		dto2.setProfile(dto.getProfile());
-		sql.update("regi.update", dto2);
+	public boolean update(RegisterDto dto) {
+		try {
+			sql.update("regi.update", dto);
+			return true;
+		} catch(Exception e) {
+			return false;
+		}
 	}
 
 	@Override

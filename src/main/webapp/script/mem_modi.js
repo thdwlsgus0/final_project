@@ -13,14 +13,13 @@ $(function(){
 	$('#mem_pw').on('focusout', function(){ pwcheck(); });
 	$('#mem_pwr').on('focusout', function(){ pwcheck(); });
 	$('#mem_modify').submit(function(){
-		if(!pwcheck) return false;
+		if(!pwcheck()) return false;
 	});
 });
 
 function pwcheck(){
 	pw = $('#mem_pw').val();
 	pwr = $('#mem_pwr').val();
-	console.log('pw: ' + pw);
 	if((pw.length < 8 || pw.length > 16) || (pwr.length < 8 || pwr.length > 16)){
 		$('#pw_check').attr('color', 'red');
 		$('#pw_check').html('비밀번호는 8~16자이어야 합니다.');

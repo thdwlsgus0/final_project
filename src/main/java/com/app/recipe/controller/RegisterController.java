@@ -52,8 +52,10 @@ public class RegisterController {
 	public String mailcheck(HttpServletRequest req, Model model) {
 		String id = req.getParameter("id");
 		String dice = req.getParameter("dice");
+		System.out.println(String.format("id: %s, pw: %s", id, dice));
 		try {
 			if(svc.dicecheck(id, dice)) {
+				System.out.println("check");
 				RegisterDto dto = svc.select(id);
 				dto.setCheck("T");
 				svc.update(dto);

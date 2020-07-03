@@ -31,7 +31,7 @@ public class ProfileController {
 		model.addAttribute("mem_id", id);
 		model.addAttribute("mem_favor", dto.getFavor());
 		model.addAttribute("mem_phone", dto.getPhone());
-		model.addAttribute("mem_profile", dto.getProfile());
+		model.addAttribute("mem_profile", aws.getFilePath(dto.getProfile()));
 		return "/member/modify.jsp";
 	}
 	
@@ -40,12 +40,18 @@ public class ProfileController {
 		String orifile = vo.getOrifile();
 		String file = aws.uploadFile(vo.getFile());
 		
+		RegisterDto dto = svc.select(vo.getId());
+		dto.setPw(vo.getPw());
+		dto.setFavor(vo.getFavor());
+		dto.setPhone(vo.getPhone());
+		
 		if(file != null && file.length() > 0) {
-			vo.setOrifile(file);
-			svc.update(new RegisterDto(vo));
+			dto.setProfile(file);
 		}
-		if(orifile != null && orifile.length() > 0)
-			aws.deleteFile(orifile);
+		
+		if(svc.update(dto))
+			if(orifile != null && orifile.length() > 0)
+				aws.deleteFile(orifile);
 		
 		return "redirect:/member/index.do";
 	}

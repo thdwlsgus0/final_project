@@ -56,7 +56,7 @@ label[for]{
 				
 				<div class="row"> <input id="mem_pw" name="pw" type="password" class="signup_input signup_password form-control" /> </div>
 				<div class="row"> <input id="mem_pwr" type="password" class="signup_input signup_password form-control" /> </div>
-				<label for="mem_pw">비밀번호               <font id="check"></font></label>
+				<label for="mem_pw">비밀번호               <font id="pw_check"></font></label>
 				
 				<div class="row"> <input id="mem_favor" name="favor" value="${mem_favor}" type="text" class="signup_input form-control" /> </div>
 				<label for="mem_favor">취향</label>

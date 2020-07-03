@@ -36,8 +36,8 @@ public class RegisterServiceImpl implements RegisterService {
 	}
 
 	@Override
-	public void update(RegisterDto dto) {
-		dao.update(dto);
+	public boolean update(RegisterDto dto) {
+		return dao.update(dto);
 	}
 
 	@Override
