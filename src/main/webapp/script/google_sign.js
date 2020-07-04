@@ -91,6 +91,7 @@ function normal_login(){
 	});
 	if(flag) window.location.href = '/recipe/member/index.do';
 	else alert('로그인 실패!');
+}
 function google_init() {
 	gapi.load('auth2', function() {
 		var gauth = gapi.auth2.init({
