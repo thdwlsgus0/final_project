@@ -1,0 +1,74 @@
+
+.search-box {
+	border: 1px solid #1b5ac2;
+	height:45px;
+}
+
+input:-ms-input-placeholder {
+	color: #a8a8a8;
+}
+
+input::-webkit-input-placeholer {
+	color: #a8a8a8;
+}
+
+input::-moz-placeholder {
+	color: #a8a8a8;
+}
+
+input{
+	font-size: 25px;
+	width:325px;
+	height: 100%;
+	border: 0px;
+	outline: none;
+	float:left;
+}
+button{
+	width: 50px;
+	height: 100%;
+	border: 0px;
+	background: #01DF01;
+	outline:none;
+	float:right;
+	color:#ffffff;
+}
+
+.login_body{
+	margin-top:150px;
+	margin-left:850px;
+}
+
+
+.signup_body{
+	margin-top:150px;
+	margin-left:250px;
+}
+
+.signbtn{
+	width:67%;
+}
+.authbtn{
+	width:80px;
+	height:50px;
+	margin-left:10px;
+	margin-top:6px;
+}
+.emailcheck{
+	width:80px;
+	height:50px;
+	margin-left:10px;
+	margin-top:6px;
+}
+.signup_password{
+	width:67%;
+	margin-top:7px;
+}
+.sign_up{
+  margin-left:-330px;	
+}
+
+#img_size{
+	width:150px;
+	height:100px;
+}
