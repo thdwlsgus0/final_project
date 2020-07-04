@@ -74,6 +74,7 @@
 				<li class=""><a href="/recipe/member/index.do" class="active li_font">홈</a></li>
 				<li class=""><a href="/recipe/recipe/method.do" class="li_font">레시피</a></li>
 				<li class=""><a href="/recipe/cook/chef.do" class="li_font">쉐프</a></li>
+				<!-- <li class=""><a href="/recipe/cook/chefList.do?mem_id=${mem_id }" class="li_font">쉐프</a></li> -->
 			</ul>
 		</div>
 	</header>

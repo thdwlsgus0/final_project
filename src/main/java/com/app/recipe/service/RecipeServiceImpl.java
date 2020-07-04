@@ -42,6 +42,10 @@ public class RecipeServiceImpl implements RecipeService {
 	public int getTotalArticle(String keyword) {
 		return dao.getTotalArticle(keyword);
 	}
+	@Override
+	public int getTotalArticle(String mem_id, String keyword) {
+		return dao.getTotalArticle(mem_id, keyword);
+	}
 	
 	@Override
 	public List<RecipeDTO> getRecipeList(int startNum, int endNum) {

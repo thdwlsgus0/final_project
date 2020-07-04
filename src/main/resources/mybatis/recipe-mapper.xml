@@ -30,6 +30,13 @@
 	<select id="getTotalArticle" parameterType="java.lang.String" resultType="java.lang.Integer">
 		select COUNT(*) as cnt from recipe_info where recipe_nm_ko like '%'||#{keyword, jdbcType=VARCHAR}||'%'
 	</select>
+	<!-- leejiwon >>>
+	chef.jsp : 작성자(mem_id)가 등록한 레시피 내에서 특정 키워드(keyword)가 포함된 데이터 개수 조회
+	<select id="getTotalArticle" parameterType="java.util.Map" resultType="java.lang.Integer">
+		select COUNT(*) as cnt from 
+		<include refid="subSearch" />
+	</select> 
+	 -->
 	
 	<select id="getRecipeList" parameterType="java.util.Map" resultType="recipeDTO">
 		<![CDATA[
@@ -40,4 +47,28 @@
 		where rn >= #{startNum, jdbcType=NUMERIC} and rn <= #{endNum, jdbcType=NUMERIC} 
 		]]>
 	</select>
+	<!-- leejiwon >>>
+	chef.jsp : 작성자(mem_id)가 등록한 레시피 내에서 특정 키워드(keyword)가 포함된 데이터 조회
+	<select id="getRecipeList" parameterType="java.util.Map" resultType="recipeDTO">
+		select * from
+		<include refid="subSearch" />
+		<![CDATA[
+		where rn >= #{startNum, jdbcType=NUMERIC} and rn <= #{endNum, jdbcType=NUMERIC}
+		]]>
+	</select>
+	 -->
+	 
+	 <sql id="subSearch">
+		(select ROWNUM as rn, T1.* from
+		(select A.*, min(B.irdnt_nm)
+		from (select * from recipe_info where mem_id=#{mem_id, jdbcType=VARCHAR}) A
+		      left outer join (select * from recipe_ingredient_info order by recipe_id, irdnt_sn) B
+		      on A.recipe_id = B.recipe_id
+		where recipe_nm_ko like '%'||#{keyword, jdbcType=VARCHAR}||'%' or irdnt_nm like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		group by A.seq, A.recipe_id, A.recipe_nm_ko, A.sumry,
+				 A.nation_code, A.nation_nm, A.ty_code, A.ty_nm,
+				 A.cooking_time, A.calorie, A.img_url, A.det_url,
+				 A.good, A.datetime, A.mem_id, A.video_id, A.hit
+		order by A.seq desc) T1)
+	</sql>
 </mapper>

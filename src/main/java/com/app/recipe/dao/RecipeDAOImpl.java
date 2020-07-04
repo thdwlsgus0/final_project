@@ -57,6 +57,13 @@ public class RecipeDAOImpl implements RecipeDAO {
 	public int getTotalArticle(String keyword) {
 		return sqlSessionTemplate.selectOne("recipe.getTotalArticle", keyword);
 	}
+	@Override
+	public int getTotalArticle(String mem_id, String keyword) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("mem_id", mem_id);
+		map.put("keyword", keyword);
+		return sqlSessionTemplate.selectOne("recipe.getTotalArticle", map);
+	}
 
 	@Override
 	public List<RecipeDTO> getRecipeList(int startNum, int endNum) {
@@ -73,7 +80,7 @@ public class RecipeDAOImpl implements RecipeDAO {
 		map.put("endNum", endNum);
 		map.put("mem_id", mem_id);
 		map.put("keyword", keyword);
-		System.out.println("에러 확인");
+		
 		return sqlSessionTemplate.selectList("recipe.getRecipeList", map);
 	}
 
@@ -101,6 +108,5 @@ public class RecipeDAOImpl implements RecipeDAO {
 	@Override
 	public int getRecipeCount(String mem_id) {
 		return sqlSessionTemplate.selectOne("recipe.getRecipeCount",mem_id);
-	}
-	
+	}	
 }

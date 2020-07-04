@@ -12,6 +12,7 @@ public interface RecipeService {
 	public List<RecipeDTO> getAllList(int startNum, int endNum);
 	public int getTotalArticle();
 	public int getTotalArticle(String keyword);
+	public int getTotalArticle(String mem_id, String keyword);
 	public List<RecipeDTO> getRecipeList(int startNum, int endNum);
 	public List<RecipeDTO> getRecipeList(int startNum, int endNum, String mem_id, String keyword);
 	public int getRecipeCount(String mem_id);

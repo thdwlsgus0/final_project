@@ -133,6 +133,7 @@ public class RecipeController {
 	
 // >>>>> limsh
 	
+	/*
 	@RequestMapping(value = "/cook/chef.do", method=RequestMethod.GET)
 	public ModelAndView getRecipeList(HttpServletRequest request) {
 		// 데이터 처리
@@ -152,11 +153,12 @@ public class RecipeController {
 		int endNum = pg * 20;
 		int startNum = endNum - 19;
 		
-		// RecipeDAOImpl recipeDAOImpl = new RecipeDAOImpl();
-		List<RecipeDTO> list = rsc.getRecipeList(startNum, endNum);		
+		List<RecipeDTO> list = rsc.getRecipeList(startNum, endNum);
+		// leejiwon >>> List<RecipeDTO> list = recipeService.getRecipeList(startNum, endNum, mem_id, keyword);
 		
 		// 페이징 처리
 		int totalA = rsc.getTotalArticle();
+		// leejiwon >>> int totalA = recipeService.getTotalArticle(mem_id, keyword);
 		int totalP = (totalA+(20-1))/20;	// 'total Page' : 총 페이지 수
 			
 		// 페이지 블럭을 최대 5개까지 표시
@@ -167,14 +169,18 @@ public class RecipeController {
 		
 		// 데이터 공유
 		ModelAndView mv = new ModelAndView();
+		// leejiwon >>> mv.addObject("mem_id", mem_id);
 		mv.addObject("pg", pg);
+		// leejiwon >>> mv.addObject("keyword", keyword);
 		mv.addObject("list", list);
 		mv.addObject("totalP", totalP);
 		mv.addObject("startPage", startPage);
 		mv.addObject("endPage", endPage);
+		
 		// 화면 네비게이션
 		mv.setViewName("/cook/chef.jsp");
 		
 		return mv;
 	}
+	*/
 }

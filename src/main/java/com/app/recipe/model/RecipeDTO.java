@@ -154,4 +154,13 @@ public class RecipeDTO {
    public void setHit(int hit) {
       this.hit = hit;
    }
+   
+   @Override
+	public String toString() {
+		return "RecipeDTO [seq=" + seq + ", recipe_id=" + recipe_id + ", recipe_nm_ko=" + recipe_nm_ko + ", sumry="
+				+ sumry + ", nation_code=" + nation_code + ", nation_nm=" + nation_nm + ", ty_code=" + ty_code
+				+ ", ty_nm=" + ty_nm + ", cooking_time=" + cooking_time + ", calorie=" + calorie + ", img_url="
+				+ img_url + ", det_url=" + det_url + ", good=" + good + ", datetime=" + datetime + ", mem_id=" + mem_id
+				+ ", video_id=" + video_id + ", hit=" + hit + "]";
+	}
 }
