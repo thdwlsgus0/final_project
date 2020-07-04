@@ -17,19 +17,33 @@ public class RegisterDto {
 	private String profile;
 	private String auth;
 	
-	
 	public RegisterDto() {}
 	public RegisterDto(String email) {
 		this.email = email;
 	}
-	public RegisterDto(String id, String auth) {
+	public RegisterDto(String id, boolean nv) {
 		this.id = id;
+	}
+	public RegisterDto(String email, String auth) {
+		this.email = email;
 		this.auth = auth;
 	}
-	public RegisterDto(String id, String pw, String null_val) {
+	public RegisterDto(String id, String pw, boolean nv) {
 		this.id = id;
 		this.pw = pw;
 	}
+	public RegisterDto(String email, String auth, String pw) {
+		this.email = email;
+		this.auth = auth;
+		this.pw = pw;
+	}
+	public RegisterDto(MemberModVo vo) {
+		pw = vo.getPw();
+		favor = vo.getFavor();
+		phone = vo.getPhone();
+		profile = vo.getOrifile();
+	}
+	
 	public String getAuth() {
 		return auth;
 	}

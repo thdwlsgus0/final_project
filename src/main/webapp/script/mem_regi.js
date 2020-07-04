@@ -49,12 +49,13 @@ var main = {
 		if(!_this.focusOutId() || !_this.pwOverCheck() || 
 				!_this.focusOutAge() || !_this.emailValid())
 			return false;
-		
+			
 		var birth = new Date($('#Mem_birth').val());
 		var str_birth =  birth.getFullYear() +
 				birth.getMonth() + 
 				birth.getDate() + '';
 		if(!_this.pwOverCheck()) return;
+		console.log("id: " + $('#Mem_ID').val());
 		var data = {
 			id: $('#Mem_ID').val(),
 			pw: $('#Mem_password').val(),
@@ -63,7 +64,7 @@ var main = {
 			gender: $('#Mem_gender').val(),
 			email: $('#Mem_email').val(),
 			phone: $('#Mem_phone').val(),
-			check: eval(_this.emailCheck()),
+			check: _this.emailCheck(),
 			profile: $('#Mem_profile').val(),
 			auth: $('#Mem_auth').val()
 		}
@@ -86,18 +87,22 @@ var main = {
 			$('#id_check').html('<font color="red">id는 5~20자이어야 합니다.</font>');
 			return false;
 		}
-		$.ajax({
-			type: 'POST',
-			url: '/recipe/member/idcheck.do',
-			dataType: 'text',
-			contentType: 'text/text; charset=utf-8',
-			data: id,
-			async: false
-		}).done(function(res){
-			saveres = res.trim();
-			$('#id_check').html(saveres);
-		});
-		if(saveres.includes('green')) return true;
+		try{
+			$.ajax({
+				type: 'POST',
+				url: '/recipe/member/idcheck.do',
+				dataType: 'text',
+				contentType: 'text/text; charset=utf-8',
+				data: id,
+				async: false
+			}).done(function(res){
+				saveres = res.trim();
+				$('#id_check').html(saveres);
+			});
+			if(saveres.includes('green')) return true;
+		} catch(e){
+			return false;
+		}
 		if(_this.getCookie('regi_email') != null){
 			fullid = id;
 			id = fullid.split('_')[0];

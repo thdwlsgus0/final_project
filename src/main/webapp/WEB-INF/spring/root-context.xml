@@ -25,10 +25,8 @@
 			</props>
 		</property>
 	</bean>
-	<bean id="KakaoAPI"
-		class="com.personal.kakaoLogin.service.KakaoAPI"></bean>
 
-	<!-- datasource, mybatis -->
+	<!-- datasource, mybatis, log -->
 	<context:property-placeholder
 		location="classpath:mybatis/db.properties" />
 	<bean id="dataSourceSpied"
@@ -56,5 +54,11 @@
 				<property name="sqlPrefix" value="SQL : " />
 			</bean>
 		</property>
+	</bean>
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="3000001" />
+		<property name="defaultEncoding" value="utf-8" />
 	</bean>
 </beans>

@@ -18,6 +18,7 @@
 		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
+<<<<<<< HEAD
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
 	<!-- <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
@@ -34,4 +35,17 @@
 	<!-- 네이버로그인api class에 대한 bean 추가 -->
 	<beans:bean id="naverLoginBO"
 		class="com.personal.naverLogin.service.NaverLoginBO" />
+=======
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<!-- <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean> -->
+	
+	<resources location="/js/" mapping="/js/**"/>
+	<resources location="/css/" mapping="/css/**"/>
+	<context:component-scan base-package="com.app.recipe.*"/>
+	<!-- 네이버로그인api class에 대한 bean 추가  -->
+	<beans:bean id="naverLoginBO" class="com.personal.naverLogin.service.NaverLoginBO"/>
+>>>>>>> origin/chanhyung
 </beans:beans>
