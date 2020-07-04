@@ -1,0 +1,159 @@
+.container_frame {
+	width: 100%;
+	margin: 15px auto;
+	border: 1px solid #e6e7e8;
+	background: white;
+}
+
+.sub_tabs {
+	width: 100%;
+	height: 117px;
+	padding: 25px 0 0;
+}
+
+.sub_tabs ul {
+	margin: 0 10px;
+}
+
+.sub_tabs ul li {
+	float: left;
+	display: table;
+	padding: 0;
+	margin-right: 5px;
+	width: 256px;
+	background: #e6e7e8;
+	height: 88px;
+}
+
+.sub_tabs ul li a {
+	display: table-cell;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 25px;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.sub_search {
+	width: 100%;
+	height: 80px;
+	background-color: white;
+	margin-top: 20px;
+	border-bottom: 1px solid #e6e7e8;
+}
+
+.sub_search input[type='text'] {
+	width: 41%;
+	height: 46px;
+	float: left;
+	margin-left: 28%;
+	border: 1px solid #e6e7e8;
+}
+
+.sub_search button {
+	float: left;
+	width: 46px;
+	height: 46px;
+}
+
+.content_list {
+	width: 100%;
+	height: 100%;
+	margin-left: 0px;
+}
+
+.content_list ul {
+	width: 100%;
+	margin: 0 10px;
+}
+
+.content_list li {
+	border-bottom: 1px solid #e6e7e8;
+	width: 850px;
+}
+
+.content_list img {
+	padding: 10px 0px;
+	margin: 0px;
+	width: 12%;
+	height: 70%;
+}
+
+.recipe_subject {
+	height: 0%;
+	width: 950px;
+}
+
+.recipe_subject p {
+	font-size: 75px;
+	display: inline;
+}
+
+.recipe_subject p1 {
+	font-size: 40px;
+	display: inline;
+	margin: 0px 20px 0px 20px;
+}
+
+.recipe_subject p2 {
+	font-size: 40px;
+	width: 165px;
+	margin: 0px 20px 0px 20px;
+}
+
+.recipe_subject p3 {
+	font-size: 40px;
+	width: 165px;
+	margin: 0px 20px 0px 20px;
+}
+
+.paging {
+	position: relative;
+	text-align: center;
+	clear: both;
+}
+
+.paging ul {
+	display: inline-block;
+	padding-left: 0;
+	margin: 30px 0;
+	border-radius: 0;
+}
+
+.paging ul li {
+	display: inline;
+}
+
+.paging ul li a {
+	min-width: 50px;
+	height: 50px;
+	float: left;
+	padding: 9px 15px;
+	margin: 0 8px;
+	border-bottom: 1px solid #e6e7e8;
+	text-decoration: none;
+}
+
+.paging ul li a.currentPaging {
+	color: #fff;
+	background: #84accb;
+}
+
+.paging ul li a.turnPaging {
+	width: 70px;
+}
+/* ¼ÎÇÁ ·©Å· ³Ñ¹ö */
+p.seq_size {
+	display: inline-block;
+	width: 110px;
+	font-size: 55px;
+}
+/* ¹æ¹®ÇÏ±â */
+a.visit_button {
+	font-size: 25px;
+	border: 1px solid #e6e7e8;
+	padding: 30px;
+	margin: 0px 20px 0px 20px;
+}

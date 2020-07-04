@@ -22,7 +22,7 @@
 <link href="/recipe/css/index.css" rel="stylesheet" />
 <link href="/recipe/css/header.css" rel="stylesheet"/>
 <link href="/recipe/css/footer.css" rel="stylesheet"/>
-<link href="/recipe/css/chef.css" rel="stylesheet"/>
+<link href="/recipe/css/chefList.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -34,12 +34,13 @@
 		<!-- 컨테이너 기본 틀 -->
 	    <div class="container_frame">
 	    		<!-- 서브 탭 영역 -->
-	        	<div class="sub_tabs"> 
-	        		<ul>
-	        			<li><a href="chef.do?pg=1">🔪레시피</a></li>
-	        			<li><a href="#">💬댓글</a></li>
-	        		</ul>
-		        </div><!-- sub_tabs -->
+	        	<div class="sub_tabs">
+				<ul>
+					<li><a href="#">🏆셰프 랭킹</a></li>
+					<li><a href="#">👨‍🍳최근 활동 셰프</a></li>
+					<li><a href="#">👩‍🍳뉴 셰프</a></li>
+				</ul>
+			</div><!-- sub_tabs -->
 				
 				<!-- 쉐프의 레시피 검색 영역 -->		        
 		        <form action="chef.do" method="get">
@@ -57,13 +58,16 @@
 	            	<ul>
 	            		<c:forEach var="recipeDTO" items="${list }">
 	            		<li>
-	            			<a href="#">
-	            				<img src="${recipeDTO.img_url }">
 	            				<div class="recipe_subject">
-	            					<h3>${recipeDTO.recipe_nm_ko }</h3>
-	            					<p>by ${recipeDTO.mem_id }</p>
+	            					<p class="seq_size">${recipeDTO.seq }</p>
+	            					<img class="profile_img"alt="" src="https://recipe1.ezmember.co.kr/cache/rpf/2016/01/19/3ebaebc5e49f53dd2f66b71932e5a33d1.jpg">
+	            					<p1>by ${recipeDTO.mem_id }</p1>
+	            					<p2>${getRecipeCount }</p2>
+	            					<p2>🚪${recipeDTO.hit }</p2>
+	            					<p3>👍${recipeDTO.good }</p3>
+	            					<a href="https://recipe1.ezmember.co.kr/cache/rpf/2016/01/19/3ebaebc5e49f53dd2f66b71932e5a33d1.jpg"
+									class="visit_button">방문하기</a>
 	            				</div>
-	            			</a>
 	            		</li>
 	            		</c:forEach>
 	            	</ul><!-- .content_list ul -->
@@ -75,7 +79,7 @@
 	        	<ul>
 	        		<c:if test="${startPage > 5}">
 	        			<li>
-	        				<a class="turnPaging" href="chef.do?pg=${startPage - 1}">이전</a>
+	        				<a class="turnPaging" href="chefList.do?pg=${startPage - 1}">이전</a>
 	        			</li>
 	        		</c:if>
 	        		
@@ -83,12 +87,12 @@
 	        			<c:choose>
 	        				<c:when test="${pg==i }">
         					<li>
-								<a class="currentPaging" href="chef.do?pg=${i }">${i }</a>
+								<a class="currentPaging" href="chefList.do?pg=${i }">${i }</a>
 							</li>			
 	        				</c:when>
 	        				<c:otherwise>
 	        				<li>
-								<a href="chef.do?pg=${i }">${i }</a>
+								<a href="chefList.do?pg=${i }">${i }</a>
 							</li>
 	        				</c:otherwise>
 	        			</c:choose>
@@ -96,7 +100,7 @@
 	        		
 					<c:if test="${endPage < totalP}">
 	        			<li>
-	        				<a class="turnPaging" href="chef.do?pg=${endPage + 1}">다음</a>
+	        				<a class="turnPaging" href="chefList.do?pg=${endPage + 1}">다음</a>
 	        			</li>
 	        		</c:if>
 	        	</ul>

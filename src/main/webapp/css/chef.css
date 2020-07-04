@@ -1,21 +1,21 @@
-
+/* è€Œâ‘¦ï¿½ï¿½ï¿½ëŒ€ï¿½ï¿½ æ¹²ê³•ë‚¯ ï¿½ï¿½ ï¿½ã…¼ï¿½ï¿½ (div ï¿½ï¿½ï¿½ï¿½) */
 .container_frame {
 	width: 100%;
 	margin: 15px auto;
 	border: 1px solid #e6e7e8;
 	background: white;
 }
-
+/* ï¿½ï¿½é‡‰ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(div ï¿½ï¿½æ´¹ï¿½) */
 .sub_tabs {
 	width: 100%;
 	height: 117px;
 	padding: 25px 0 0;
 }
-
+/* ï¿½ï¿½é‡‰ï¿½ ï¿½ï¿½ ul */
 .sub_tabs ul {
 	margin: 0 10px;
 }
-
+/* ï¿½ï¿½é‡‰ï¿½ ï¿½ï¿½ ul li */
 .sub_tabs ul li {
 	float: left;
 	display: table;
@@ -26,7 +26,7 @@
 	height: 88px;
 }
 
-
+/* åª›ï¿½ ï¿½ï¿½é‡‰ï¿½ ï¿½ï¿½ a */
 .sub_tabs ul li a {
 	display: table-cell;
 	width: 100%;
@@ -38,7 +38,7 @@
 	text-decoration: none;
 }
 
-
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ å¯ƒï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 .sub_search {
 	width: 100%;
 	height: 80px;
@@ -46,7 +46,7 @@
 	margin-top: 20px;
 }
 
-
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ å¯ƒï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¼ê°¹ */
 .sub_search input[type='text'] {
 	width: 41%;
     height: 46px;
@@ -55,25 +55,25 @@
     border: 1px solid #e6e7e8;
 }
 
-
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ å¯ƒï¿½ï¿½ï¿½ ï¿½ã…½ï¿½ï¿½ è¸°ï¿½ï¿½ï¿½ */
 .sub_search button {
 	float: left;
 	width: 46px;
 	height: 46px;
 }
 
-
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ å¯ƒï¿½ï¿½ï¿½è‡¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(div) */
 .content_list {
 	width: 100%;
 	height: 100%;
 	margin-left:-50px;
 }
-
+/* ç”±ÑŠï¿½ã…½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 .content_list ul {
 	width: 100%;
 	margin: 0 60px;
 }
-
+/* åª›ï¿½ ç”±ÑŠï¿½ã…½ï¿½ï¿½ ï¿½ï¿½ï§ï¿½ è¹‚ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 .content_list li {
 	float: left;
 	padding: 0;
@@ -91,24 +91,24 @@
 	width: 100%
 }
 
-
+/* åª›ï¿½ ç”±ÑŠï¿½ã…½ï¿½ï¿½ ï¿½ï¿½ï§ï¿½ è¹‚ï¿½  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï§ï¿½ + ï¿½ï¿½ï¿½ï¿½ ï§ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(div) */
 .recipe_subject {
 	padding: 5px 20px;
 	margin-top: 10px;
 	height: 27%;
 }
-
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï§ï¿½(h3 ï¿½ï¿½æ´¹ï¿½) */
 .recipe_subject h3 {
 	font-size: 15px;
 	font-weight: bold;
 }
 
-
+/* ï¿½ï¿½ï¿½ï¿½ ï§ï¿½(p ï¿½ï¿½æ´¹ï¿½) */
 .recipe_subject p {
 	font-size: 12px;
 }
 
-
+/* å¯ƒï¿½ï¿½ï¿½è‡¾ï¿½ ï¿½ï¿½ï¿½ëŒï¿½ ï¿½ï¿½ï¿½ï¿½(div) */
 .paging {
 	position: relative;
 	text-align: center;
@@ -136,20 +136,11 @@
 	text-decoration: none;
 }
 
-.paging ul li .currentPaging {
+.paging ul li a.currentPaging {
 	color: #fff;
 	background: #84accb;
 }
 
-.paging ul li .turnPaging {
+.paging ul li a.turnPaging {
 	width: 70px;
-}
-/* ÀüÃ¼ ¹è°æ»ö Èò»ö */ 
-body{
-	background-color:#fff;
-}
-/* 
-/* º»¹® »ö±ò È¸»öÀ¸·Î ¸ÂÃß±â À§ÇØ¼­ ¼³Á¤ */
-.main_content{
-	background-color:#EAEAEA;
 }

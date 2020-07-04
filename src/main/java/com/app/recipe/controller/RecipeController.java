@@ -1,130 +1,66 @@
 package com.app.recipe.controller;
 
-import java.util.HashMap;
 import java.util.List;
 
-import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.app.recipe.model.RecipeDTO;
 import com.app.recipe.service.RecipeService;
+import com.app.recipe.model.RecipeDTO;
 
 @Controller
 public class RecipeController {
-
-	@Inject
-	private RecipeService rsc;
-
-	private HashMap<String, Integer> get_page(String str_pg, String keyword) {
-		// µ¥ÀÌÅÍ Ã³¸®
-		HashMap<String, Integer> hm = new HashMap<String, Integer>();
+	@Autowired
+	RecipeService recipeService;
+	
+	@RequestMapping(value = "/cook/chef.do", method=RequestMethod.GET)
+	public ModelAndView getRecipeList(HttpServletRequest request) {
+		// ë°ì´í„° ì²˜ë¦¬
+		String str_pg = request.getParameter("pg");
 		int pg = 1;
-
-		if (str_pg != null) {
-			if (str_pg != "") {
-				if (str_pg.matches("^[0-9]*$")) {
+		
+		if(str_pg != null) {
+			if(str_pg != "") {
+				if(str_pg.matches("^[0-9]*$")) {
 					pg = Integer.parseInt(str_pg);
 				}
 			}
 		}
-		hm.put("pg", pg);
-		/* DB ÀÛ¾÷ */
-		// ¸ñ·Ï¿¡ º¸¿©Áú °Ô½Ã±Û ÃÖ¼Ò/ÃÖ´ë °³¼ö(ÃÖ´ë 20°³)
+		
+		/* DB ì‘ì—… */
+		// ëª©ë¡ì— ë³´ì—¬ì§ˆ ê²Œì‹œê¸€ ìµœì†Œ/ìµœëŒ€ ê°œìˆ˜(ìµœëŒ€ 20ê°œ)
 		int endNum = pg * 20;
-		hm.put("endNum", endNum);
 		int startNum = endNum - 19;
-		hm.put("startNum", startNum);
-
-		// ÆäÀÌÂ¡ Ã³¸®
-		int totalA = rsc.getTotalArticle(keyword);
-		hm.put("totalA", totalA);
-		int totalP = (totalA + (20 - 1)) / 20; // 'total Page' : ÃÑ ÆäÀÌÁö ¼ö
-		hm.put("totalP", totalP);
-		// ÆäÀÌÁö ºí·°À» ÃÖ´ë 5°³±îÁö Ç¥½Ã
-		int startPage = (pg - 1) / 5 * 5 + 1;
-		hm.put("startPage", startPage);
-		int endPage = startPage + 4;
-		if (endPage > totalP)
-			endPage = totalP;
-		hm.put("endPage", endPage);
-		return hm;
-	}
-
-	@RequestMapping(value = "/cook/chef.do", method = RequestMethod.GET)
-	public ModelAndView getRecipeList(HttpServletRequest request, @RequestParam(defaultValue = "") String keyword) {
-		String mem_id = "ÀÌÁö¿ø";
-		// String mem_id = request.getParameter("mem_id");
-		String str_pg = request.getParameter("pg");
-
-		HashMap<String, Integer> page_hash = new HashMap<>();
-		page_hash = get_page(str_pg, keyword);
-
-		int startNum = page_hash.get("startNum");
-		int endNum = page_hash.get("endNum");
-		int totalP = page_hash.get("totalP");
-		int startPage = page_hash.get("startPage");
-		int endPage = page_hash.get("endPage");
-		int pg = page_hash.get("pg");
+		
 		// RecipeDAOImpl recipeDAOImpl = new RecipeDAOImpl();
-		List<RecipeDTO> list = rsc.getRecipeList(startNum, endNum, mem_id, keyword);
-
-		// µ¥ÀÌÅÍ °øÀ¯
+		List<RecipeDTO> list = recipeService.getRecipeList(startNum, endNum);		
+		
+		// í˜ì´ì§• ì²˜ë¦¬
+		int totalA = recipeService.getTotalArticle();
+		int totalP = (totalA+(20-1))/20;	// 'total Page' : ì´ í˜ì´ì§€ ìˆ˜
+			
+		// í˜ì´ì§€ ë¸”ëŸ­ì„ ìµœëŒ€ 5ê°œê¹Œì§€ í‘œì‹œ
+		int startPage = (pg-1)/5*5+1;
+		int endPage = startPage + 4;
+		if(endPage > totalP) 
+			endPage = totalP;
+		
+		// ë°ì´í„° ê³µìœ 
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("mem_id", mem_id);
 		mv.addObject("pg", pg);
-		mv.addObject("keyword", keyword);
 		mv.addObject("list", list);
-		mv.addObject("totalP", totalP); // ÃÑ ÆäÀÌÁö ¼ö
+		mv.addObject("totalP", totalP);
 		mv.addObject("startPage", startPage);
-		mv.addObject("endPage", endPage); // ÃÑ °Ô½Ã¹° ¼ö¿¡ ÀÇÇÑ ¸¶Áö¸· ÆäÀÌÁö ¼ö
-
-		// È­¸é ³×ºñ°ÔÀÌ¼Ç
+		mv.addObject("endPage", endPage);
+		// í™”ë©´ ë„¤ë¹„ê²Œì´ì…˜
 		mv.setViewName("/cook/chef.jsp");
+		
 		return mv;
-	}
-
-	// ·¹½ÃÇÇ
-	@RequestMapping(value = "/recipe/method.do", method = RequestMethod.GET)
-	public ModelAndView method_page(HttpServletRequest request) {
-
-		String food_name = request.getParameter("food");
-		String str_pg = request.getParameter("pg");
-		HashMap<String, Integer> page_hash = new HashMap<>();
-		page_hash = get_page(str_pg, food_name);
-		int startNum = page_hash.get("startNum");
-		int endNum = page_hash.get("endNum");
-		int totalP = page_hash.get("totalP");
-		int startPage = page_hash.get("startPage");
-		int endPage = page_hash.get("endPage");
-		int pg = page_hash.get("pg");
-		List<RecipeDTO> list = null;
-		ModelAndView mv = new ModelAndView();
-		int food_cnt = 0;
-		if(food_name==null) {
-			food_cnt = rsc.recipe_select();
-			list = rsc.getAllList(startNum, endNum);
-		}
-	    else {
-			list = rsc.getKeywordList(startNum, endNum, food_name);
-			food_cnt = rsc.recipe_food_result(food_name);
-		}
-
-		mv.addObject("food_cnt", food_cnt);
-		mv.addObject("food_name", food_name);
-		mv.addObject("pg", pg);
-		mv.addObject("keyword", food_name);
-		mv.addObject("list", list);
-		mv.addObject("totalP", totalP); // ÃÑ ÆäÀÌÁö ¼ö
-		mv.addObject("startPage", startPage);
-		mv.addObject("endPage", endPage); // ÃÑ °Ô½Ã¹° ¼ö¿¡ ÀÇÇÑ ¸¶Áö¸· ÆäÀÌÁö ¼ö
-
-		mv.setViewName("/recipe/method.jsp");
-		return mv;
+		
 	}
 }

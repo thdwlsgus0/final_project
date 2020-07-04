@@ -1,4 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/app/recipe/controller/LoginAPIController.java=UTF-8
-encoding//src/main/webapp/css/style.css=UTF-8
+encoding//src/main/java/com/app/recipe/controller/MenuController.java=UTF-8
+encoding//src/main/java/com/app/recipe/controller/RecipeController.java=UTF-8
+encoding//src/main/java/com/app/recipe/dao/RecipeDAO.java=UTF-8
 encoding//src/main/webapp/member/index.jsp=UTF-8
