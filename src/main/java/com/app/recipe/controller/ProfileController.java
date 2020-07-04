@@ -8,9 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.app.recipe.dao.RegisterService;
 import com.app.recipe.model.MemberModVo;
 import com.app.recipe.model.RegisterDto;
+import com.app.recipe.service.RegisterService;
 import com.app.recipe.util.s3.AmazonS3Service;
 
 @Controller

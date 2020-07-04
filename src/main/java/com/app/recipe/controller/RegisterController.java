@@ -45,15 +45,9 @@ public class RegisterController {
 
 	@PostMapping("/member/login.do")
 	public String login(@RequestBody RegisterDto dto, HttpSession session) {
-<<<<<<< HEAD
-		RegisterDto dto2 = svc.select(dto.getId(), dto.getPw());
-		if (dto2 == null)
-			return "/member/null";
-=======
 		RegisterDto dto2 = svc.login(dto.getId(), dto.getPw());
 		if(dto2 == null) return "/member/null";
 		
->>>>>>> origin/chanhyung
 		session.setAttribute("email", dto2.getEmail());
 		session.setAttribute("sessionId", dto2.getId());
 		session.setAttribute("realId", dto2.getId());
@@ -67,12 +61,7 @@ public class RegisterController {
 		String dice = req.getParameter("dice");
 		System.out.println(String.format("id: %s, pw: %s", id, dice));
 		try {
-<<<<<<< HEAD
 			if (svc.dicecheck(id, dice)) {
-=======
-			if(svc.dicecheck(id, dice)) {
-				System.out.println("check");
->>>>>>> origin/chanhyung
 				RegisterDto dto = svc.select(id);
 				dto.setCheck("T");
 				svc.update(dto);

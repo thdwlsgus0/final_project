@@ -17,10 +17,13 @@
 		SELECT * FROM member WHERE MEM_ID=#{id}
 	</select>
 	<select id="selectauth" parameterType="regiDto" resultMap="regirsm">
-		SELECT * FROM member WHERE MEM_ID=#{id} AND MEM_AUTH=#{auth}
+		SELECT * FROM member WHERE MEM_EMAIL=#{email} AND MEM_AUTH=#{auth}
 	</select>
 	<select id="selectori" parameterType="regiDto" resultMap="regirsm">
 		SELECT * FROM member WHERE MEM_ID=#{id} AND MEM_PASSWORD=#{pw}
+	</select>
+	<select id="selectoriauth" parameterType="regiDto" resultMap="regirsm">
+		SELECT * FROM member WHERE MEM_EMAIL=#{email} AND MEM_AUTH=#{auth} AND MEM_PASSWORD=#{pw}
 	</select>
 	
 	<update id="update" parameterType="regiDto">

@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -14,26 +13,19 @@ import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-<<<<<<< HEAD
 import com.app.recipe.service.RegisterService;
-=======
-import com.app.recipe.dao.RegisterService;
 import com.app.recipe.model.RegisterDto;
->>>>>>> origin/chanhyung
+
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.personal.naverLogin.service.NaverLoginBO;
 
-/*
- */
 @Controller
 public class LoginAPIController {
 	
@@ -52,16 +44,6 @@ public class LoginAPIController {
 		return "/login.jsp";
 	}
 	
-    /*@RequestMapping(value="/login.do",produces="application/json",method=RequestMethod.GET)
-    public String login(@RequestParam("code") String code,RedirectAttributes ra,HttpSession session,HttpServletResponse response)throws IOException {
-    	String access_Token = kakao.getAccessToken(code);
-    	HashMap<String, Object> userInfo = kakao.getUserInfo(access_Token);
-        if (userInfo.get("email") != null) {
-            session.setAttribute("sessionId", access_Token);
-        }    	
-        return "/member/index.jsp";
-    }*/
-    
     // 네이버 로그인 성공시 callback호출 메소드
     @RequestMapping(value="/callback.do", method= {RequestMethod.GET, RequestMethod.POST})
     public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws IOException, ParseException{

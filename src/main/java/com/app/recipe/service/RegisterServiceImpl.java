@@ -50,14 +50,14 @@ public class RegisterServiceImpl implements RegisterService {
 	public RegisterDto login(String id, String pw) {
 		return dao.select_login(id, pw);
 	}
-<<<<<<< HEAD:src/main/java/com/app/recipe/service/RegisterServiceImpl.java
-	public int chef_select() {
-		return dao.chef_select();
-=======
 
 	@Override
 	public RegisterDto select(String email, String auth) {
 		return dao.select(email, auth);
->>>>>>> origin/chanhyung:src/main/java/com/app/recipe/dao/RegisterServiceImpl.java
+	}
+	
+	@Override
+	public int chef_select() {
+		return dao.chef_select();
 	}
 }
