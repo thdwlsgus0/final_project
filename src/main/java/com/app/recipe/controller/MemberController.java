@@ -10,8 +10,6 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -22,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.recipe.model.RegisterDto;
-import com.app.recipe.service.memberService;
 
 
 @Controller // 컨트롤러 빈 선언
@@ -32,10 +29,7 @@ public class MemberController {
 	@Inject
     private JavaMailSender mailSender; // 메일 서비스를 사용하기 위해 의존성을 주입함.
 	
-	
-	memberService memberservice; // 서비스를 호출하기 위해 의존성을 주입.
-	
-	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+	//private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
     
 	@PostMapping("/email/gauth.do")
 	public ModelAndView gmails(@RequestBody RegisterDto dto) {
@@ -66,9 +60,9 @@ public class MemberController {
 	}
 	
 	public int sendEmail(String email, String id, int dice) {
-		String host = "smtp.naver.com";
+		//String host = "smtp.naver.com";
 		String subject = "달달하조 인증번호 전달";
-		String fromName = "달달하조 관리자";
+		//String fromName = "달달하조 관리자";
 		String from="thdwlsgus0@naver.com"; //일단 네이버로 하였습니다.
 		String content = "링크: http://localhost:8090/recipe/member/emailcheck.do?id=%s&dice=%d";//"인증번호["+dice+"]";
 		String rcontent = String.format(content, id, dice);
