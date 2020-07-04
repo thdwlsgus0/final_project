@@ -13,6 +13,7 @@
 		<org.springframework-version>5.2.6.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<repositories>
 		<repository>
@@ -274,6 +275,7 @@
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>
+					<encoding>UTF-8</encoding>
 					<compilerArgument>-Xlint:all</compilerArgument>
 					<showWarnings>true</showWarnings>
 					<showDeprecation>true</showDeprecation>
