@@ -68,12 +68,12 @@
 	            </div><!-- content_list -->
 	            
 	        <!-- 게시물 페이징 영역 -->
+	        <!-- 1. 이지원 수정 : -->
 	        <div class="paging">
 	        	<ul>
 	        		<c:if test="${startPage > 5}">
 	        			<li>
-	        				<a class="turnPaging" href="chef.do?pg=${startPage - 1}&keyword=${keyword }">이전</a>
-	        				<!-- leejiwon>>> <a class="turnPaging" href="chef.do?mem_id=${mem_id }&keyword=${keyword }&pg=${startPage - 1}">이전</a> -->
+	        				<a class="turnPaging" href="chef.do?mem_id=${mem_id }&keyword=${keyword }&pg=${startPage - 1}">이전</a>
 	        			</li>
 	        		</c:if>
 	        		
@@ -81,14 +81,12 @@
 	        			<c:choose>
 	        				<c:when test="${pg==i }">
         					<li>
-								<a class="currentPaging" href="chef.do?pg=${i }&keyword=${keyword }">${i }</a>
-								<!-- leejiwon >>> <a class="currentPaging" href="chef.do?mem_id=${mem_id }&keyword=${keyword }&pg=${i }">${i }</a> -->
+								<a class="currentPaging" href="chef.do?mem_id=${mem_id }&keyword=${keyword }&pg=${i }">${i }</a>
 							</li>
 	        				</c:when>
 	        				<c:otherwise>
 	        				<li>
-								<a href="chef.do?pg=${i }&keyword=${keyword }">${i }</a>
-								<!-- leejiwon>>> <a href="chef.do?mem_id=${mem_id }&keyword=${keyword }&pg=${i }">${i }</a> -->
+								<a href="chef.do?mem_id=${mem_id }&keyword=${keyword }&pg=${i }">${i }</a>
 							</li>
 	        				</c:otherwise>
 	        			</c:choose>
@@ -96,8 +94,7 @@
 	        		
 					<c:if test="${endPage < totalP}">
 	        			<li>
-	        				<a class="turnPaging" href="chef.do?pg=${endPage + 1}&keyword=${keyword }">다음</a>
-	        				<!-- leejiwon>>> <a class="turnPaging" href="chef.do?mem_id=${mem_id }&keyword=${keyword }&pg=${endPage + 1}">다음</a> -->
+	        				<a class="turnPaging" href="chef.do?mem_id=${mem_id }&keyword=${keyword }&pg=${endPage + 1}">다음</a>
 	        			</li>
 	        		</c:if>
 	        	</ul>

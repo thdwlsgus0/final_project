@@ -10,27 +10,29 @@
 				<img src="/recipe/img/logo.png" id="img_size">
 			</a>
 			<!-- 검색창 부분 -->
-			<form action="" method="get">
+			<!-- 10. 이지원 수정 -->
+			<form action="/recipe/recipe/method.do" method="get">
 				<div class=" search-box">
 					<!-- 이지원 추가 -->
+					<!-- 10-2. 이지원 수정 -->
 					<select name="options" style="float: left;
 											    height: 100%;
 											    border: none;">
 				        <option value="all" <c:out value="${options == 'all'?'selected':''}" /> >
 							전체
 			            </option>
-			            <option value="title" <c:out value="${options == 'title'?'selected':''}" /> >
+			            <option value="recipe_nm_ko" <c:out value="${options == 'recipe_nm_ko'?'selected':''}" /> >
 							레시피
 						</option>
-			            <option value="content" <c:out value="${options == 'content'?'selected':''}" /> >
+			            <option value="irdnt_nm" <c:out value="${options == 'irdnt_nm'?'selected':''}" /> >
 							재료
 			            </option>
-			            <option value="writer" <c:out value="${option == 'writer'?'selected':''}" /> >
+			            <option value="mem_id" <c:out value="${options == 'mem_id'?'selected':''}" /> >
 							작성자
 			            </option>
 		        </select>
 		        	<!-- 이지원 추가 : jinhyun.css 의 input{...} 내  padding 속성을 제거하고, height: "100%"; 추가, font-size: 25px; 수정할 것! -->
-					<input type="text" placeholder="검색어 입력">
+					<input type="text" name="food" value="${keyword }" placeholder="검색어 입력">
 					<button>검색</button>
 				</div>
 			</form>

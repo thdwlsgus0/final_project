@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.recipe.service.RecipeService;
@@ -35,12 +36,18 @@ public class MenuController {
 		return mv;
 	}
 	
+	// 6-1. 이지원 수정 : 
 	@GetMapping(value="/template/footer.do")
-	public HashMap<String, Object> footer_data(HttpServletRequest request){
+	public HashMap<String, Object> footer_data(HttpServletRequest request,
+											@RequestParam(defaultValue = "") String mem_id,
+											@RequestParam(defaultValue = "") String keyword,
+											@RequestParam(defaultValue = "") String options) {
 		HashMap<String, Object> hm = new HashMap<>();
 		HttpSession session = request.getSession();
 		int chef_cnt = svc.chef_select();
-		int recipe_cnt = rsc.recipe_select();
+		// 6-2. 이지원 수정
+		int recipe_cnt = rsc.getTotalArticle(mem_id, keyword, options);
+//		int recipe_cnt = rsc.recipe_select();
 		int total_recipe_cnt = rsc.recipe_total_select();
 		session.setAttribute("chef_cnt", chef_cnt);
 		session.setAttribute("recipe_cnt", recipe_cnt);
@@ -52,9 +59,13 @@ public class MenuController {
 	}
 	
 // >>>>> limsh
-	
+	// 7-1. 이지원 수정
+	// 8-1. 이지원 수정
 	@RequestMapping(value ="/cook/chefList.do", method=RequestMethod.GET)
-	public ModelAndView chef_page(HttpServletRequest request) {
+	public ModelAndView chef_page(HttpServletRequest request,
+								@RequestParam(defaultValue = "") String mem_id,
+								@RequestParam(defaultValue = "") String keyword,
+								@RequestParam(defaultValue = "") String options) {
 		// 데이터 처리
 		String str_pg = request.getParameter("pg");
 		int pg = 1;
@@ -73,14 +84,19 @@ public class MenuController {
 		int startNum = endNum - 19;
 		
 		// RecipeDAOImpl recipeDAOImpl = new RecipeDAOImpl();
-		List<RecipeDTO> list = rsc.getRecipeList(startNum, endNum);
+		// 7-2. 이지원 수정
+		// 8-1. 이지원 수정
+		List<RecipeDTO> list = rsc.getRecipeList(startNum, endNum, mem_id, keyword, options);
 		
 		// 페이징 처리
-		int totalA = rsc.getTotalArticle();
+		// 7-2. 이지원 수정
+		// 8-2. 이지원 수정
+		int totalA = rsc.getTotalArticle(mem_id, keyword, options);
 		int totalP = (totalA+(20-1))/20;	// 'total Page' : 총 페이지 수
 		
+		// 7-2. 이지원 수정
 		//mem_id
-		String mem_id = "";
+//		String mem_id = "";
 		
 		// 페이지 블럭을 최대 5개까지 표시
 		int startPage = (pg-1)/5*5+1;
