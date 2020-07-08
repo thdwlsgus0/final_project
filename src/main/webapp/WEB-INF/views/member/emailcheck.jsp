@@ -6,7 +6,7 @@
 <script type="text/javascript">
 	window.onload = function(){
 		alert("이메일 인증을 받아주세요!");
-		window.location.href = "/recipe/loginForm.do";
+		window.location.href = "/login";
 	}
 </script>
 </head>

@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.app.recipe.dao.RegisterDAO;
+import com.app.recipe.model.MemberVO;
 import com.app.recipe.model.RegisterDto;
 
 @Service
@@ -31,9 +32,16 @@ public class RegisterServiceImpl implements RegisterService {
 	}
 
 	@Override
+	public MemberVO securitylogin(String id) {
+		return dao.securitylogin(id);
+	}
+
+	@Override
 	public boolean dicecheck(String id, String dice) {
-		if(dao.select(id).getCheck().equals(dice)) return true;
-		return false;
+		RegisterDto dto = dao.select(id);
+		if(dto == null) return false;
+		else if(dto.getCheck().equals(dice)) return true;
+		else return false;
 	}
 
 	@Override
@@ -60,4 +68,6 @@ public class RegisterServiceImpl implements RegisterService {
 	public int chef_select() {
 		return dao.chef_select();
 	}
+	
+	
 }

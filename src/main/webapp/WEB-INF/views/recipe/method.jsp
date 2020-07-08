@@ -17,13 +17,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
 	rel="stylesheet">
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="/recipe/css/style.css" rel="stylesheet" />
-<link href="/recipe/css/jinhyun.css" rel="stylesheet" />
-<link href="/recipe/css/index.css" rel="stylesheet" />
-<link href="/recipe/css/header.css" rel="stylesheet" />
-<link href="/recipe/css/footer.css" rel="stylesheet" />
-<link href="/recipe/css/chef.css" rel="stylesheet" />
-<link href="/recipe/css/method.css" rel="stylesheet"/>
+<link href="../css/style.css" rel="stylesheet" />
+<link href="../css/jinhyun.css" rel="stylesheet" />
+<link href="../css/index.css" rel="stylesheet" />
+<link href="../css/header.css" rel="stylesheet" />
+<link href="../css/footer.css" rel="stylesheet" />
+<link href="../css/chef.css" rel="stylesheet" />
+<link href="../css/method.css" rel="stylesheet"/>
 </head>
 <body>
 	<%@ include file="../template/nav.jsp"%>
@@ -33,85 +33,85 @@
 			<div class="method_item">
 				<div class="cate_arrow" id="left_arrow">
 					<button onclick="efg_prev();" style="background-color: #fff;" >
-						<img src="/recipe/img/left_arrow.png">
+						<img src="../img/left_arrow.png">
 					</button>
 				</div>
 				<div class="ingre_img">
 					<ul>
-						<li class="display_block"><img src="/recipe/img/beef.png"
+						<li class="display_block"><img src="../img/beef.png"
 							class="beef_size">
 							<p class="text-center">
-								<a class="text-center" href="../recipe/method.do?food=쇠고기">쇠고기</a>
+								<a class="text-center" href="../method.do?food=쇠고기">쇠고기</a>
 							</p></li>
-						<li class="display_block"><img src="/recipe/img/radish.png"
+						<li class="display_block"><img src="../img/radish.png"
 							class="radish_size">
 							<p class="text-center">
-								<a class="text-center" href="../recipe/method.do?food=무">무</a>
+								<a class="text-center" href="../method.do?food=무">무</a>
 							</p></li>
-						<li class="display_block"><img src="/recipe/img/tofu.png"
+						<li class="display_block"><img src="../img/tofu.png"
 							class="tofu_size">
 							<p class="text-center">
-								<a class="text-center" href="../recipe/method.do?food=두부">두부</a>
+								<a class="text-center" href="../method.do?food=두부">두부</a>
 							</p></li>
-						<li class="display_block"><img src="/recipe/img/rice.png"
+						<li class="display_block"><img src="../img/rice.png"
 							class="rice_size">
 							<p class="text-center">
-								<a class="text-center" href="../recipe/method.do?food=밥">밥</a>
+								<a class="text-center" href="../method.do?food=밥">밥</a>
 							</p></li>
-						<li class="display_block"><img src="/recipe/img/squid.png"
+						<li class="display_block"><img src="../img/squid.png"
 							class="squid_size">
 							<p class="text-center">
-								<a class="text-center" href="../recipe/method.do?food=오징어">오징어</a>
+								<a class="text-center" href="../method.do?food=오징어">오징어</a>
 							</p></li>
-						<li class="display_block"><img src="/recipe/img/pork.png"
+						<li class="display_block"><img src="../img/pork.png"
 							class="pork_size">
 							<p class="text-center">
-								<a class="text-center" href="../recipe/method.do?food=돼지고기">돼지고기</a>
+								<a class="text-center" href="../method.do?food=돼지고기">돼지고기</a>
 							</p></li>
-						<li class="display_block"><img src="/recipe/img/mushroom.png"
+						<li class="display_block"><img src="../img/mushroom.png"
 							class="mushroom_size">
 							<p class="text-center">
-								<a class="text-center" href="../recipe/method.do?food=버섯">버섯</a>
+								<a class="text-center" href="../method.do?food=버섯">버섯</a>
 							</p></li>
-						<li class="display_none"><img src="/recipe/img/flour.png"
+						<li class="display_none"><img src="../img/flour.png"
 							class="beef_size">
 							<p class="text-center">
-								<a class="text-center" href="../recipe/method.do?food=밀가루">밀가루</a>
+								<a class="text-center" href="../method.do?food=밀가루">밀가루</a>
 							</p></li>
-						<li class="display_none"><img src="/recipe/img/콩나물.png"
+						<li class="display_none"><img src="../img/콩나물.png"
 							class="radish_size">
 							<p class="text-center">
-								<a class="text-center" href="../recipe/method.do?food=콩나물">콩나물</a>
+								<a class="text-center" href="../method.do?food=콩나물">콩나물</a>
 							</p></li>
-						<li class="display_none"><img src="/recipe/img/onion.png"
+						<li class="display_none"><img src="../img/onion.png"
 							class="tofu_size">
 							<p class="text-center">
-								<a class="text-center" href="../recipe/method.do?food=양파">양파</a>
+								<a class="text-center" href="../method.do?food=양파">양파</a>
 							</p></li>
-						<li class="display_none"><img src="/recipe/img/cucumber.png"
+						<li class="display_none"><img src="../img/cucumber.png"
 							class="rice_size">
 							<p class="text-center">
-								<a class="text-center" href="../recipe/method.do?food=오이">오이</a>
+								<a class="text-center" href="../method.do?food=오이">오이</a>
 							</p></li>
-						<li class="display_none"><img src="/recipe/img/shrimp.png"
+						<li class="display_none"><img src="../img/shrimp.png"
 							class="squid_size">
 							<p class="text-center">
-								<a class="text-center" href="../recipe/method.do?food=새우">새우</a>
+								<a class="text-center" href="../method.do?food=새우">새우</a>
 							</p></li>
-						<li class="display_none"><img src="/recipe/img/egg.png"
+						<li class="display_none"><img src="../img/egg.png"
 							class="pork_size">
 							<p class="text-center">
-								<a class="text-center" href="../recipe/method.do?food=계란">계란</a>
+								<a class="text-center" href="../method.do?food=계란">계란</a>
 							</p></li>
-						<li class="display_none"><img src="/recipe/img/potato.png"
+						<li class="display_none"><img src="../img/potato.png"
 							class="mushroom_size">
 							<p class="text-center">
-								<a class="text-center" href="../recipe/method.do?food=김치">김치</a>
+								<a class="text-center" href="../method.do?food=김치">김치</a>
 							</p></li>
 					</ul>
 				</div>
 				<div class="cate_arrow" id="right_arrow">
-					<a href="javascript:void(0);" onclick="efg_next();"> <img src="/recipe/img/right_arrow.png">
+					<a href="javascript:void(0);" onclick="efg_next();"> <img src="../img/right_arrow.png">
 					</a>
 				</div>
 			</div>

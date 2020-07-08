@@ -14,20 +14,20 @@ public class person_info {
 	@RequestMapping(value ="/member/signup.do", method=RequestMethod.GET)
 	public ModelAndView signup_page() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/member/signup.jsp");
+		mv.setViewName("/member/signup");
 		return mv;
 	}
 	@RequestMapping(value ="/member/contact.do", method=RequestMethod.GET)
 	public ModelAndView contact_page() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/member/contact.jsp");
+		mv.setViewName("/member/contact");
 		return mv;
 	}
 	
 	@RequestMapping(value ="/member/search_password.do", method=RequestMethod.GET)
 	public ModelAndView search_password() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/member/search_password.jsp");
+		mv.setViewName("/member/search_password");
 		return mv;
 	}
 }

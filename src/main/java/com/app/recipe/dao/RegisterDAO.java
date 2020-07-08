@@ -1,5 +1,6 @@
 package com.app.recipe.dao;
 
+import com.app.recipe.model.MemberVO;
 import com.app.recipe.model.RegisterDto;
 
 public interface RegisterDAO {
@@ -10,4 +11,5 @@ public interface RegisterDAO {
 	public RegisterDto select_login_auth(String email, String auth, String pw);
 	public boolean insert(RegisterDto dto);
 	public int chef_select(); // ½¦ÇÁ Á¶È¸¼ö
+	public MemberVO securitylogin(String id);
 }

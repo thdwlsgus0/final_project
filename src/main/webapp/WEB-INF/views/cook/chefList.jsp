@@ -17,12 +17,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
 	rel="stylesheet">
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="/recipe/css/style.css" rel="stylesheet" />
-<link href="/recipe/css/jinhyun.css" rel="stylesheet" />
-<link href="/recipe/css/index.css" rel="stylesheet" />
-<link href="/recipe/css/header.css" rel="stylesheet"/>
-<link href="/recipe/css/footer.css" rel="stylesheet"/>
-<link href="/recipe/css/chefList.css" rel="stylesheet"/>
+<link href="../css/style.css" rel="stylesheet" />
+<link href="../css/jinhyun.css" rel="stylesheet" />
+<link href="../css/index.css" rel="stylesheet" />
+<link href="../css/header.css" rel="stylesheet"/>
+<link href="../css/footer.css" rel="stylesheet"/>
+<link href="../css/chefList.css" rel="stylesheet"/>
 </head>
 
 <body>

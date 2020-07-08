@@ -7,7 +7,7 @@
 <script type="text/javascript">
 	window.onload = function(){
 		alert('잘못된 접근입니다.');
-		window.location.href = "/recipe/member/index.do";
+		window.location.href = "/";
 	}
 </script>
 </head>

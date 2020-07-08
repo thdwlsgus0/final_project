@@ -42,7 +42,7 @@ public class MemberController {
 		int dice = r.nextInt(4589362)+49311; // 49311 ~ 49311 + 4589362
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/email/email_auth2.jsp");
+		mv.setViewName("/email/email_auth2");
 		mv.addObject("dice", dice);
 		
 		String id = dto.getId() == null ? dto.getEmail() : dto.getId();
@@ -64,7 +64,7 @@ public class MemberController {
 		String subject = "달달하조 인증번호 전달";
 		//String fromName = "달달하조 관리자";
 		String from="thdwlsgus0@naver.com"; //일단 네이버로 하였습니다.
-		String content = "링크: http://localhost:8090/recipe/member/emailcheck.do?id=%s&dice=%d";//"인증번호["+dice+"]";
+		String content = "링크: http://ec2-3-34-77-222.ap-northeast-2.compute.amazonaws.com/member/emailcheck.do?id=%s&dice=%d";//"인증번호["+dice+"]";
 		String rcontent = String.format(content, id, dice);
 		try {
 			MimeMessage message = mailSender.createMimeMessage();
@@ -87,10 +87,10 @@ public class MemberController {
 		System.out.println("마지막 : email_injeung : "+email_injeung);
 		System.out.println("마지막 : dice : "+dice);
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/email/email_auth.jsp");
+		mv.setViewName("/email/email_auth");
 		mv.addObject("e_mail",email_injeung);
 		if(email_injeung.equals(dice)) { // 인증번호가 같은 경우 인증번호가 일치하였으므로 회원가입창으로 다시 이동시킴
-			mv.setViewName("/member/login.jsp");
+			mv.setViewName("/login/member");
 			mv.addObject("e_mail", email_injeung);
 		    response_equals.setContentType("text/html; charset=UTF-8");
 		    PrintWriter out_equals = response_equals.getWriter();
@@ -99,7 +99,7 @@ public class MemberController {
 		    return mv;
 		}else if(email_injeung != dice) {
 			ModelAndView mv2 = new ModelAndView();
-			mv2.setViewName("/email/email_auth.jsp");
+			mv2.setViewName("/email/email_auth");
 			response_equals.setContentType("text/html; charset=UTF-8");
 			PrintWriter out_equals = response_equals.getWriter();
 			out_equals.println("<script>alert('인증번호가 일치하지않습니다. 인증번호를 다시 입력해주세요.'); history.go(-1);</script>");

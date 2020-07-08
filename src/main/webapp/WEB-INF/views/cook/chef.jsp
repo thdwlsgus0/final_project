@@ -17,12 +17,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
 	rel="stylesheet">
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="/recipe/css/style.css" rel="stylesheet" />
-<link href="/recipe/css/jinhyun.css" rel="stylesheet" />
-<link href="/recipe/css/index.css" rel="stylesheet" />
-<link href="/recipe/css/header.css" rel="stylesheet"/>
-<link href="/recipe/css/footer.css" rel="stylesheet"/>
-<link href="/recipe/css/chef.css" rel="stylesheet"/>
+<link href="../css/style.css" rel="stylesheet" />
+<link href="../css/jinhyun.css" rel="stylesheet" />
+<link href="../css/index.css" rel="stylesheet" />
+<link href="../css/header.css" rel="stylesheet"/>
+<link href="../css/footer.css" rel="stylesheet"/>
+<link href="../css/chef.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -41,7 +41,7 @@
 		        </div><!-- sub_tabs -->
 				
 				<!-- 쉐프의 레시피 검색 영역 -->		        
-		        <form action="chef.do" method="get"> <!-- leejiwon>>> action="/recipe/cook/chef.do" -->
+		        <form action="chef.do" method="get"> <!-- leejiwon>>> action="../cook/chef.do" -->
 		        	<input type="hidden" name="mem_id" value="${mem_id }">
 		            <div class="sub_search">
 						<input type="text" name="keyword" placeholder="레시피 또는 재료명을 입력하세요.."> <!-- limsh>>> name="recipe_sub_search" -->

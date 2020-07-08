@@ -87,12 +87,12 @@ public class RecipeController {
 		mv.addObject("endPage", endPage); // 총 게시물 수에 의한 마지막 페이지 수
 
 		// 화면 네비게이션
-		mv.setViewName("/cook/chef.jsp");
+		mv.setViewName("/cook/chef");
 		return mv;
 	}
 
 	// 레시피
-	@RequestMapping(value = "/recipe/method.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/method.do", method = RequestMethod.GET)
 	public ModelAndView method_page(HttpServletRequest request) {
 
 		String food_name = request.getParameter("food");
@@ -126,7 +126,7 @@ public class RecipeController {
 		mv.addObject("startPage", startPage);
 		mv.addObject("endPage", endPage); // 총 게시물 수에 의한 마지막 페이지 수
 
-		mv.setViewName("/recipe/method.jsp");
+		mv.setViewName("/recipe/method");
 		return mv;
 	}
 	
@@ -178,7 +178,7 @@ public class RecipeController {
 		mv.addObject("endPage", endPage);
 		
 		// 화면 네비게이션
-		mv.setViewName("/cook/chef.jsp");
+		mv.setViewName("/cook/chef");
 		
 		return mv;
 	}

@@ -13,6 +13,7 @@ import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.recipe.service.RegisterService;
+import com.app.recipe.util.login.LoginUtil;
 import com.app.recipe.model.RegisterDto;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
@@ -37,11 +39,13 @@ public class LoginAPIController {
 		this.naverLoginBO= naverLoginBO;
 	}
 	
-	@RequestMapping(value ="/loginForm.do", method=RequestMethod.GET)
-	public String login_page(Model model, HttpSession session) {
+	@GetMapping("/login")
+	public String login_page(String error, String logout, Model model, HttpSession session) {
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 		model.addAttribute("url", naverAuthUrl);
-		return "/login.jsp";
+		if(error != null) model.addAttribute("error", "아이디 혹은 패스워드를 확인해주세요.");
+		if(logout != null) model.addAttribute("logout", "로그아웃되었습니다.");
+		return "/member/login";
 	}
 	
     // 네이버 로그인 성공시 callback호출 메소드
@@ -55,30 +59,26 @@ public class LoginAPIController {
     	JSONParser parser = new JSONParser();
     	Object obj = parser.parse(apiResult);
     	JSONObject jsonObj = (JSONObject) obj;
-    	
 
     	JSONObject response_obj = (JSONObject)jsonObj.get("response");
     	String nickname = (String)response_obj.get("nickname");
     	String email = response_obj.get("email").toString();
     	String profile = response_obj.get("profile_image").toString();
     	model.addAttribute("result", apiResult);
-    	HashMap<String, Object> hash = logincheck(nickname, email, profile, "naver", session);
-
-    	if(hash.containsKey("regi")) if((boolean) hash.get("regi")) return "redirect:/member/signup.do";
-    	if((boolean) hash.get("login")) return "redirect:/member/index.do";
-    	return "redirect:/member/emailcheck.jsp";
+    	
+    	return LoginUtil.logincheck(svc, nickname, email, profile, "naver", session);
     }
-    @RequestMapping(value="/logout.do", method= {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value="/logout", method= {RequestMethod.GET, RequestMethod.POST})
     public String logout(HttpSession session)throws IOException{
         session.invalidate();        
-        return "redirect:/login.jsp";
+        return "redirect:/login/member";
     }
     
 
 	@Inject
 	private RegisterService svc;
 	
-	@PostMapping("/login/google.do")
+	@PostMapping("/login/google")
 	public @ResponseBody HashMap<String, Object> login(@RequestBody HashMap<String, Object> map,
 			HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -86,31 +86,8 @@ public class LoginAPIController {
 		String name = map.get("name").toString();
 		String profile = map.get("imageUrl").toString();
 		
-		return logincheck(name, email, profile, "google", session);
-	}
-	
-	public HashMap<String, Object> logincheck(String name, String email, String profile, String auth_str, HttpSession session){
-		HashMap<String, Object> ret = new HashMap<String, Object>();
-		if (svc.idcheck(email, auth_str)) {
-			session.setAttribute("regi_email", email);
-			session.setAttribute("regi_name", name);
-			session.setAttribute("regi_profile", profile);
-			ret.put("regi", true);
-		} else {
-			RegisterDto dto = svc.select(email, auth_str);
-			if(dto.getCheck().equals("T")) {
-				// - 가입&인증된 상태라면 메인으로
-				session.setAttribute("email", email);
-				session.setAttribute("sessionId", name);
-				session.setAttribute("realId", dto.getId());
-				session.setAttribute("profile", profile);
-				ret.put("login", true);	
-			}
-			else {
-				ret.put("login", false);
-			}
-		}
-		session.setAttribute("auth", auth_str);
-		return ret;
+		HashMap<String, Object> hash = new HashMap<String, Object>();
+		hash.put("url", LoginUtil.logincheck(svc, name, email, profile, "google", session));
+		return hash;
 	}
 }

@@ -23,16 +23,16 @@ public class ProfileController {
 	public String index(Model model, HttpSession session) {
 		String id;
 		try { id = session.getAttribute("realId").toString();
-		} catch(Exception e) { return "/member/access.jsp"; }
+		} catch(Exception e) { return "/access"; }
 		
 		RegisterDto dto = svc.select(id);
-		if(svc.idcheck(id) || dto == null) return "/member/access.jsp";
+		if(svc.idcheck(id) || dto == null) return "/access";
 		
 		model.addAttribute("mem_id", id);
 		model.addAttribute("mem_favor", dto.getFavor());
 		model.addAttribute("mem_phone", dto.getPhone());
 		model.addAttribute("mem_profile", aws.getFilePath(dto.getProfile()));
-		return "/member/modify.jsp";
+		return "/member/modify";
 	}
 	
 	@PostMapping("/member/modify.do")
@@ -53,6 +53,11 @@ public class ProfileController {
 			if(orifile != null && orifile.length() > 0)
 				aws.deleteFile(orifile);
 		
-		return "redirect:/member/index.do";
+		return "redirect:/";
+	}
+	
+	@GetMapping("/access")
+	public String accessdenied() {
+		return "/member/access";
 	}
 }

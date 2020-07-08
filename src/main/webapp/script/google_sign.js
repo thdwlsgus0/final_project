@@ -17,6 +17,9 @@ function google_init() {
 			console.error('init fail');
 		});
 	});
+	alert('${error}');
+	if('${error}') alert('${error}');
+	else if('${logout}') alert('${logout}');
 }
 function google_login(flag){
 	var gauth = gapi.auth2.getAuthInstance();
@@ -52,23 +55,17 @@ function google_sendprofiletocontrol(email, name, imageUrl){
 	}
 	$.ajax({
 		type: 'POST',
-		url: '/recipe/login/google.do',
+		url: '/login/google.do',
 		dataType: 'json',
 		contentType: 'application/json; charset=utf-8',
 		data: JSON.stringify(data),
 		async: false
 	}).done(function(res){
-		flag_login = res['login'];
-		flag_regi = res['regi'];
+		url = res['url']
 	});
 	google_login(false);
 	
-	if(flag_regi) {
-		window.location.href = '/recipe/member/signup.do';
-		return;
-	}
-	if(flag_login) window.location.href = '/recipe/member/index.do';
-	else alert('이메일 인증을 받아주세요!');
+	window.location.href = url;
 }
 function normal_login(){
 	id = $('#mem_id').val();
@@ -79,7 +76,7 @@ function normal_login(){
 	}
 	$.ajax({
 		type: 'POST',
-		url: '/recipe/member/login.do',
+		url: '/member/login.do',
 		dataType: 'text',
 		contentType: 'application/json; charset=utf-8',
 		data: JSON.stringify(data),
@@ -89,7 +86,7 @@ function normal_login(){
 	}).fail(function(){
 		flag = false;
 	});
-	if(flag) window.location.href = '/recipe/member/index.do';
+	if(flag) window.location.href = '/member/index.do';
 	else alert('로그인 실패!');
 }
 function google_init() {
@@ -146,7 +143,7 @@ function google_sendprofiletocontrol(email, name, imageUrl){
 	}
 	$.ajax({
 		type: 'POST',
-		url: '/recipe/login/google.do',
+		url: '/login/google.do',
 		dataType: 'json',
 		contentType: 'application/json; charset=utf-8',
 		data: JSON.stringify(data),
@@ -158,31 +155,9 @@ function google_sendprofiletocontrol(email, name, imageUrl){
 	google_login(false);
 	
 	if(flag_regi) {
-		window.location.href = '/recipe/member/signup.do';
+		window.location.href = '/member/signup.do';
 		return;
 	}
-	if(flag_login) window.location.href = '/recipe/member/index.do';
+	if(flag_login) window.location.href = '/';
 	else alert('이메일 인증을 받아주세요!');
-}
-function normal_login(){
-	id = $('#mem_id').val();
-	pw = $('#mem_pw').val();
-	data = {
-		id: id,
-		pw: pw
-	}
-	$.ajax({
-		type: 'POST',
-		url: '/recipe/member/login.do',
-		dataType: 'text',
-		contentType: 'application/json; charset=utf-8',
-		data: JSON.stringify(data),
-		async: false
-	}).done(function(){
-		flag = true;
-	}).fail(function(){
-		flag = false;
-	});
-	if(flag) window.location.href = '/recipe/member/index.do';
-	else alert('로그인 실패!');
 }

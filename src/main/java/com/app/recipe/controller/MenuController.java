@@ -28,10 +28,10 @@ public class MenuController {
 	@Inject
 	private RecipeService rsc;
     
-	@RequestMapping(value ="/member/index.do", method=RequestMethod.GET)
+	@RequestMapping(value ="/", method=RequestMethod.GET)
 	public ModelAndView index_page() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/member/index.jsp");
+		mv.setViewName("/member/index");
 		return mv;
 	}
 	
@@ -104,7 +104,7 @@ public class MenuController {
 		System.out.println("getRecipeCount " + getRecipeCount);
 		
 		// 화면 네비게이션
-		mv.setViewName("/cook/chefList.jsp");
+		mv.setViewName("/cook/chefList");
 		
 		return mv;
 		

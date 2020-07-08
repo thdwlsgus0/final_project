@@ -5,8 +5,10 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
+import com.app.recipe.model.MemberVO;
 import com.app.recipe.model.RegisterDto;
 
 @Repository
@@ -14,9 +16,14 @@ public class RegisterDAOImpl implements RegisterDAO {
 	
 	private static final Logger logger = LoggerFactory.getLogger(RegisterDAOImpl.class);
 
-	@Inject
-	SqlSession sql;
+	@Inject SqlSession sql;
+	@Inject PasswordEncoder encoder;
 	
+	@Override
+	public MemberVO securitylogin(String id) {
+		return sql.selectOne("login", id);
+	}
+
 	@Override
 	public boolean update(RegisterDto dto) {
 		try {
@@ -58,7 +65,9 @@ public class RegisterDAOImpl implements RegisterDAO {
 			return false;
 		}
 		dto.setId(dto.getId().trim());
+		dto.setPw(encoder.encode(dto.getPw()));
 		sql.insert("regi.insert", dto);
+		sql.insert("regi.insertauth", dto.getId());
 		return true;
 	}
 }

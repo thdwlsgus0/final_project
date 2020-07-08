@@ -1,13 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	<!-- Navigation-->
 	<!-- 이지원 추가 : 아해 nav 태그에 nav_div 클래스 추가 후, padding: 0; 추가 -->
 	<nav class="navbar navbar-expand-lg nav_div">
 		<!--이지원 추가 : header.css의 .nav_container{...} 내  margin-left: 440px; 제거하고 padding: 0;, justify-content: start !important; 적용!-->
 		<div class="container nav_container">
-			<a class="js-scroll-trigger" href="/recipe/member/index.do">
+			<a class="js-scroll-trigger" href="/">
 				<!-- 이지원 추가 : jinhyun.css 의  #img_size{...} 내 padding-bottom: 0px; margin-left: 150px; 제거할 것!-->
-				<img src="/recipe/img/logo.png" id="img_size">
+				<img src="../img/logo.png" id="img_size">
 			</a>
 			<!-- 검색창 부분 -->
 			<form action="" method="get">
@@ -44,20 +43,24 @@
 							<li class="nav-item mx-0 mx-lg-1"><a
 								class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 								href="profile.do">'${sessionId}'</a></li>
-							<li class="nav-item mx-0 mx-lg-1"><a
-								class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-								href="/recipe/logout.do">로그아웃</a></li>
+							<li class="nav-item mx-0 mx-lg-1">
+								<form id="logoutform" method="post" action="../logout">
+									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+									<a href="javascript:{}" class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+										onclick="document.getElementById('logoutform').submit();">로그아웃</a>
+								</form>
+							</li>
 						</c:when>
 						<c:otherwise>
 							<li class="nav-item mx-0 mx-lg-1"><a
 								class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-								href="/recipe/loginForm.do">로그인</a></li>
+								href="../login">로그인</a></li>
 							<li class="nav-item mx-0 mx-lg-1"><a
 								class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-								href="/recipe/member/signup.do">회원가입</a></li>
+								href="../member/signup.do">회원가입</a></li>
 							<li class="nav-item mx-0 mx-lg-1"><a
 								class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-								href="/recipe/member/contact.do">관리자에게 문의</a></li>
+								href="../member/contact.do">관리자에게 문의</a></li>
 						</c:otherwise>
 					</c:choose>
 				</ul>
@@ -71,10 +74,10 @@
 		<div class="container menu">
 			<ul class="nav_list">
 			<!-- 이지원 추가 : header.css의 .nav_list li{...} 내 width: 370px로 변경, text-align: center; 추가, margin-left 제거  -->
-				<li class=""><a href="/recipe/member/index.do" class="active li_font">홈</a></li>
-				<li class=""><a href="/recipe/recipe/method.do" class="li_font">레시피</a></li>
-				<li class=""><a href="/recipe/cook/chef.do" class="li_font">쉐프</a></li>
-				<!-- <li class=""><a href="/recipe/cook/chefList.do?mem_id=${mem_id }" class="li_font">쉐프</a></li> -->
+				<li class=""><a href="/" class="active li_font">홈</a></li>
+				<li class=""><a href="../method.do" class="li_font">레시피</a></li>
+				<li class=""><a href="../cook/chef.do" class="li_font">쉐프</a></li>
+				<!-- <li class=""><a href="../cook/chefList.do?mem_id=${mem_id }" class="li_font">쉐프</a></li> -->
 			</ul>
 		</div>
 	</header>

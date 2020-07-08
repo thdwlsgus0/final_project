@@ -6,16 +6,18 @@
 <head>
 <meta charset="EUC-KR">
 <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=0.25">
+<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 <title>Insert title here</title>
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
 	rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-<link href="/recipe/css/header.css" rel="stylesheet"/>
-<link href="/recipe/css/footer.css" rel="stylesheet"/>
-<link href="/recipe/css/jinhyun.css" rel="stylesheet"/>
-<link href="/recipe/css/style.css" rel="stylesheet"/>
-<link href="/recipe/css/signup.css" rel="stylesheet"/>
+<link href="../css/header.css" rel="stylesheet"/>
+<link href="../css/footer.css" rel="stylesheet"/>
+<link href="../css/jinhyun.css" rel="stylesheet"/>
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="../css/signup.css" rel="stylesheet"/>
 <style type="text/css">input[readonly='readonly']{background-color: #b1b9bd;}</style>
 </head>
 <body>
@@ -23,6 +25,7 @@
 	<div class="container main_body_color">
 		<div class="signup_body">
 			<form action="#">
+				<input type="hidden" id="csrf" name="${_csrf.parameterName}" value="${_csrf.token}">
 				<h4 class="text-center sign_up">회원가입</h4>
 				<div class="row">
 					<input type="text" class="signup_input form-control" name="Mem_ID" id="Mem_ID"
@@ -79,7 +82,7 @@
 	<%@ include file="../template/script.jsp"%>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="/recipe/script/mem_regi.js"></script>
+	<script type="text/javascript" src="../script/mem_regi.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			email = $('#Mem_email').val();

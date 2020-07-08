@@ -11,11 +11,11 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-<link href="/recipe/css/header.css" rel="stylesheet"/>
-<link href="/recipe/css/footer.css" rel="stylesheet"/>
-<link href="/recipe/css/jinhyun.css" rel="stylesheet"/>
-<link href="/recipe/css/style.css" rel="stylesheet"/>
-<link href="/recipe/css/signup.css" rel="stylesheet"/>
+<link href="../css/header.css" rel="stylesheet"/>
+<link href="../css/footer.css" rel="stylesheet"/>
+<link href="../css/jinhyun.css" rel="stylesheet"/>
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="../css/signup.css" rel="stylesheet"/>
 <style type="text/css">
 input[readonly='readonly']{background-color: #b1b9bd;}
 input[type='text']{
@@ -48,7 +48,7 @@ label[for]{
 	<%@ include file="../template/nav.jsp"%>
 	<div class="container main_body_color">
 		<div class="signup_body">
-			<form id="mem_modify" action="/recipe/member/modify.do" method="post" enctype="multipart/form-data">
+			<form id="mem_modify" action="../member/modify.do" method="post" enctype="multipart/form-data">
 				<h4 class="text-center sign_up">회원정보 수정</h4>
 				<div class="row"> <input id="mem_id" placeholder="${mem_id}"  type="text" class="signup_input form-control" readonly="readonly" />
 					<input type="hidden" name="id" value="${mem_id}"> </div>
@@ -75,6 +75,6 @@ label[for]{
 	<%@ include file="../template/script.jsp"%>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="/recipe/script/mem_modi.js"></script>
+	<script type="text/javascript" src="../script/mem_modi.js"></script>
 </body>
 </html>
