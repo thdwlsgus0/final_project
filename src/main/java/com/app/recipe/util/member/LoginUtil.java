@@ -1,4 +1,4 @@
-package com.app.recipe.util.login;
+package com.app.recipe.util.member;
 
 import java.util.HashMap;
 
@@ -15,22 +15,21 @@ public class LoginUtil {
 			session.setAttribute("regi_email", email);
 			session.setAttribute("regi_name", name);
 			session.setAttribute("regi_profile", profile);
-			ret.put("regi", true);
+			session.setAttribute("auth", auth_str);
+			return "/member/signup.do";
 		} else {
 			RegisterDto dto = svc.select(email, auth_str);
 			if (dto.getCheck().equals("T")) {
-				// - °¡ÀÔ&ÀÎÁõµÈ »óÅÂ¶ó¸é ¸ÞÀÎÀ¸·Î
+				// - ï¿½ï¿½ï¿½ï¿½&ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				session.setAttribute("email", email);
 				session.setAttribute("sessionId", name);
 				session.setAttribute("realId", dto.getId());
 				session.setAttribute("profile", profile);
-				return "redirect:/member/signup.do";
+				return "/";
 			} else {
-				return "redirect:/";
+				return "/login/email";
 			}
 		}
-		session.setAttribute("auth", auth_str);
-		return "redirect:/login/email";
 	}
 	
 	public static String logincheck(RegisterService svc, String id, HttpSession session) {

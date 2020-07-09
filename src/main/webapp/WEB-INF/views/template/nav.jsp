@@ -42,7 +42,7 @@
 							<!-- 이지원 추가 : 아래 태그와 header.css에 nav_ul li 클래스 추가 후, min-width: 0; 추가 -->
 							<li class="nav-item mx-0 mx-lg-1"><a
 								class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-								href="profile.do">'${sessionId}'</a></li>
+								href="/profile">'${sessionId}'</a></li>
 							<li class="nav-item mx-0 mx-lg-1">
 								<form id="logoutform" method="post" action="../logout">
 									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">

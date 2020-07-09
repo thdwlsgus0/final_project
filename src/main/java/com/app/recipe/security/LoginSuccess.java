@@ -11,7 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import com.app.recipe.service.RegisterService;
-import com.app.recipe.util.login.LoginUtil;
+import com.app.recipe.util.member.LoginUtil;
 
 public class LoginSuccess implements AuthenticationSuccessHandler {
 

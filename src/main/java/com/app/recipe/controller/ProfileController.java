@@ -3,6 +3,7 @@ package com.app.recipe.controller;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,8 @@ public class ProfileController {
 	@Inject private RegisterService svc;
 	@Inject private	AmazonS3Service aws;
 	
-	@GetMapping("/member/profile.do")
+	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_MEMBER')")
+	@GetMapping("/profile")
 	public String index(Model model, HttpSession session) {
 		String id;
 		try { id = session.getAttribute("realId").toString();
@@ -35,7 +37,8 @@ public class ProfileController {
 		return "/member/modify";
 	}
 	
-	@PostMapping("/member/modify.do")
+	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_MEMBER')")
+	@PostMapping("/member/modify")
 	public String modify(MemberModVo vo) {
 		String orifile = vo.getOrifile();
 		String file = aws.uploadFile(vo.getFile());

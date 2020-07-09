@@ -21,52 +21,6 @@ function google_init() {
 	if('${error}') alert('${error}');
 	else if('${logout}') alert('${logout}');
 }
-function google_login(flag){
-	var gauth = gapi.auth2.getAuthInstance();
-	if(flag == true) {
-		gauth.signIn().then(function(){
-			google_viewprofile();
-			//alert('Logined');
-			//location.reload();
-		});
-	} else {
-		gauth.signOut().then(function(){
-			//alert('Logouted');
-		});
-	}
-}
-function google_viewprofile(){
-	var gauth = gapi.auth2.getAuthInstance();
-	if(gauth.isSignedIn.get() == true){
-		var profile = gauth.currentUser.get().getBasicProfile();
-		var name = profile.getName();
-		var email = profile.getEmail();
-		var imageUrl = profile.getImageUrl();
-		$('#get_email').html('logined email: ' + email);
-		google_sendprofiletocontrol(email, name, imageUrl);
-	}
-	else $('#get_email').html('');
-}
-function google_sendprofiletocontrol(email, name, imageUrl){
-	var data = {
-		email: email,
-		name: name,
-		imageUrl: imageUrl
-	}
-	$.ajax({
-		type: 'POST',
-		url: '/login/google.do',
-		dataType: 'json',
-		contentType: 'application/json; charset=utf-8',
-		data: JSON.stringify(data),
-		async: false
-	}).done(function(res){
-		url = res['url']
-	});
-	google_login(false);
-	
-	window.location.href = url;
-}
 function normal_login(){
 	id = $('#mem_id').val();
 	pw = $('#mem_pw').val();
@@ -113,13 +67,8 @@ function google_login(flag){
 	var gauth = gapi.auth2.getAuthInstance();
 	if(flag == true) {
 		gauth.signIn().then(function(){
-			google_viewprofile();
-			//alert('Logined');
-			//location.reload();
-		});
-	} else {
-		gauth.signOut().then(function(){
-			//alert('Logouted');
+			url = google_viewprofile();
+			if(url) document.location.replace(url);
 		});
 	}
 }
@@ -130,12 +79,12 @@ function google_viewprofile(){
 		var name = profile.getName();
 		var email = profile.getEmail();
 		var imageUrl = profile.getImageUrl();
-		$('#get_email').html('logined email: ' + email);
-		google_sendprofiletocontrol(email, name, imageUrl);
+		return google_sendprofiletocontrol(email, name, imageUrl);
 	}
-	else $('#get_email').html('');
 }
 function google_sendprofiletocontrol(email, name, imageUrl){
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
 	var data = {
 		email: email,
 		name: name,
@@ -143,21 +92,17 @@ function google_sendprofiletocontrol(email, name, imageUrl){
 	}
 	$.ajax({
 		type: 'POST',
-		url: '/login/google.do',
+		url: '/login/google',
 		dataType: 'json',
 		contentType: 'application/json; charset=utf-8',
 		data: JSON.stringify(data),
-		async: false
+		async: false,
+		beforeSend: function(xhr){
+			xhr.setRequestHeader(header, token);
+		}
 	}).done(function(res){
-		flag_login = res['login'];
-		flag_regi = res['regi'];
+		url = res['url'];
 	});
 	google_login(false);
-	
-	if(flag_regi) {
-		window.location.href = '/member/signup.do';
-		return;
-	}
-	if(flag_login) window.location.href = '/';
-	else alert('이메일 인증을 받아주세요!');
+	return url;
 }

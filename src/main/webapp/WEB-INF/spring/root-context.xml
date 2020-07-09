@@ -7,8 +7,8 @@
 
 	<context:component-scan base-package="com.app.recipe.dao,
 										  com.app.recipe.service,
-										  com.app.recipe.util"/>
-										  
+										  com.app.recipe.util" />
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- Gmail --> <!-- Gmail로 할지 다른 걸로 할지 고민 -->
 	<!-- 메일을 발송하려면 메일을 발송해주는 메일 서버(SMTP Server)가 존재해야합니다. -->
@@ -60,8 +60,8 @@
 		</property>
 	</bean>
 
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<!-- upload -->
+	<bean id="filterMultipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="3000001" />
 		<property name="defaultEncoding" value="utf-8" />
 	</bean>

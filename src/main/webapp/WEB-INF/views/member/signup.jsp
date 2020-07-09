@@ -25,7 +25,6 @@
 	<div class="container main_body_color">
 		<div class="signup_body">
 			<form action="#">
-				<input type="hidden" id="csrf" name="${_csrf.parameterName}" value="${_csrf.token}">
 				<h4 class="text-center sign_up">회원가입</h4>
 				<div class="row">
 					<input type="text" class="signup_input form-control" name="Mem_ID" id="Mem_ID"

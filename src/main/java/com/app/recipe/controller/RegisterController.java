@@ -52,7 +52,6 @@ public class RegisterController {
 	
 	@GetMapping("/login/email")
 	public String emailcheckyet() {
-		System.out.println(">>>>>>>>>>>>>>>>>>emailcheck");
 		return "/member/emailcheck";
 	}
 
@@ -60,7 +59,6 @@ public class RegisterController {
 	public String mailcheck(HttpServletRequest req, Model model) {
 		String id = req.getParameter("id");
 		String dice = req.getParameter("dice");
-		System.out.println(String.format("input>>> id: %s, dice: %s", id, dice));
 		try {
 			if (svc.dicecheck(id, dice)) {
 				RegisterDto dto = svc.select(id);

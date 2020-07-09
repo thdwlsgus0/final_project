@@ -48,7 +48,7 @@ label[for]{
 	<%@ include file="../template/nav.jsp"%>
 	<div class="container main_body_color">
 		<div class="signup_body">
-			<form id="mem_modify" action="../member/modify.do" method="post" enctype="multipart/form-data">
+			<form id="mem_modify" action="../member/modify?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 				<h4 class="text-center sign_up">회원정보 수정</h4>
 				<div class="row"> <input id="mem_id" placeholder="${mem_id}"  type="text" class="signup_input form-control" readonly="readonly" />
 					<input type="hidden" name="id" value="${mem_id}"> </div>

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.app.recipe.model.MemberVO;
 import com.app.recipe.model.RegisterDto;
+import com.app.recipe.util.member.RegistInit;
 
 @Repository
 public class RegisterDAOImpl implements RegisterDAO {
@@ -68,6 +69,8 @@ public class RegisterDAOImpl implements RegisterDAO {
 		dto.setPw(encoder.encode(dto.getPw()));
 		sql.insert("regi.insert", dto);
 		sql.insert("regi.insertauth", dto.getId());
+		RegistInit.user_rating_init(dto.getId());
+		
 		return true;
 	}
 }
