@@ -11,15 +11,11 @@ import com.app.recipe.model.RecipeDTO;
 
 @Service
 public class RecipeServiceImpl implements RecipeService {
-	
-// >>>>> merge
-	
 	@Inject
 	private RecipeDAO dao;
 	
 	@Override
 	public int recipe_select() {
-		System.out.println("service»£√‚");
 		return dao.recipe_select();
 	}
 

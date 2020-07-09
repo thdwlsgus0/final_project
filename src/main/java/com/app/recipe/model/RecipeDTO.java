@@ -1,23 +1,23 @@
 package com.app.recipe.model;
 
 public class RecipeDTO {
-   private int seq;            // 등록 순번
-   private int recipe_id;         // 레시피 고유 번호
-   private String recipe_nm_ko;   // 레시피 명
-   private String sumry;         // 레시피 간단 소개
-   private String nation_code;      // 레시피 유형 코드
-   private String nation_nm;      // 레시피 유형 명(한식, 중국, 서양)
-   private String ty_code;         // 레시피 분류 코드
-   private String ty_nm;         // 레시피 분류 명
-   private String cooking_time;   // 조리시간
-   private String calorie;         // 칼로리
-   private String img_url;         // 대표이미지 URL
-   private String det_url;         // 상세 URL
-   private int good;            // 좋아요 카운트
-   private String datetime;      // 레시피 등록 날짜
-   private String mem_id;         // 레시피 등록한 멤버 고유 번호
-   private String video_id;      // 레시피 관련 유튜브 비디오 아이디
-   private int hit; // 레시피 조회수 
+   private int seq;
+   private int recipe_id;
+   private String recipe_nm_ko;
+   private String sumry;
+   private String nation_code;
+   private String nation_nm;
+   private String ty_code;
+   private String ty_nm;
+   private String cooking_time;
+   private String calorie;
+   private String img_url;
+   private String det_url;
+   private int good;
+   private String datetime;
+   private String mem_id;
+   private String video_id;
+   private int hit; 
 
    public int getSeq() {
       return seq;

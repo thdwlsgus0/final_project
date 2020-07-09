@@ -4,7 +4,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class MemberModVo {
 	private String id, pw, favor, phone;
-	/** 프로필 원본, 꺼낸 이후 수정된 프로필 저장 */
 	private String orifile;
 	private MultipartFile file;
 	

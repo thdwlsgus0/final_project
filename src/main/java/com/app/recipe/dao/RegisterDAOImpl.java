@@ -28,6 +28,7 @@ public class RegisterDAOImpl implements RegisterDAO {
 	@Override
 	public boolean update(RegisterDto dto) {
 		try {
+			dto.setPw(encoder.encode(dto.getPw()));
 			sql.update("regi.update", dto);
 			return true;
 		} catch(Exception e) {

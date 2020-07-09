@@ -22,13 +22,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.app.recipe.model.RegisterDto;
 
 
-@Controller // ÄÁÆ®·Ñ·¯ ºó ¼±¾ğ
+@Controller
 public class MemberController {
-    //@Inject // ¼­ºñ½º¸¦ È£ÃâÇÏ±â À§ÇØ¼­ ÀÇÁ¸¼ºÀ» ÁÖÀÔ
-    // ¸ŞÀÏ ¹ß¼Û ±â´ÉÀ» À§ÇÑ MailSender ÀÎÅÍÆäÀÌ½º Á¦°ø
 	@Inject
-    private JavaMailSender mailSender; // ¸ŞÀÏ ¼­ºñ½º¸¦ »ç¿ëÇÏ±â À§ÇØ ÀÇÁ¸¼ºÀ» ÁÖÀÔÇÔ.
-	
+    private JavaMailSender mailSender;
 	//private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
     
 	@PostMapping("/email/gauth.do")
@@ -52,60 +49,27 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value ="/email/auth.do", method=RequestMethod.POST)
-	// ModelAndView´Â µ¥ÀÌÅÍ¸¦ Àü¼ÛÇØÁÖ´Â Å¸ÀÔ
 	public ModelAndView mailSending(HttpServletRequest request, String e_mail, HttpServletResponse response_email) throws IOException{
-		// º¸³»´Â ÀÌ¸ŞÀÏ ÁÖ¼Ò
 		String tomail = request.getParameter("e_mail");
 		return dice(new RegisterDto(tomail));
 	}
 	
 	public int sendEmail(String email, String id, int dice) {
-		//String host = "smtp.naver.com";
-		String subject = "´Ş´ŞÇÏÁ¶ ÀÎÁõ¹øÈ£ Àü´Ş";
-		//String fromName = "´Ş´ŞÇÏÁ¶ °ü¸®ÀÚ";
-		String from="thdwlsgus0@naver.com"; //ÀÏ´Ü ³×ÀÌ¹ö·Î ÇÏ¿´½À´Ï´Ù.
-		String content = "¸µÅ©: http://ec2-3-34-77-222.ap-northeast-2.compute.amazonaws.com/member/emailcheck.do?id=%s&dice=%d";//"ÀÎÁõ¹øÈ£["+dice+"]";
+		String subject = "ë‹¬ë‹¬í•˜ì¡° ì´ë©”ì¼ ì¸ì¦";
+		String from="thdwlsgus0@naver.com";
+		String content = "ë§í¬: http://ec2-3-34-77-222.ap-northeast-2.compute.amazonaws.com/member/emailcheck.do?id=%s&dice=%d";//"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£["+dice+"]";
 		String rcontent = String.format(content, id, dice);
 		try {
 			MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
-            messageHelper.setFrom(from); // º¸³»´Â»ç¶÷ »ı·«ÇÏ¸é Á¤»óÀÛµ¿À» ¾ÈÇÔ
-            messageHelper.setTo(email); // ¹Ş´Â»ç¶÷ ÀÌ¸ŞÀÏ
-            messageHelper.setSubject(subject); // ¸ŞÀÏÁ¦¸ñÀº »ı·«ÀÌ °¡´ÉÇÏ´Ù
-            messageHelper.setText(rcontent); // ¸ŞÀÏ ³»¿ë
+            messageHelper.setFrom(from);
+            messageHelper.setTo(email);
+            messageHelper.setSubject(subject);
+            messageHelper.setText(rcontent);
             mailSender.send(message);
 		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return dice;
 	}
-	
-	@RequestMapping(value = "/email/join_injeung.do", method = RequestMethod.POST)
-	public ModelAndView join_injeung(HttpServletRequest request,String email_injeung,  HttpServletResponse response_equals) throws IOException{
-		String dice = request.getParameter("dice");
-		System.out.println("¸¶Áö¸· : email_injeung : "+email_injeung);
-		System.out.println("¸¶Áö¸· : dice : "+dice);
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/email/email_auth");
-		mv.addObject("e_mail",email_injeung);
-		if(email_injeung.equals(dice)) { // ÀÎÁõ¹øÈ£°¡ °°Àº °æ¿ì ÀÎÁõ¹øÈ£°¡ ÀÏÄ¡ÇÏ¿´À¸¹Ç·Î È¸¿ø°¡ÀÔÃ¢À¸·Î ´Ù½Ã ÀÌµ¿½ÃÅ´
-			mv.setViewName("/login/member");
-			mv.addObject("e_mail", email_injeung);
-		    response_equals.setContentType("text/html; charset=UTF-8");
-		    PrintWriter out_equals = response_equals.getWriter();
-		    out_equals.println("<script>alert('ÀÎÁõ¹øÈ£°¡ ÀÏÄ¡ÇÏ¿´½À´Ï´Ù. È¸¿ø°¡ÀÔÃ¢À¸·Î ÀÌµ¿ÇÕ´Ï´Ù.');</script>");
-		    out_equals.flush();
-		    return mv;
-		}else if(email_injeung != dice) {
-			ModelAndView mv2 = new ModelAndView();
-			mv2.setViewName("/email/email_auth");
-			response_equals.setContentType("text/html; charset=UTF-8");
-			PrintWriter out_equals = response_equals.getWriter();
-			out_equals.println("<script>alert('ÀÎÁõ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö¾Ê½À´Ï´Ù. ÀÎÁõ¹øÈ£¸¦ ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.'); history.go(-1);</script>");
-			out_equals.flush();
-			return mv2;
-		}
-		return mv;
-	} 
 }

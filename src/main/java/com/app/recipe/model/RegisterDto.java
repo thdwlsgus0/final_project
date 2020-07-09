@@ -1,6 +1,4 @@
-
 package com.app.recipe.model;
-
 
 import java.sql.Date;
 
@@ -113,7 +111,6 @@ public class RegisterDto {
 	}
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return String.format("id[%s]", id);
 	}
 }

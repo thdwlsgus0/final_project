@@ -27,18 +27,14 @@ public class MailHandler {
 
 	public void setText(String htmlContent) throws MessagingException {
 		messageHelper.setText(htmlContent, true);
-
-		// 이메일 TEXT 부분
 	}
 
 	public void setFrom(String email, String name) throws UnsupportedEncodingException, MessagingException {
 		messageHelper.setFrom(email, name);
-		// 보내는 사람 이메일
 	}
 
 	public void setTo(String email) throws MessagingException {
 		messageHelper.setTo(email);
-		// 받는 사람 이메일
 	}
 
 	public void addInline(String contentId, DataSource dataSource) throws MessagingException {

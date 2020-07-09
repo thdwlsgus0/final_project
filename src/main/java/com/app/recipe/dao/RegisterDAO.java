@@ -10,6 +10,6 @@ public interface RegisterDAO {
 	public RegisterDto select_login(String id, String pw);
 	public RegisterDto select_login_auth(String email, String auth, String pw);
 	public boolean insert(RegisterDto dto);
-	public int chef_select(); // ½¦ÇÁ Á¶È¸¼ö
+	public int chef_select();
 	public MemberVO securitylogin(String id);
 }

@@ -101,7 +101,6 @@ public class RecipeDAOImpl implements RecipeDAO {
 		Map<String, Object> map = new HashMap<>();
 		map.put("startNum", startNum);
 		map.put("endNum", endNum);
-		System.out.println("sql Äõ¸® Á¢±Ù");
 		return sqlSessionTemplate.selectList("recipe.getAllList", map);
 	}
 	

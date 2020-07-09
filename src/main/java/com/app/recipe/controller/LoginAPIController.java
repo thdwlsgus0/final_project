@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.recipe.service.RegisterService;
 import com.app.recipe.util.member.LoginUtil;
-import com.app.recipe.model.RegisterDto;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.personal.naverLogin.service.NaverLoginBO;

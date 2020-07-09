@@ -7,10 +7,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class person_info {
-	
-	/* 로그인 지웠음 로그인은 LoginAPI로 이동시킴*/
-	
-	/* 2020.06.28 index_page() --> MenuController로 이동함 */
 	@RequestMapping(value ="/member/signup.do", method=RequestMethod.GET)
 	public ModelAndView signup_page() {
 		ModelAndView mv = new ModelAndView();

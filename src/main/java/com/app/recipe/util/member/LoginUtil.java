@@ -20,7 +20,6 @@ public class LoginUtil {
 		} else {
 			RegisterDto dto = svc.select(email, auth_str);
 			if (dto.getCheck().equals("T")) {
-				// - ����&������ ���¶�� ��������
 				session.setAttribute("email", email);
 				session.setAttribute("sessionId", name);
 				session.setAttribute("realId", dto.getId());
