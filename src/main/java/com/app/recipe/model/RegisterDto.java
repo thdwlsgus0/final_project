@@ -111,7 +111,9 @@ public class RegisterDto {
 	}
 	@Override
 	public String toString() {
-		return String.format("id[%s]", id);
+		return String.format("id[%s] pw[%s] favor[%s] birth[%s] "
+				+ "gender[%s] email[%s] phone[%s] check[%s] profile[%s] auth[%s]", 
+				id, pw, favor, birth, gender, email, phone, check, profile, auth);
 	}
 }
 

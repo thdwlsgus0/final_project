@@ -10,7 +10,9 @@ import org.springframework.stereotype.Repository;
 
 import com.app.recipe.model.MemberVO;
 import com.app.recipe.model.RegisterDto;
+import com.app.recipe.util.member.LoginUtil;
 import com.app.recipe.util.member.RegistInit;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 @Repository
 public class RegisterDAOImpl implements RegisterDAO {
@@ -65,6 +67,9 @@ public class RegisterDAOImpl implements RegisterDAO {
 		if(dto.getCheck().length() > 100) {
 			logger.warn("register [{}] dice value over 100: [{}]", dto.getEmail(), dto.getCheck());
 			return false;
+		}
+		if(dto.getAuth() != null && dto.getAuth().length() > 0) {
+			dto.setId(dto.getId() + LoginUtil.randomint());
 		}
 		dto.setId(dto.getId().trim());
 		dto.setPw(encoder.encode(dto.getPw()));

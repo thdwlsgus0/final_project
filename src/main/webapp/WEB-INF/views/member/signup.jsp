@@ -18,9 +18,12 @@
 <link href="../css/jinhyun.css" rel="stylesheet"/>
 <link href="../css/style.css" rel="stylesheet"/>
 <link href="../css/signup.css" rel="stylesheet"/>
+<link href="../css/load.css" rel="stylesheet"/>
 <style type="text/css">input[readonly='readonly']{background-color: #b1b9bd;}</style>
 </head>
 <body>
+	<div id="overray" style="display: none;"><div id="midpos" class="loadingio-spinner-ripple-yszu31685z"><div class="ldio-uofzmc9qkz">
+	<div></div><div></div></div></div></div>
 	<%@ include file="../template/nav.jsp"%>
 	<div class="container main_body_color">
 		<div class="signup_body">
@@ -79,24 +82,29 @@
 	</div>
 	<%@ include file="../template/footer.jsp"%>
 	<%@ include file="../template/script.jsp"%>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="../script/mem_regi.js"></script>
-	<script type="text/javascript">
-		$(function(){
-			email = $('#Mem_email').val();
-			if(!email || 0 === email.length) return;
-			readonly('#Mem_email');
-			readonly('#Mem_ID');
-			<% response.addCookie(new Cookie("regi_email", "${regi_email}")); 
-			session.setAttribute("regi_email", null);
-			session.setAttribute("regi_name", null);
-			session.setAttribute("regi_profile", null);
-			session.setAttribute("auth", null);%>
-		});
-		function readonly(selector){
-			$(selector).attr('readonly', 'readonly');
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../script/mem_regi.js"></script>
+<script type="text/javascript">
+	$(function(){
+		auth = $('#Mem_auth').val();
+		if(!auth || 0 === auth.length){
+			$('#regiform').each(function() {
+                this.reset();
+            });
+			return;
 		}
+		readonly('#Mem_email');
+		readonly('#Mem_ID');
+		<% response.addCookie(new Cookie("regi_email", "${regi_email}")); 
+		session.setAttribute("regi_email", null);
+		session.setAttribute("regi_name", null);
+		session.setAttribute("regi_profile", null);
+		session.setAttribute("auth", null);%>
+	});
+	function readonly(selector){
+		$(selector).attr('readonly', 'readonly');
+	}
 	</script>
 </body>
 </html>

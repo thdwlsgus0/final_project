@@ -1,16 +1,16 @@
 package com.app.recipe.util.member;
 
-import java.util.HashMap;
+import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.app.recipe.model.RegisterDto;
 import com.app.recipe.service.RegisterService;
 
 public class LoginUtil {
-	public static String logincheck(RegisterService svc, String name, String email, String profile, String auth_str,
-			HttpSession session) {
-		HashMap<String, Object> ret = new HashMap<String, Object>();
+	public static String logincheck(RegisterService svc, String name, String email, String profile, String auth_str, HttpServletRequest req) {
+		HttpSession session = req.getSession();
 		if (svc.idcheck(email, auth_str)) {
 			session.setAttribute("regi_email", email);
 			session.setAttribute("regi_name", name);
@@ -32,11 +32,23 @@ public class LoginUtil {
 	}
 	
 	public static String logincheck(RegisterService svc, String id, HttpSession session) {
-		RegisterDto dto = svc.select(id);
+		String name;
+		RegisterDto dto;
+		String[] split = id.split("!");
+		if(split.length == 4 && split[0].trim().equals("auth")) {
+			String auth = split[1];
+			String email = split[2];
+			dto = svc.select(email, auth);
+			name = split[3];
+		}
+		else {
+			dto = svc.select(id);
+			name = dto.getId();
+		}
 		if (dto != null) {
 			if (dto.getCheck().equals("T")) {
 				session.setAttribute("email", dto.getEmail());
-				session.setAttribute("sessionId", dto.getId());
+				session.setAttribute("sessionId", name);
 				session.setAttribute("realId", dto.getId());
 				session.setAttribute("profile", dto.getProfile());
 				return "/";
@@ -44,5 +56,11 @@ public class LoginUtil {
 			else return "/login/email";
 		}
 		return "/access";
+	}
+	
+	public static int randomint() {
+		Random r = new Random();
+		int dice = r.nextInt(4589362)+49311; // 49311 ~ 49311 + 4589362
+		return dice;
 	}
 }

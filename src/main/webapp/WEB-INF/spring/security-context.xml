@@ -13,6 +13,7 @@
 	<bean id="loginSuccess" class="com.app.recipe.security.LoginSuccess"></bean>
 	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
 	<bean id="userDetailsService" class="com.app.recipe.security.CustomDetailService"></bean>
+	<bean id="userAuthProvider" class="com.app.recipe.security.CustomAuthenticationProvider"></bean>
 
 	<security:http>
 		<security:access-denied-handler ref="accessDenied"/>
@@ -25,6 +26,7 @@
 	</security:http>
 
 	<security:authentication-manager>
+		<security:authentication-provider ref="userAuthProvider"/>
 		<security:authentication-provider user-service-ref="userDetailsService">
 			<security:password-encoder ref="passwordEncoder"/>
 		</security:authentication-provider>

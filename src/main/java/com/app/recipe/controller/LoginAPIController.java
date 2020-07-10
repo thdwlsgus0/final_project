@@ -33,6 +33,9 @@ public class LoginAPIController {
 	private NaverLoginBO naverLoginBO;
 	private String apiResult = null;
 	
+	@Inject
+	private RegisterService svc;
+	
 	@Autowired
 	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
 		this.naverLoginBO= naverLoginBO;
@@ -47,13 +50,13 @@ public class LoginAPIController {
 		return "/member/login";
 	}
 	
-    // 네이버 로그인 성공시 callback호출 메소드
     @RequestMapping(value="/callback.do", method= {RequestMethod.GET, RequestMethod.POST})
-    public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws IOException, ParseException{
+    public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpServletRequest req) throws IOException, ParseException{
+    	HttpSession session = req.getSession();
     	OAuth2AccessToken oauthToken;
     	oauthToken = naverLoginBO.getAccessToken(session, code, state);
     	
-    	apiResult = naverLoginBO.getUserProfile(oauthToken); //String �삎�떇�쓽 json �뜲�씠�꽣
+    	apiResult = naverLoginBO.getUserProfile(oauthToken);
     	
     	JSONParser parser = new JSONParser();
     	Object obj = parser.parse(apiResult);
@@ -65,28 +68,12 @@ public class LoginAPIController {
     	String profile = response_obj.get("profile_image").toString();
     	model.addAttribute("result", apiResult);
     	
-    	return LoginUtil.logincheck(svc, nickname, email, profile, "naver", session);
-    }
-    @RequestMapping(value="/logout", method= {RequestMethod.GET, RequestMethod.POST})
-    public String logout(HttpSession session)throws IOException{
-        session.invalidate();        
-        return "redirect:/login/member";
+    	return LoginUtil.logincheck(svc, nickname, email, profile, "naver", req);
     }
     
-
-	@Inject
-	private RegisterService svc;
-	
-	@PostMapping("/login/google")
-	public @ResponseBody HashMap<String, Object> login(@RequestBody HashMap<String, Object> map,
-			HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		String email = map.get("email").toString();
-		String name = map.get("name").toString();
-		String profile = map.get("imageUrl").toString();
-		
-		HashMap<String, Object> hash = new HashMap<String, Object>();
-		hash.put("url", LoginUtil.logincheck(svc, name, email, profile, "google", session));
-		return hash;
-	}
+    @RequestMapping(value="/logout", method= {RequestMethod.GET, RequestMethod.POST})
+    public String logout(HttpSession session)throws IOException{
+        session.invalidate();
+        return "redirect:/login";
+    }
 }

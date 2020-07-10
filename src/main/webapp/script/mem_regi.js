@@ -52,7 +52,6 @@ var main = {
 		if (!_this.emailValid())
 			return;
 
-		alert('이메일로 인증번호를 발송했습니다!')
 		$('#div-check').show();
 		var token = $("meta[name='_csrf']").attr("content");
 		var header = $("meta[name='_csrf_header']").attr("content");
@@ -62,7 +61,7 @@ var main = {
 		}
 		$.ajax({
 			type : 'POST',
-			url : '/email/gauth.do',
+			url : '/email/gauth',
 			dataType : 'text',
 			contentType : 'application/json; charset=utf-8',
 			data : JSON.stringify(data),
@@ -81,6 +80,7 @@ var main = {
 				|| !_this.emailValid())
 			return false;
 
+		$('#overray').css("display","block");
 		var birth = new Date($('#Mem_birth').val());
 		var str_birth = birth.getFullYear() + birth.getMonth()
 				+ birth.getDate() + '';
@@ -102,7 +102,7 @@ var main = {
 		}
 		$.ajax({
 			type : 'POST',
-			url : '/member/regist.do',
+			url : '/member/regist',
 			dataType : 'json',
 			contentType : 'application/json; charset=utf-8',
 			data : JSON.stringify(data),
@@ -110,7 +110,7 @@ var main = {
 				xhr.setRequestHeader(header, token);
 			}
 		}).done(function() {
-			alert('회원가입 성공');
+			alert('이메일로 인증번호를 발송했습니다!')
 			window.location.href = '/login';
 		});
 	},
@@ -124,7 +124,7 @@ var main = {
 		var header = $("meta[name='_csrf_header']").attr("content");
 		$.ajax({
 			type : 'POST',
-			url : '/member/idcheck.do',
+			url : '/member/idcheck',
 			dataType : 'text',
 			data : id,
 			contentType : 'text/text; charset=utf-8',

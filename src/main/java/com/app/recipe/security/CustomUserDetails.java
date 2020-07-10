@@ -9,15 +9,16 @@ import org.springframework.security.core.userdetails.User;
 
 import com.app.recipe.model.MemberVO;
 
-public class UserDetail extends User {
+public class CustomUserDetails extends User {
 	private static final long serialVersionUID = 1;
 	private MemberVO member;
+	private boolean authlogin;
 
-	public UserDetail(MemberVO vo) {
+	public CustomUserDetails(MemberVO vo, boolean authlogin) {
 		super(vo.getId(), vo.getPw(), vo.getAuthlist().stream().
-				map(auth -> new SimpleGrantedAuthority(auth.getAuth())).
+				map(au -> new SimpleGrantedAuthority(au.getAuth())).
 				collect(Collectors.toList()));
-		this.member = vo;
+		this.authlogin = authlogin;
 	}
 
 	public MemberVO getMember() {
@@ -41,5 +42,17 @@ public class UserDetail extends User {
 	@Override
 	public String getUsername() {
 		return super.getUsername();
+	}
+
+	public void setMember(MemberVO member) {
+		this.member = member;
+	}
+
+	public boolean isAuthlogin() {
+		return authlogin;
+	}
+
+	public void setAuthlogin(boolean authlogin) {
+		this.authlogin = authlogin;
 	}
 }

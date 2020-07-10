@@ -18,8 +18,7 @@ public class LoginSuccess implements AuthenticationSuccessHandler {
 	// private static final String ADMIN = "ROLE_ADMIN";
 	// private static final String MEMBER = "ROLE_MEMBER";
 
-	@Inject
-	RegisterService svc;
+	@Inject RegisterService svc;
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,

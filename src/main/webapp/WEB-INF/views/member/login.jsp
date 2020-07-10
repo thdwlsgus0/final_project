@@ -29,7 +29,7 @@
 					<h3 class="text-center">로그인</h3>
 				</div>
 			</div>
-			<form action="/login/member" method="post">
+			<form action="/login/member" id="logiform" method="post" >
 				<div class="row">
 					<div class="text-center">
 						<input type="text" size="200" class="login_input" name="mem_id" id="mem_id"

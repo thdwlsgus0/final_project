@@ -37,14 +37,6 @@ public class RegisterServiceImpl implements RegisterService {
 	}
 
 	@Override
-	public boolean dicecheck(String id, String dice) {
-		RegisterDto dto = dao.select(id);
-		if(dto == null) return false;
-		else if(dto.getCheck().equals(dice)) return true;
-		else return false;
-	}
-
-	@Override
 	public boolean update(RegisterDto dto) {
 		return dao.update(dto);
 	}

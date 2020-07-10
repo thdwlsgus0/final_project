@@ -13,6 +13,7 @@ import com.app.recipe.model.MemberModVo;
 import com.app.recipe.model.RegisterDto;
 import com.app.recipe.service.RegisterService;
 import com.app.recipe.util.s3.AmazonS3Service;
+import com.app.recipe.util.s3.AmazonS3Service.ImgPath;
 
 @Controller
 public class ProfileController {
@@ -33,7 +34,7 @@ public class ProfileController {
 		model.addAttribute("mem_id", id);
 		model.addAttribute("mem_favor", dto.getFavor());
 		model.addAttribute("mem_phone", dto.getPhone());
-		model.addAttribute("mem_profile", aws.getFilePath(dto.getProfile()));
+		model.addAttribute("mem_profile", aws.getFilePath(dto.getProfile(), ImgPath.PROFILE));
 		return "/member/modify";
 	}
 	
@@ -41,7 +42,7 @@ public class ProfileController {
 	@PostMapping("/member/modify")
 	public String modify(MemberModVo vo) {
 		String orifile = vo.getOrifile();
-		String file = aws.uploadFile(vo.getFile());
+		String file = aws.uploadFile(vo.getFile(), ImgPath.PROFILE);
 		
 		RegisterDto dto = svc.select(vo.getId());
 		dto.setPw(vo.getPw());
@@ -54,7 +55,7 @@ public class ProfileController {
 		
 		if(svc.update(dto))
 			if(orifile != null && orifile.length() > 0)
-				aws.deleteFile(orifile);
+				aws.deleteFile(orifile, ImgPath.PROFILE);
 		
 		return "redirect:/";
 	}
