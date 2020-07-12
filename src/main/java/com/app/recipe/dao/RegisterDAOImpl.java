@@ -29,7 +29,10 @@ public class RegisterDAOImpl implements RegisterDAO {
 	@Override
 	public boolean update(RegisterDto dto) {
 		try {
-			dto.setPw(encoder.encode(dto.getPw()));
+			RegisterDto ori = select(dto.getId());
+			if(!ori.getPw().equals(dto.getPw())) {
+				dto.setPw(encoder.encode(dto.getPw()));
+			}
 			sql.update("regi.update", dto);
 			return true;
 		} catch(Exception e) {
@@ -69,8 +72,7 @@ public class RegisterDAOImpl implements RegisterDAO {
 				dto.setId(dto.getId() + RegistUtil.randomint());
 			}
 			dto.setId(dto.getId().trim());
-			if(dto.getAuth() != null && dto.getAuth() != "")
-				dto.setPw(encoder.encode(dto.getPw()));
+			dto.setPw(encoder.encode(dto.getPw()));
 			sql.insert("regi.insert", dto);
 			sql.insert("regi.insertauth", dto.getId());
 			RegistInit.user_rating_init(dto.getId());

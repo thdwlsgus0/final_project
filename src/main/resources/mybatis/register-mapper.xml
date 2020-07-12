@@ -11,7 +11,7 @@
 		 SYSDATE, #{profile, jdbcType=VARCHAR}, #{auth, jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertauth" parameterType="String">
-		INSERT INTO member_auth(mem_id, auth) VALUES(#{id}, 'ROLE_USER')
+		INSERT INTO member_role(mem_id, role) VALUES(#{id}, 'ROLE_USER')
 	</insert>
 	<select id="selectcnt" resultType="int">
 	    SELECT COUNT(*) FROM member
@@ -41,8 +41,8 @@
 	</delete>
 	
 	<select id="login" parameterType="String" resultMap="memrsm">
-		SELECT mem.mem_id, mem_password, enabled, auth 
-		FROM member mem LEFT OUTER JOIN member_auth auth on mem.mem_id = auth.mem_id
+		SELECT mem.mem_id, mem_password, enabled, role 
+		FROM member mem LEFT OUTER JOIN member_role role on mem.mem_id = role.mem_id
 		WHERE mem.mem_id = #{id}
 	</select>
 	
@@ -70,6 +70,6 @@
 	
 	<resultMap type="com.app.recipe.model.AuthVO" id="authrsm">
 		<result property="id" column="MEM_ID"/>
-		<result property="auth" column="auth"/>
+		<result property="auth" column="role"/>
 	</resultMap>
 </mapper>

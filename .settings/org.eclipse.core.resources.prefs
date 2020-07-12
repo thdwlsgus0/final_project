@@ -10,6 +10,7 @@ encoding//src/main/java/com/app/recipe/dao/RecipeDAO.java=UTF-8
 encoding//src/main/java/com/app/recipe/dao/RecipeDAOImpl.java=UTF-8
 encoding//src/main/java/com/app/recipe/model/RecipeDTO.java=UTF-8
 encoding//src/main/java/com/app/recipe/util/member/LoginUtil.java=UTF-8
+encoding//src/main/java/com/app/recipe/util/member/RegistUtil.java=UTF-8
 encoding//src/main/java/com/personal/naverLogin/service/NaverLoginBO.java=UTF-8
 encoding//src/main/resources=UTF-8
 encoding//src/test/resources=UTF-8

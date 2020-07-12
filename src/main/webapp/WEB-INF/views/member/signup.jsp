@@ -46,7 +46,7 @@
 				<div class="row">
 					<input type="text" class="signup_input form-control" name="Mem_email" id="Mem_email" placeholder="이메일" value="${regi_email}" />
 				</div>
-
+				<div id="email_check"></div>
 				<div class="row">
 					<input type="text" class="signup_input form-control" name="Mem_age" id="Mem_age"
 						placeholder="나이" readonly />
@@ -77,6 +77,7 @@
 				</div>
 				<input type="hidden" id="Mem_profile" value="${regi_profile}">
 				<input type="hidden" id="Mem_auth" value="${auth}">
+				<input type="hidden" id="diceroll">
 			</form>
 		</div>
 	</div>

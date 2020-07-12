@@ -57,7 +57,8 @@ var main = {
 		var header = $("meta[name='_csrf_header']").attr("content");
 		var data = {
 			id : $('#Mem_ID').val(),
-			email : $('#Mem_email').val()
+			email : $('#Mem_email').val(),
+			auth: $('#Mem_auth').val()
 		}
 		$.ajax({
 			type : 'POST',
@@ -65,25 +66,47 @@ var main = {
 			dataType : 'text',
 			contentType : 'application/json; charset=utf-8',
 			data : JSON.stringify(data),
-			async : false,
 			beforeSend: function(xhr){
 				xhr.setRequestHeader(header, token);
 			}
 		}).done(function(res) {
-			saveres = res.trim();
+			$('#diceroll').val(res.trim());
 		});
-		return saveres;
 	},
 	register : function() {
 		var _this = this;
-		if (!_this.focusOutId() || !_this.pwOverCheck() || !_this.focusOutAge()
-				|| !_this.emailValid())
-			return false;
-		
-		if (!_this.pwOverCheck())
-			return;
 		
 		$('#overray').css("display","block");
+		
+		var fakeListener = setInterval(function(){
+		    if($("#overray").css("display") === "block"){
+		        clearInterval(fakeListener);
+		        _this.register2(_this);
+		    }
+		}, 50);
+	},
+	register2 : function(_this) {
+		if (!_this.focusOutId() || !_this.pwOverCheck() || !_this.focusOutAge()
+				|| !_this.emailValid()){
+			$('#overray').css("display","none");
+			return false;
+		}
+		
+		if (!_this.pwOverCheck()){
+			$('#overray').css("display","none");
+			return;
+		}
+		
+		_this.emailCheck();
+		
+		var fakeListener = setInterval(function(){
+		    if($("#diceroll").val().length > 0){
+		        clearInterval(fakeListener);
+		        _this.register3(_this);
+		    }
+		}, 50);
+	},
+	register3 : function(_this) {
 		var birth = new Date($('#Mem_birth').val());
 		var str_birth = birth.getFullYear() + birth.getMonth()
 				+ birth.getDate() + '';
@@ -98,7 +121,7 @@ var main = {
 			gender : $('#Mem_gender').val(),
 			email : $('#Mem_email').val(),
 			phone : $('#Mem_phone').val(),
-			check : _this.emailCheck(),
+			check : $('#diceroll').val(),
 			profile : $('#Mem_profile').val(),
 			auth : $('#Mem_auth').val()
 		}
