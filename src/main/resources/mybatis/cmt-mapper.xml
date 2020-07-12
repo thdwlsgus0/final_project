@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cmt">
+	
+	<update id="deleteRecipeCmt" parameterType="java.lang.Integer">
+		update recipe_comment set cmt='' where cmt_seq=#{cmt_seq, jdbcType=NUMERIC}
+	</update>
+	
+	<select id="getChildernCnt" parameterType="cmtDTO" resultType="java.lang.Integer">
+		select count(*) as cnt from
+			(select * from
+			(select level as ranking, A.* from recipe_comment A
+			start with parent_seq = 0
+			connect by parent_seq = PRIOR cmt_seq)
+			where recipe_seq = 43) T1,
+			(select * from
+			(select level as ranking, A.* from recipe_comment A
+			start with parent_seq = 0
+			connect by parent_seq = PRIOR cmt_seq)
+			where recipe_seq=#{recipe_seq, jdbcType=NUMERIC}) T2
+			where T1.cmt_seq = T2.parent_seq and T1.cmt_seq=#{cmt_seq, jdbcType=NUMERIC} and not T2.cmt is null
+	</select>
+	
+	<update id="modifyRecipeCmt" parameterType="cmtDTO">
+		update recipe_comment set cmt=#{cmt, jdbcType=VARCHAR} where cmt_seq=#{cmt_seq, jdbcType=NUMERIC}
+	</update>
+	
+	<insert id="writeRecipeCmt" parameterType="cmtDTO">
+		insert into recipe_comment values(seq_recipe_comment.nextval, #{recipe_seq, jdbcType=NUMERIC}, 
+		<choose>
+			<!-- 게시글에 대해 댓글을 작성할 경우(parent_seq는 0으로 초기화) -->
+			<when test="parent_seq == 0">
+				0, #{mem_id, jdbcType=VARCHAR}, '', #{cmt, jdbcType=VARCHAR}, 0, sysdate)
+			</when>
+			<!-- 대댓글을 작성할 경우(대댓글의 parent_seq는 부모댓글의 cmt_seq로 설정) -->
+			<otherwise>
+				#{parent_seq, jdbcType=NUMERIC}, #{mem_id, jdbcType=VARCHAR}, #{parent_id, jdbcType=VARCHAR}, #{cmt, jdbcType=VARCHAR}, #{lvl, jdbcType=NUMERIC}+1, sysdate)
+			</otherwise>
+		</choose>
+	</insert>
+	
+	<select id="getTotalRecipeCmt" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select COUNT(*) as cnt from 
+		<include refid="search" />
+		and not cmt is null
+	</select>
+	
+	
+	<select id="getRecipeCmtList" parameterType="java.lang.Integer" resultType="cmtDTO">
+		select * from
+		<include refid="search" />
+	</select>
+	
+	<sql id="search">
+			(select * from
+			(select A.cmt_seq, A.recipe_seq, A.parent_seq, A.mem_id, A.parent_id, A.cmt, A.lvl, B.mem_profile,  TO_CHAR(A.regdate, 'YYYY-MM-DD HH24:MI:SS') as regdate
+			from recipe_comment A, member B
+			where A.mem_id = B.mem_id)
+			start with parent_seq = 0
+			connect by parent_seq = PRIOR cmt_seq)
+		where recipe_seq=#{recipe_seq, jdbcType=NUMERIC}
+	</sql>
+	
+</mapper>
