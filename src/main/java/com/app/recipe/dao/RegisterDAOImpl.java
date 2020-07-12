@@ -5,14 +5,13 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.app.recipe.model.MemberVO;
 import com.app.recipe.model.RegisterDto;
-import com.app.recipe.util.member.LoginUtil;
 import com.app.recipe.util.member.RegistInit;
-import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+import com.app.recipe.util.member.RegistUtil;
 
 @Repository
 public class RegisterDAOImpl implements RegisterDAO {
@@ -20,7 +19,7 @@ public class RegisterDAOImpl implements RegisterDAO {
 	private static final Logger logger = LoggerFactory.getLogger(RegisterDAOImpl.class);
 
 	@Inject SqlSession sql;
-	@Inject PasswordEncoder encoder;
+	@Inject BCryptPasswordEncoder encoder;
 	
 	@Override
 	public MemberVO securitylogin(String id) {
@@ -69,10 +68,11 @@ public class RegisterDAOImpl implements RegisterDAO {
 			return false;
 		}
 		if(dto.getAuth() != null && dto.getAuth().length() > 0) {
-			dto.setId(dto.getId() + LoginUtil.randomint());
+			dto.setId(dto.getId() + RegistUtil.randomint());
 		}
 		dto.setId(dto.getId().trim());
-		dto.setPw(encoder.encode(dto.getPw()));
+		if(dto.getAuth() != null && dto.getAuth() != "")
+			dto.setPw(encoder.encode(dto.getPw()));
 		sql.insert("regi.insert", dto);
 		sql.insert("regi.insertauth", dto.getId());
 		RegistInit.user_rating_init(dto.getId());

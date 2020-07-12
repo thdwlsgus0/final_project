@@ -49,10 +49,38 @@ function google_login(flag){
 				var profile = gauth.currentUser.get().getBasicProfile();
 				var email = profile.getEmail();
 				var name = profile.getName();
+				var img = profile.getImageUrl();
 				var auth = 'google';
-				$('#mem_id').attr('type', 'hidden');
-				$('#mem_id').val('auth!'+auth+'!'+email+'!'+name);
-				$('#logiform').submit();
+				
+				var token = $("meta[name='_csrf']").attr("content");
+				var header = $("meta[name='_csrf_header']").attr("content");
+				var data = {
+					id: name,
+					email: email,
+					profile: img
+				};
+				$.ajax({
+					type: 'POST',
+					url: '/login/google',
+					dataType: 'json',
+					contentType: 'application/json; charset=utf-8',
+					data: JSON.stringify(data),
+					async: false,
+					beforeSend: function(xhr){
+						xhr.setRequestHeader(header, token);
+					}
+				}).done(function(res){
+					url = res['url'];
+					console.log('url:'+url);
+				});
+				
+				if(url == '/member/signup'){
+					document.location.replace(url);
+				}else{
+					$('#mem_id').attr('type', 'hidden');
+					$('#mem_id').val('auth!'+auth+'!'+email+'!'+name);
+					$('#logiform').submit();
+				}
 			}
 		});
 	}

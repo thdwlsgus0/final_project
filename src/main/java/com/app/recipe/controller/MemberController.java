@@ -30,14 +30,13 @@ public class MemberController {
 	}
 	
 	private ModelAndView sendcommand(RegisterDto dto) {
-		int dice = Integer.parseInt(dto.getCheck());
+		int dice = RegistUtil.randomint();
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/email/email_auth2");
 		mv.addObject("dice", dice);
 		
 		String id = dto.getId() == null ? dto.getEmail() : dto.getId();
-		RegistUtil.sendEmail(mailSender, dto.getEmail(), id, dto.getAuth(), dice);
-		
+		RegistUtil.sendEmail(mailSender, dto.getEmail(), id, dice);
 		return mv;
 	}
 	

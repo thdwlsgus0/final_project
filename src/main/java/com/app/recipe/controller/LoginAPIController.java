@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.app.recipe.model.RegisterDto;
 import com.app.recipe.service.RegisterService;
 import com.app.recipe.util.member.LoginUtil;
 
@@ -67,8 +68,19 @@ public class LoginAPIController {
     	String email = response_obj.get("email").toString();
     	String profile = response_obj.get("profile_image").toString();
     	model.addAttribute("result", apiResult);
-    	
-    	return LoginUtil.logincheck(svc, nickname, email, profile, "naver", req);
+    	return "redirect:"+LoginUtil.logincheck(svc, nickname, email, profile, "naver", req);
+    }
+    
+    @ResponseBody
+    @PostMapping("/login/google")
+    public HashMap<String, Object> googlelogin(@RequestBody RegisterDto dto, HttpServletRequest req) {
+    	String id = dto.getId();
+    	String email = dto.getEmail();
+    	String profile = dto.getProfile();
+    	HashMap<String, Object> hash = new HashMap<String, Object>();
+    	String url = LoginUtil.logincheck(svc, id, email, profile, "google", req);
+    	hash.put("url", url);
+    	return hash;
     }
     
     @RequestMapping(value="/logout", method= {RequestMethod.GET, RequestMethod.POST})

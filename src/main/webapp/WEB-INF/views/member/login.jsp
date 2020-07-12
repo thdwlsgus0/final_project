@@ -53,10 +53,10 @@
 
 			<div class="row">
 				<div class="btn btn-dark">
-					<a href="member/signup.do">회원가입</a>
+					<a href="member/signup">회원가입</a>
 				</div>
 				<div class="btn btn-danger">
-					<a href="member/search_password.do">비밀번호찾기</a>
+					<a href="member/search_password">비밀번호찾기</a>
 				</div>
 			</div>
 

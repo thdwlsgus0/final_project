@@ -79,13 +79,15 @@ var main = {
 		if (!_this.focusOutId() || !_this.pwOverCheck() || !_this.focusOutAge()
 				|| !_this.emailValid())
 			return false;
-
+		
+		if (!_this.pwOverCheck())
+			return;
+		
 		$('#overray').css("display","block");
 		var birth = new Date($('#Mem_birth').val());
 		var str_birth = birth.getFullYear() + birth.getMonth()
 				+ birth.getDate() + '';
-		if (!_this.pwOverCheck())
-			return;
+		
 		var token = $("meta[name='_csrf']").attr("content");
 		var header = $("meta[name='_csrf_header']").attr("content");
 		var data = {
@@ -115,6 +117,10 @@ var main = {
 		});
 	},
 	focusOutId : function() {
+		var auth = $('#Mem_auth').val();
+		if(auth != null && auth != "")
+			return true;
+		
 		id = $('#Mem_ID').val()
 		if (id.length < 5 || id.length > 20) {
 			$('#id_check').html('<font color="red">id는 5~20자이어야 합니다.</font>');

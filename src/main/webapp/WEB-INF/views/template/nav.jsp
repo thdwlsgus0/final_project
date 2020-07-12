@@ -57,10 +57,10 @@
 								href="../login">로그인</a></li>
 							<li class="nav-item mx-0 mx-lg-1"><a
 								class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-								href="../member/signup.do">회원가입</a></li>
+								href="../member/signup">회원가입</a></li>
 							<li class="nav-item mx-0 mx-lg-1"><a
 								class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-								href="../member/contact.do">관리자에게 문의</a></li>
+								href="../member/contact">관리자에게 문의</a></li>
 						</c:otherwise>
 					</c:choose>
 				</ul>

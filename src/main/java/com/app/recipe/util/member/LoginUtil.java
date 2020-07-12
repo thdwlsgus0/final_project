@@ -1,7 +1,5 @@
 package com.app.recipe.util.member;
 
-import java.util.Random;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -16,7 +14,7 @@ public class LoginUtil {
 			session.setAttribute("regi_name", name);
 			session.setAttribute("regi_profile", profile);
 			session.setAttribute("auth", auth_str);
-			return "/member/signup.do";
+			return "/member/signup";
 		} else {
 			RegisterDto dto = svc.select(email, auth_str);
 			if (dto.getCheck().equals("T")) {
@@ -56,11 +54,5 @@ public class LoginUtil {
 			else return "/login/email";
 		}
 		return "/access";
-	}
-	
-	public static int randomint() {
-		Random r = new Random();
-		int dice = r.nextInt(4589362)+49311; // 49311 ~ 49311 + 4589362
-		return dice;
 	}
 }
