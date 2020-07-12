@@ -79,6 +79,7 @@ public class RecipeController {
 		
 		int startNum = page_hash.get("startNum");
 		int endNum = page_hash.get("endNum");
+		int totalA = page_hash.get("totalA");
 		int totalP = page_hash.get("totalP");
 		int startPage = page_hash.get("startPage");
 		int endPage = page_hash.get("endPage");
@@ -92,6 +93,7 @@ public class RecipeController {
 		mv.addObject("pg", pg);
 		mv.addObject("keyword", keyword);
 		mv.addObject("list", list);
+		mv.addObject("totalA", totalA); // 총 페이지 수
 		mv.addObject("totalP", totalP); // 총 페이지 수
 		mv.addObject("startPage", startPage);
 		mv.addObject("endPage", endPage); // 총 게시물 수에 의한 마지막 페이지 수
@@ -146,7 +148,7 @@ public class RecipeController {
 		mv.addObject("food_cnt", food_cnt);
 		mv.addObject("food_name", food_name);
 		mv.addObject("pg", pg);
-		mv.addObject("keyword", food_name);
+		mv.addObject("optionKeyword", food_name);
 		mv.addObject("list", list);
 		mv.addObject("totalP", totalP); // 총 페이지 수
 		mv.addObject("startPage", startPage);

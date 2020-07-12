@@ -32,40 +32,43 @@
 	<div class="container">
 		<!-- 컨테이너 기본 틀 -->
 	    <div class="container_frame"> <!-- limsh>>> <div class="container_frame"> -->
-	    		<!-- 서브 탭 영역 -->
-	        	<div class="sub_tabs"> 
-	        		<ul>
-	        			<li><a href="chef.do?pg=1">🔪레시피</a></li> <!-- leejiwon>>> href="chef.do?mem_id=${mem_id }" -->
-	        			<li><a href="#">💬댓글</a></li>
-	        		</ul>
-		        </div><!-- sub_tabs -->
-				
-				<!-- 쉐프의 레시피 검색 영역 -->		        
-		        <form action="chef.do" method="get"> <!-- leejiwon>>> action="/recipe/cook/chef.do" -->
-		        	<input type="hidden" name="mem_id" value="${mem_id }">
-		            <div class="sub_search">
-						<input type="text" name="keyword" placeholder="레시피 또는 재료명을 입력하세요.."> <!-- limsh>>> name="recipe_sub_search" -->
-																					    
-						<button type="submit">
-							<img src="img/pngwing.png">
-						</button>
-		            </div><!-- sub_search -->
-	            </form>
-	            
-	            <!-- 쉐프의 레시피 게시물 표시 -->
-	            <div class="content_list">
-	            	<ul>
-	            		<c:forEach var="recipeDTO" items="${list }">
-	            		<li><a href="#">
-	            				<img src="${recipeDTO.img_url }">
-	            				<div class="recipe_subject">
-	            					<h3>${recipeDTO.recipe_nm_ko }</h3>
-	            					<p>by ${recipeDTO.mem_id }</p>
-	            				</div>
-	            		</a></li>
-	            		</c:forEach>
-	            	</ul><!-- .content_list ul -->
-	            </div><!-- content_list -->
+    		<!-- 서브 탭 영역 -->
+        	<div class="sub_tabs"> 
+        		<ul>
+        			<li><a href="chef.do?pg=1">🍖레시피</a></li> <!-- leejiwon>>> href="chef.do?mem_id=${mem_id }" -->
+        			<li><a href="#">💬댓글</a></li>
+        		</ul>
+	        </div><!-- sub_tabs -->
+			
+			<!-- 쉐프의 레시피 검색 영역 -->		        
+	        <form action="chef.do" method="get"> <!-- leejiwon>>> action="/recipe/cook/chef.do" -->
+	        	<input type="hidden" name="mem_id" value="${mem_id }">
+	            <div class="sub_search">
+					<input type="text" name="keyword" value="${keyword}" placeholder="레시피 또는 재료명을 입력하세요.."> <!-- limsh>>> name="recipe_sub_search" -->
+																				    
+					<button type="submit">
+						<img src="../img/pngwing.png">
+					</button>
+	            </div><!-- sub_search -->
+            </form>
+            
+            <!-- 쉐프의 레시피 게시물 표시 -->
+            <div class="content_list">
+            	<div>
+					${mem_id} 님의 ${keyword } 레시피가 총 ${totalA}개 있습니다.
+				</div>
+            	<ul>
+            		<c:forEach var="recipeDTO" items="${list }">
+            		<li><a href="/recipe/recipe/showRecipeCmtList.do?seq=${recipeDTO.seq }">
+            				<img src="${recipeDTO.img_url }">
+            				<div class="recipe_subject">
+            					<h3>${recipeDTO.recipe_nm_ko }</h3>
+            					<p>by ${recipeDTO.mem_id }</p>
+            				</div>
+            		</a></li>
+            		</c:forEach>
+            	</ul><!-- .content_list ul -->
+            </div><!-- content_list -->
 	            
 	        <!-- 게시물 페이징 영역 -->
 	        <!-- 1. 이지원 수정 : -->
@@ -99,7 +102,7 @@
 	        		</c:if>
 	        	</ul>
 	        </div><!-- paging -->
-	    </div><!-- container -->
-	</div><!-- container_wrap -->
+	    </div><!-- container_frame -->
+	</div><!-- container -->
   <%@ include file="../template/footer.jsp" %>
 </body>

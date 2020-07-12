@@ -125,12 +125,15 @@
 				<div class="content_list">
 					<ul>
 						<c:forEach var="recipeDTO" items="${list }">
-							<li><a href="#"> <img src="${recipeDTO.img_url }">
+							<li>
+								<a href="/recipe/recipe/showRecipeCmtList.do?seq=${recipeDTO.seq }">
+									<img src="${recipeDTO.img_url }">
 									<div class="recipe_subject">
 										<h3>${recipeDTO.recipe_nm_ko }</h3>
 										<p>by ${recipeDTO.mem_id }</p>
 									</div>
-							</a></li>
+								</a>
+							</li>
 						</c:forEach>
 					</ul>
 					<!-- .content_list ul -->

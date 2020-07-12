@@ -21,6 +21,7 @@
 		</repository>
 	</repositories>
 	<dependencies>
+		
 
 		<!-- 임성현 추가 카카오톡 로그인에 필요한것 -->
 		<dependency>
