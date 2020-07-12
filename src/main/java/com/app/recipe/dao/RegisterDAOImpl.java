@@ -57,26 +57,26 @@ public class RegisterDAOImpl implements RegisterDAO {
 		return sql.selectOne("regi.selectoriauth", new RegisterDto(email, auth, pw));
 	}
    
-    @Override
+    	@Override
 	public int chef_select() {
 	   return sql.selectOne("regi.selectcnt");
 	}
+
 	@Override
 	public boolean insert(RegisterDto dto) {
-		if(dto.getCheck().length() > 100) {
-			logger.warn("register [{}] dice value over 100: [{}]", dto.getEmail(), dto.getCheck());
+		try {
+			if(dto.getAuth() != null && dto.getAuth().length() > 0) {
+				dto.setId(dto.getId() + RegistUtil.randomint());
+			}
+			dto.setId(dto.getId().trim());
+			if(dto.getAuth() != null && dto.getAuth() != "")
+				dto.setPw(encoder.encode(dto.getPw()));
+			sql.insert("regi.insert", dto);
+			sql.insert("regi.insertauth", dto.getId());
+			RegistInit.user_rating_init(dto.getId());
+		} catch(Exception e){
 			return false;
 		}
-		if(dto.getAuth() != null && dto.getAuth().length() > 0) {
-			dto.setId(dto.getId() + RegistUtil.randomint());
-		}
-		dto.setId(dto.getId().trim());
-		if(dto.getAuth() != null && dto.getAuth() != "")
-			dto.setPw(encoder.encode(dto.getPw()));
-		sql.insert("regi.insert", dto);
-		sql.insert("regi.insertauth", dto.getId());
-		RegistInit.user_rating_init(dto.getId());
-		
 		return true;
 	}
 }
