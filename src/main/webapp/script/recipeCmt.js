@@ -6,7 +6,7 @@ function delete_cmt(cmt_seq) {
 	
 	$.ajax({
 		type: "POST",
-		url : "/recipe/recipe/deleteCmt.do",
+		url : "/recipe/deleteCmt.do",
 		data: {
 			seq: $("#get_seq").val(),
 			cmt_seq: cmt_seq
@@ -48,7 +48,7 @@ function modify_cmt(cmt_seq, cmt)  {
 	var mem_id = $("#get_mem_id").val();	// 로그인 후 세션으로부터 받아야 한다!
 	$.ajax({
 		type: "POST",
-		url : "/recipe/recipe/modifyCmt.do",
+		url : "/recipe/modifyCmt.do",
 		data: {
 			seq: $("#get_seq").val(),
 			cmt_seq: cmt_seq,
@@ -82,7 +82,7 @@ function write_cmtToCmt(cmt_seq, parent_id, lvl) {
 	var mem_id = $("#get_mem_id").val();	// 로그인 후 세션으로부터 받아야 한다!
 	$.ajax({
 		type: "POST",
-		url : "/recipe/recipe/writeCmt.do",
+		url : "/recipe/writeCmt.do",
 		data: {
         	seq: $("#get_seq").val(),
         	parent_seq: cmt_seq, // 댓글 부모 번호(원본 글인 경우는 0, 대댓글인 경우 부모글의 seq)
@@ -124,7 +124,7 @@ function writeCmtToRecipe(seq) {
 	cmtToRecipe = $(".write_cmtToRecipe > textarea[name='write_cmt']").val();
 	$.ajax({
         type: "POST",
-        url : "/recipe/recipe/writeCmt.do",
+        url : "/recipe/writeCmt.do",
         data: {
         	seq: seq,
         	mem_id: mem_id,	// 로그인 후 세션으로 받아야 한다!
@@ -147,7 +147,7 @@ function writeCmtToRecipe(seq) {
 function showRecipeCmtList(){
 	$.ajax({
 		type: 'get',
-		url: '/recipe/recipe/getRecipeCmtList.do',
+		url: '/recipe/getRecipeCmtList.do',
 		dataType: 'text',							// 해당 url로 보내는 데이터의 타입
 		contentType: 'text/text; charset=utf-8',	// 해당 url로부터 받는 데이터 타입
 		data: {

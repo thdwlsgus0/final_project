@@ -46,15 +46,15 @@
 								href="profile.do">'${sessionId}'</a></li>
 							<li class="nav-item mx-0 mx-lg-1"><a
 								class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-								href="../logout.do">로그아웃</a></li>
+								href="../logout">로그아웃</a></li>
 						</c:when>
 						<c:otherwise>
 							<li class="nav-item mx-0 mx-lg-1"><a
 								class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-								href="../loginForm.do">로그인</a></li>
+								href="../login">로그인</a></li>
 							<li class="nav-item mx-0 mx-lg-1"><a
 								class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-								href="../member/signup.do">회원가입</a></li>
+								href="../member/signup">회원가입</a></li>
 						</c:otherwise>
 					</c:choose>
 				</ul>
@@ -68,7 +68,7 @@
 		<div class="container menu">
 			<ul class="nav_list">
 			<!-- 이지원 추가 : header.css의 .nav_list li{...} 내 width: 370px로 변경, text-align: center; 추가, margin-left 제거  -->
-				<li class=""><a href="../member/index.do" class="active li_font">홈</a></li>
+				<li class=""><a href="/" class="active li_font">홈</a></li>
 				<li class=""><a href="../recipe/method.do" class="li_font">레시피</a></li>
 				<li class=""><a href="../cook/chefList.do" class="li_font">쉐프</a></li>
 				<!-- <li class=""><a href="../cook/chefList.do?mem_id=${mem_id }" class="li_font">쉐프</a></li> -->

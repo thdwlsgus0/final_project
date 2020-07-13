@@ -27,7 +27,7 @@ public class MenuController {
 	@Inject
 	private RecipeService rsc;
     
-	@RequestMapping(value ="/member/index.do", method=RequestMethod.GET)
+	@RequestMapping(value ="/", method=RequestMethod.GET)
 	public ModelAndView index_page() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/member/index");

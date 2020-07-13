@@ -19,15 +19,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
 	rel="stylesheet">
 <!-- 이지원 추가 : 댓글 기능 -->
-<script type="text/javascript" src="../script..Cmt.js"></script>
+<script type="text/javascript" src="../script/recipeCmt.js"></script>
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../css/style.css" rel="stylesheet" />
 <link href="../css/jinhyun.css" rel="stylesheet" />
 <link href="../css/index.css" rel="stylesheet" />
 <link href="../css/header.css" rel="stylesheet" />
 <link href="../css/footer.css" rel="stylesheet" />
-<link href="../css..Detail.css" rel="stylesheet" />
-<link href="../css..Cmt.css" rel="stylesheet" />
+<link href="../css/recipeDetail.css" rel="stylesheet" />
+<link href="../css/recipeCmt.css" rel="stylesheet" />
 
 <!-- 동영상 불러오기 -->
 <script>
