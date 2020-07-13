@@ -42,7 +42,12 @@
 				</ul>
 			</div>
 			<!-- sub_tabs -->
+
+			<!-- 쉐프의 레시피 검색 영역 -->
+
 			<div class="sub_search"></div>
+
+
 			<!-- 쉐프의 레시피 게시물 표시 -->
 			<div class="content_list">
 				<ul>

@@ -6,9 +6,13 @@
 	<typeAliases>
 		<typeAlias type="com.app.recipe.model.RegisterDto" alias="regiDto" />
 		<typeAlias type="com.app.recipe.model.RecipeDTO" alias="recipeDTO"/>
+		<typeAlias type="com.app.recipe.model.RecipeCmtDTO" alias="cmtDTO"/>
+		<typeAlias type="com.app.recipe.model.RecipeVO" alias="recipeVO"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="/mybatis/register-mapper.xml" />
 		<mapper resource="/mybatis/recipe-mapper.xml" />
+		<mapper resource="/mybatis/cmt-mapper.xml" />
+		<mapper resource="/mybatis/chefList-mapper.xml" />
 	</mappers>
 </configuration>

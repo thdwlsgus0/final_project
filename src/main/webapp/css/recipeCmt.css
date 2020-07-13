@@ -1,0 +1,135 @@
+@charset "UTF-8";
+/* 이지원 추가 : 댓글 관련 */
+.content_cmt {
+	width: 100%;
+    padding: 40px;
+}
+
+.content_cmt .cmt_head {
+	font-size: 25px;
+}
+
+.content_cmt .set_totalC {
+	color: #74b243;
+}
+
+.content_cmt > div {
+	width: 100%;
+	height: 70px;
+	padding-right: 0px;
+	display: inline-block;
+}
+
+.content_cmt .write_cmtToRecipe {
+    width: 100%;
+    height: 100px;
+    padding: 0px;
+    margin-bottom: 20px;
+    resize:none;
+}
+
+.content_cmt .write_cmtToRecipe textarea[name='write_cmt'] {
+	height: 100px;
+    width: 90%;
+    padding: 10px;
+    resize:none;
+	font-size: 25px;
+    font-family: none;
+	border: 1px solid #aaaaaa;
+}
+
+.content_cmt .write_cmtToRecipe .write_btn button {
+	width:10%;
+}
+
+.content_cmt .cmt_body h4.cmt_text {
+	color: #999;
+    font-size: 14px;
+    margin-top: 10px;
+}
+.content_cmt .cmt_body .cmt_text > b {
+	font-size: 20px;
+    margin-right: 10px;
+    color: #999;
+    font-family: "Montserrat";
+}
+
+.content_cmt .cmt_body .cmt_text img.mem_profile {
+	width: 40px;
+    border-radius: 70%;
+    border: 1px solid #c0c0c0;
+}
+.content_cmt .cmt_body .cmt_text b.info_id {
+	font-size: 22px;
+    margin-right: 10px;
+    color: #de4830;
+}
+.content_cmt .cmt_body .cmt_text b.info_reg {
+	font-size: 17px;
+    margin-right: 10px;
+    color: #999;
+}
+.content_cmt .cmt_body .cmt_text span {
+	color: #ddd;
+}
+
+/*.content_cmt .cmt_body b.info_parent_id {*/
+.content_cmt  b.info_parent_id {
+	font-size: 20px;
+    margin-right: 10px;
+    color: #999;
+    font-family: "Montserrat";
+}
+/*.content_cmt .cmt_body b.output_cmt {*/
+.content_cmt b.output_cmt {
+	color: black;
+    font-size: 20px;
+    font-family: none;
+    display: inline-block;
+}
+
+.reply_cmtToCmt > textarea,
+.update_myCmt > textarea {
+    width: 90%;
+    height: 100px;
+    padding: 10px;
+    resize: none;
+    font-size: 25px;
+    font-family: none;
+    border: 1px solid #aaaaaa;
+}
+.reply_cmtToCmt > textarea[name="input_cmtToCmt"] {
+	width: 90%;
+    height: 100px;
+    padding: 10px;
+    resize: none;
+    font-size: 25px;
+    font-family: none;
+    border: 1px solid #aaaaaa;
+    margin-top: 16px;
+}
+
+.update_myCmt > textarea[name="modify_cmt"] {
+	width: 90%;
+    height: 100px;
+    padding: 10px;
+    resize: none;
+    font-size: 25px;
+    font-family: none;
+    border: 1px solid #aaaaaa;
+}
+
+.reply_cmtToCmt .reply_btn > button,
+.update_myCmt .update_btn > button {
+	width: 10%;
+	height: 100px;
+}
+.reply_cmtToCmt .reply_btn > button {
+	margin-top: 16px;
+}
+
+.content_cmt .info_cmt_none {
+	margin-top: 5%;
+	text-align: center;
+}
+/* 이지원 추가 끝 : 댓글 관련 */

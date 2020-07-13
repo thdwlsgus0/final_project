@@ -12,22 +12,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.app.recipe.model.RecipeDTO;
+import com.app.recipe.model.RecipeVO;
 
 @Repository
 public class RecipeDAOImpl implements RecipeDAO {
-	
+
 	@Inject
 	SqlSession sql;
 
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-
-
-	@Override
-	public int recipe_select() {
-		return sql.selectOne("recipe.selectcnt");
-	}
-
 
 	@Override
 	public int recipe_total_select() {
@@ -35,77 +29,88 @@ public class RecipeDAOImpl implements RecipeDAO {
 	}
 
 	@Override
-	public int recipe_food_result(String keyword) {
-		return sql.selectOne("recipe.select_food_cnt", keyword);
-	}
-
-	@Override
-	public int updateRecipe(RecipeDTO recipeDTO) {
-		return 0;
-	}
-
-	@Override
-	public int insertRecipe(RecipeDTO recipeDTO) {
-		return 0;
-	}
-
-	@Override
-	public int getTotalArticle() {
-		return sqlSessionTemplate.selectOne("recipe.getTotalArticle");
-	}
-	@Override
-	public int getTotalArticle(String keyword) {
-		return sqlSessionTemplate.selectOne("recipe.getTotalArticle", keyword);
-	}
-	@Override
-	public int getTotalArticle(String mem_id, String keyword) {
+	public int getTotalArticle(String mem_id, String keyword, String options) {
+		System.out.println("mem_id :" + mem_id);
+		System.out.println("mem_id.equals('dao') :" + mem_id.equals(""));
 		Map<String, Object> map = new HashMap<>();
 		map.put("mem_id", mem_id);
 		map.put("keyword", keyword);
+		map.put("options", options);
 		return sqlSessionTemplate.selectOne("recipe.getTotalArticle", map);
 	}
 
 	@Override
-	public List<RecipeDTO> getRecipeList(int startNum, int endNum) {
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("startNum", startNum);
-		map.put("endNum", endNum);
-		
-		return sqlSessionTemplate.selectList("recipe.getRecipeList", map);
-	}
-	@Override
-	public List<RecipeDTO> getRecipeList(int startNum, int endNum, String mem_id, String keyword) {
+	public List<RecipeDTO> getRecipeList(int startNum, int endNum, String mem_id, String keyword, String options) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("startNum", startNum);
 		map.put("endNum", endNum);
 		map.put("mem_id", mem_id);
 		map.put("keyword", keyword);
-		
+		map.put("options", options);
+
 		return sqlSessionTemplate.selectList("recipe.getRecipeList", map);
 	}
 
 	@Override
 	public RecipeDTO getRecipeView(int seq) {
-		return null;
+		return sqlSessionTemplate.selectOne("recipe.getone",seq);
 	}
 
 	@Override
-	public List<RecipeDTO> getKeywordList(int startNum, int endNum, String keyword) {
-		Map<String, Object> map = new HashMap<>();
-		map.put("startNum", startNum);
-		map.put("endNum", endNum);
-		map.put("keyword", keyword);
-		return sqlSessionTemplate.selectList("recipe.getKeywordList", map);
-	}
-	public List<RecipeDTO> getAllList(int startNum, int endNum) {
-		Map<String, Object> map = new HashMap<>();
-		map.put("startNum", startNum);
-		map.put("endNum", endNum);
-		return sqlSessionTemplate.selectList("recipe.getAllList", map);
-	}
-	
-	@Override
 	public int getRecipeCount(String mem_id) {
-		return sqlSessionTemplate.selectOne("recipe.getRecipeCount",mem_id);
-	}	
+		return sqlSessionTemplate.selectOne("recipe.getRecipeCount", mem_id);
+	}
+
+	@Override
+	public List<RecipeVO> getChefListMap() {
+		List<RecipeVO> temp = sqlSessionTemplate.selectList("getChefListMap");
+		
+		return temp;
+	}
+
+	@Override
+	public List<RecipeVO> getRecentListMap() {
+		List<RecipeVO> foo = sqlSessionTemplate.selectList("getRecentListMap");
+		return foo;
+	}
+
+	@Override
+	public List<RecipeVO> getRecentSign() {
+		List<RecipeVO> doo = sqlSessionTemplate.selectList("getRecentSign");
+		return doo;
+	}
+
+	@Override
+	public void updatehit(int seq) {
+		sql.update("recipe.updateCount",seq);
+	}
+
+	@Override
+	public RecipeDTO getRecipe_profile(int seq) {
+		return sqlSessionTemplate.selectOne("recipe.gettwo",seq);
+	}
+
+	@Override
+	public List<RecipeVO> getRecipeDetail_1(int seq) {
+		List<RecipeVO> poo_1 = sqlSessionTemplate.selectList("getRecipeDetail_1",seq);
+		return poo_1;
+	}
+
+	@Override
+	public List<RecipeVO> getRecipeDetail_2(int seq) {
+		List<RecipeVO> poo_2 = sqlSessionTemplate.selectList("getRecipeDetail_2",seq);
+		return poo_2;
+	}
+
+	@Override
+	public List<RecipeVO> getRecipeDetail_3(int seq) {
+		List<RecipeVO> poo_3 = sqlSessionTemplate.selectList("getRecipeDetail_3",seq);
+		return poo_3;
+	}
+
+	@Override
+	public List<RecipeVO> getRecipeDetail_4(int seq) {
+		List<RecipeVO> poo_4 = sqlSessionTemplate.selectList("getRecipeDetail_4",seq);
+		return poo_4;
+	}
 }

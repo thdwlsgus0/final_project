@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="recipe">
+	
+
+	<!-- 레시피가 많은 순서대로  1.랭킹 순서,2멤버 이름,3레시피수,4방문자수,5추천수,6프로필 사진 받아오기 -->
+	<select id="getChefListMap" resultType="recipeVO">
+		select rank() over (order by count(recipe_id) desc) as ranking, mem_profile, mem_id, count(recipe_id) as total_recipe, sum(hit) as total_hit, sum(good) as total_good from
+		(select A.mem_id, A.mem_profile, B.seq, B.recipe_id, B.recipe_nm_ko, B.hit, B.good from
+		(select * from member) A left outer join (select * from recipe_info) B on A.mem_id = B.mem_id)
+		group by mem_id, mem_profile
+	</select>
+ 
+ 	<!-- 레시피를 최근에 올린 순서대로  1.랭킹 순서,2멤버 이름,3레시피수,4방문자수,5추천수,6프로필 사진 받아오기 -->
+	<select id="getRecentListMap" resultType="recipeVO">
+		select rank() over (order by max(datetime)asc) as
+		ranking,mem_id,mem_profile,count(recipe_id) as total_recipe, sum(hit)
+		as total_hit, sum(good) as total_good from
+		(select A.mem_id, A.mem_profile, B.seq, B.recipe_id, B.recipe_nm_ko, B.hit,
+		B.good,B.datetime from
+		(select * from member) A left outer join (select * from recipe_info) B
+		on A.mem_id = B.mem_id)
+		group by mem_id, mem_profile
+	</select>
+	<!-- 회원가입을 최근에 한 순서대로 1.랭킹순서,2멤버 이름,3레시피수,4방문자수,5추천수,6프로필 사진 받아오기 -->
+	<select id="getRecentSign" resultType="recipeVO">
+		select A.mem_id, A.mem_profile,
+		count(B.recipe_id) as total_recipe, sum(B.hit) as total_hit, sum(B.good) as
+		total_good,max(A.mem_day)
+		from (select * from member) A left outer join (select * from recipe_info)
+		B on A.mem_id = B.mem_id
+		group by A.mem_id, A.mem_profile
+		order by rank() over (order by max(A.mem_day) desc)
+	</select>
+ </mapper>
