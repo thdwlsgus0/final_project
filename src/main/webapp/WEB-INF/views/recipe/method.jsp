@@ -41,72 +41,72 @@
 						<li class="display_block"><img src="../img/beef.png"
 							class="beef_size">
 							<p class="text-center">
-								<a class="text-center" href="../method.do?food=쇠고기">쇠고기</a>
+								<a class="text-center" href="../recipe/method.do?food=쇠고기">쇠고기</a>
 							</p></li>
 						<li class="display_block"><img src="../img/radish.png"
 							class="radish_size">
 							<p class="text-center">
-								<a class="text-center" href="../method.do?food=무">무</a>
+								<a class="text-center" href="../recipe/method.do?food=무">무</a>
 							</p></li>
 						<li class="display_block"><img src="../img/tofu.png"
 							class="tofu_size">
 							<p class="text-center">
-								<a class="text-center" href="../method.do?food=두부">두부</a>
+								<a class="text-center" href="../recipe/method.do?food=두부">두부</a>
 							</p></li>
 						<li class="display_block"><img src="../img/rice.png"
 							class="rice_size">
 							<p class="text-center">
-								<a class="text-center" href="../method.do?food=밥">밥</a>
+								<a class="text-center" href="../recipe/method.do?food=밥">밥</a>
 							</p></li>
 						<li class="display_block"><img src="../img/squid.png"
 							class="squid_size">
 							<p class="text-center">
-								<a class="text-center" href="../method.do?food=오징어">오징어</a>
+								<a class="text-center" href="../recipe/method.do?food=오징어">오징어</a>
 							</p></li>
 						<li class="display_block"><img src="../img/pork.png"
 							class="pork_size">
 							<p class="text-center">
-								<a class="text-center" href="../method.do?food=돼지고기">돼지고기</a>
+								<a class="text-center" href="../recipe/method.do?food=돼지고기">돼지고기</a>
 							</p></li>
 						<li class="display_block"><img src="../img/mushroom.png"
 							class="mushroom_size">
 							<p class="text-center">
-								<a class="text-center" href="../method.do?food=버섯">버섯</a>
+								<a class="text-center" href="../recipe/method.do?food=버섯">버섯</a>
 							</p></li>
 						<li class="display_none"><img src="../img/flour.png"
 							class="beef_size">
 							<p class="text-center">
-								<a class="text-center" href="../method.do?food=밀가루">밀가루</a>
+								<a class="text-center" href="../recipe/method.do?food=밀가루">밀가루</a>
 							</p></li>
 						<li class="display_none"><img src="../img/콩나물.png"
 							class="radish_size">
 							<p class="text-center">
-								<a class="text-center" href="../method.do?food=콩나물">콩나물</a>
+								<a class="text-center" href="../recipe/method.do?food=콩나물">콩나물</a>
 							</p></li>
 						<li class="display_none"><img src="../img/onion.png"
 							class="tofu_size">
 							<p class="text-center">
-								<a class="text-center" href="../method.do?food=양파">양파</a>
+								<a class="text-center" href="../recipe/method.do?food=양파">양파</a>
 							</p></li>
 						<li class="display_none"><img src="../img/cucumber.png"
 							class="rice_size">
 							<p class="text-center">
-								<a class="text-center" href="../method.do?food=오이">오이</a>
+								<a class="text-center" href="../recipe/method.do?food=오이">오이</a>
 							</p></li>
 						<li class="display_none"><img src="../img/shrimp.png"
 							class="squid_size">
 							<p class="text-center">
-								<a class="text-center" href="../method.do?food=새우">새우</a>
+								<a class="text-center" href="../recipe/method.do?food=새우">새우</a>
 							</p></li>
 						<li class="display_none"><img src="../img/egg.png"
 							class="pork_size">
 							<p class="text-center">
-								<a class="text-center" href="../method.do?food=계란">계란</a>
+								<a class="text-center" href="../recipe/method.do?food=계란">계란</a>
 							</p></li>
 						<li class="display_none"><img src="../img/potato.png"
 							class="mushroom_size">
 							<p class="text-center">
-								<a class="text-center" href="../method.do?food=김치">김치</a>
+								<a class="text-center" href="../recipe/method.do?food=김치">김치</a>
 							</p></li>
 					</ul>
 				</div>
@@ -125,12 +125,16 @@
 				<div class="content_list">
 					<ul>
 						<c:forEach var="recipeDTO" items="${list }">
-							<li><a href="#"> <img src="${recipeDTO.img_url }">
+							<li>
+								<a href="../cook/recipeDetail.do?seq=${recipeDTO.seq }">
+								<!-- <a href="../detail/${recipeDTO.seq }.do"> -->
+									<img src="${recipeDTO.img_url }">
 									<div class="recipe_subject">
 										<h3>${recipeDTO.recipe_nm_ko }</h3>
 										<p>by ${recipeDTO.mem_id }</p>
 									</div>
-							</a></li>
+								</a>
+							</li>
 						</c:forEach>
 					</ul>
 					<!-- .content_list ul -->

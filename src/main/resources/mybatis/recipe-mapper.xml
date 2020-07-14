@@ -1,74 +1,125 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="recipe">
-	<select id="selectcnt" resultType="int">
-		SELECT COUNT(*) FROM recipe_info
-	</select>
+
+	<!-- 송진현 추가 : 총 레시피 조회수(hit) 조회 -->
 	<select id="select_total_cnt" resultType="int">
-	    select sum(hit) from recipe_info
+		select sum(hit) from recipe_info
 	</select>
-	<select id="select_food_cnt" parameterType="String" resultType="int">
-	    select COUNT(*) from recipe_info where recipe_nm_ko like '%'||#{keyword}||'%'
-	</select>
-	<select id="getKeywordList" parameterType="java.util.Map" resultType="recipeDTO">
-	    <![CDATA[
-		select * from 
-		    (select ROWNUM as rn, tt.* from
-		        (select * from recipe_info
-		        where recipe_nm_ko like '%'||#{keyword, jdbcType=VARCHAR}||'%' order by seq desc) tt)
-		where rn >= #{startNum, jdbcType=NUMERIC} and rn <= #{endNum, jdbcType=NUMERIC} 
-		]]>
-	</select>
-	<select id="getAllList" parameterType="java.util.Map" resultType="recipeDTO">
-	    <![CDATA[
-		select * from 
-		    (select ROWNUM as rn, tt.* from
-		        (select * from recipe_info order by seq desc) tt)
-		where rn >= #{startNum, jdbcType=NUMERIC} and rn <= #{endNum, jdbcType=NUMERIC} 
-		]]>
-	</select>
-	<select id="getTotalArticle" parameterType="java.lang.String" resultType="java.lang.Integer">
-		select COUNT(*) as cnt from recipe_info where recipe_nm_ko like '%'||#{keyword, jdbcType=VARCHAR}||'%'
-	</select>
-	<!-- leejiwon >>>
-	chef.jsp : 작성자(mem_id)가 등록한 레시피 내에서 특정 키워드(keyword)가 포함된 데이터 개수 조회
-	<select id="getTotalArticle" parameterType="java.util.Map" resultType="java.lang.Integer">
-		select COUNT(*) as cnt from 
-		<include refid="subSearch" />
-	</select> 
-	 -->
 	
-	<select id="getRecipeList" parameterType="java.util.Map" resultType="recipeDTO">
-		<![CDATA[
-		select * from 
-		    (select ROWNUM as rn, tt.* from
-		        (select * from recipe_info
-		        where mem_id=#{mem_id, jdbcType=VARCHAR} and recipe_nm_ko like '%'||#{keyword, jdbcType=VARCHAR}||'%' order by seq desc) tt)
-		where rn >= #{startNum, jdbcType=NUMERIC} and rn <= #{endNum, jdbcType=NUMERIC} 
-		]]>
+	<!-- 임성현 추가 레시피 디테일 단 -->
+	<select id="getone" parameterType="int" resultType="recipeDTO">
+		select * from recipe_info where seq=#{seq}
 	</select>
-	<!-- leejiwon >>>
-	chef.jsp : 작성자(mem_id)가 등록한 레시피 내에서 특정 키워드(keyword)가 포함된 데이터 조회
-	<select id="getRecipeList" parameterType="java.util.Map" resultType="recipeDTO">
+	
+	<select id="gettwo" parameterType="int" resultType="recipeDTO">
+		select mem_profile from
+		(select A.mem_id, A.mem_profile, B.seq from
+		(select * from member) A left outer join (select * from recipe_info) B
+		on A.mem_id = B.mem_id) where seq=#{seq}
+	</select>
+
+	<!-- 주재료일 경우 -->
+	<select id="getRecipeDetail_1" resultType="recipeVO">
+		select * from member T1 right outer join
+		(select A.*, B.irdnt_nm, B.irdnt_cpcty, B.irdnt_ty_code, irdnt_ty_nm
+		from recipe_info A, recipe_ingredient_info B
+		where A.recipe_id = B.recipe_id order by A.seq) T2
+		on T1.mem_id=T2.mem_id where seq=#{seq} and irdnt_ty_nm = '주재료'
+	</select>
+	
+		<!-- 부재료일 경우 -->
+	<select id="getRecipeDetail_2" resultType="recipeVO">
+		select * from member T1 right outer join
+		(select A.*, B.irdnt_nm, B.irdnt_cpcty, B.irdnt_ty_code, irdnt_ty_nm
+		from recipe_info A, recipe_ingredient_info B
+		where A.recipe_id = B.recipe_id order by A.seq) T2
+		on T1.mem_id=T2.mem_id where seq=#{seq} and irdnt_ty_nm = '부재료'
+	</select>
+	
+		<!-- 양념일 경우 -->
+	<select id="getRecipeDetail_3" resultType="recipeVO">
+		select * from member T1 right outer join
+		(select A.*, B.irdnt_nm, B.irdnt_cpcty, B.irdnt_ty_code, irdnt_ty_nm
+		from recipe_info A, recipe_ingredient_info B
+		where A.recipe_id = B.recipe_id order by A.seq) T2
+		on T1.mem_id=T2.mem_id where seq=#{seq} and irdnt_ty_nm = '양념'
+	</select>
+	<!--요리 만들기 -->
+	<select id="getRecipeDetail_4" resultType="recipeVO">
+		select * from member T1 right outer join
+		(select A.*, B.recipe_sequence, B.recipe_comment,
+		B.recipe_image_url,B.recipe_tip
+		from recipe_info A, recipe_process_info B
+		where A.recipe_id = B.recipe_id order by A.seq) T2
+		on T1.mem_id=T2.mem_id where seq=#{seq}
+	</select>
+	
+	<update id="updateCount" parameterType="recipeDTO">
+		UPDATE recipe_info SET hit = NVL(hit,0) + 1 where seq = #{seq}
+	</update>
+
+	<!-- chef.jsp : 작성자(mem_id)가 등록한 레시피 내에서 특정 키워드(keyword)가 포함된 데이터 개수 조회 -->
+	<select id="getTotalArticle" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		select COUNT(*) as cnt from
+		<include refid="search" />
+	</select>
+	<!-- chef.jsp : 작성자(mem_id)가 등록한 레시피 내에서 특정 키워드(keyword)가 포함된 데이터 조회 -->
+	<select id="getRecipeList" parameterType="java.util.Map"
+		resultType="recipeDTO">
 		select * from
-		<include refid="subSearch" />
+		<include refid="search" />
 		<![CDATA[
 		where rn >= #{startNum, jdbcType=NUMERIC} and rn <= #{endNum, jdbcType=NUMERIC}
 		]]>
 	</select>
-	 -->
-	 
-	 <sql id="subSearch">
+
+	<!-- 9. 이지원 수정 -->
+	<sql id="search">
 		(select ROWNUM as rn, T1.* from
 		(select A.*, min(B.irdnt_nm)
-		from (select * from recipe_info where mem_id=#{mem_id, jdbcType=VARCHAR}) A
-		      left outer join (select * from recipe_ingredient_info order by recipe_id, irdnt_sn) B
-		      on A.recipe_id = B.recipe_id
-		where recipe_nm_ko like '%'||#{keyword, jdbcType=VARCHAR}||'%' or irdnt_nm like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		from
+		(select * from recipe_info
+		<include refid="mainOrSUb_1" />
+		) A
+		left outer join (select * from recipe_ingredient_info order by recipe_id,
+		irdnt_sn) B
+		on A.recipe_id = B.recipe_id
+		<include refid="mainOrSub_2" />
 		group by A.seq, A.recipe_id, A.recipe_nm_ko, A.sumry,
-				 A.nation_code, A.nation_nm, A.ty_code, A.ty_nm,
-				 A.cooking_time, A.calorie, A.img_url, A.det_url,
-				 A.good, A.datetime, A.mem_id, A.video_id, A.hit
+		A.nation_code, A.nation_nm, A.ty_code, A.ty_nm,
+		A.cooking_time, A.calorie, A.img_url, A.det_url,
+		A.good, A.datetime, A.mem_id, A.video_id, A.hit
 		order by A.seq desc) T1)
 	</sql>
+
+	<sql id="mainOrSUb_1">
+		<if test="mem_id != null and !mem_id.equals('')">
+			where mem_id like '%'||#{mem_id, jdbcType=VARCHAR}||'%'
+		</if>
+	</sql>
+
+	<sql id="mainOrSub_2">
+		<choose>
+			<when test="options.equals('all') or options.equals('')">
+				where recipe_nm_ko like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+				or
+				irdnt_nm like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+				<include refid="mainOrSUb_3" />
+			</when>
+			<otherwise>
+				where ${options} like '%'||#{keyword,
+				jdbcType=VARCHAR}||'%'
+			</otherwise>
+		</choose>
+
+	</sql>
+
+	<sql id="mainOrSUb_3">
+		<if test="mem_id == null or mem_id.equals('')">
+			or mem_id like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		</if>
+	</sql>
+
 </mapper>

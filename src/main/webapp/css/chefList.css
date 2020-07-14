@@ -70,43 +70,56 @@
 }
 
 .content_list li {
-	border-bottom: 1px solid #e6e7e8;
 	width: 850px;
 }
 
 .content_list img {
-	padding: 10px 0px;
-	margin: 0px;
-	width: 12%;
-	height: 70%;
+	padding: 0px 0px;
+	margin: 5px 5px 5px 5px;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
 }
 
-.recipe_subject {
-	height: 0%;
-	width: 950px;
+div.ranking {
+	height: 100px;
+	width: 50px;
+	display: inline-block;
+	font-size: 55px;
+	text-align: center;
 }
 
-.recipe_subject p {
-	font-size: 75px;
-	display: inline;
+div.mem_id {
+	font-size: 250%;
+	display: inline-block;
+	height: 100px;
+	width: 300px;
+	text-align: center;
 }
 
-.recipe_subject p1 {
+div.total_recipe {
 	font-size: 40px;
-	display: inline;
-	margin: 0px 20px 0px 20px;
+	display: inline-block;
+	height: 100px;
+	width: 150px;
+	text-align: center;
 }
 
-.recipe_subject p2 {
+div.total_hit {
 	font-size: 40px;
-	width: 165px;
-	margin: 0px 20px 0px 20px;
+	display: inline-block;
+	height: 100px;
+	width: 150px;
+	text-align: center;
 }
 
-.recipe_subject p3 {
+div.total_good {
 	font-size: 40px;
-	width: 165px;
-	margin: 0px 20px 0px 20px;
+	height: 100px;
+	width: 100px;
+	display: inline-block;
+	width: 150px;
+	text-align: center;
 }
 
 .paging {
@@ -132,7 +145,6 @@
 	float: left;
 	padding: 9px 15px;
 	margin: 0 8px;
-	border-bottom: 1px solid #e6e7e8;
 	text-decoration: none;
 }
 
@@ -147,13 +159,20 @@
 /* 셰프 랭킹 넘버 */
 p.seq_size {
 	display: inline-block;
-	width: 110px;
+	width: 60px;
 	font-size: 55px;
 }
 /* 방문하기 */
-a.visit_button {
+div.visit_button {
 	font-size: 25px;
 	border: 1px solid #e6e7e8;
 	padding: 30px;
-	margin: 0px 20px 0px 20px;
+	display: contents;
+	width: 150px;
+}
+
+/*  리스트 컨테이너   */
+div.recipe_subject {
+	width: 1100px;
+	border-bottom: 1px solid #e6e7e8;
 }

@@ -1,0 +1,145 @@
+.container_frame {
+	width: 100%;
+	margin: 15px auto;
+	border: 1px solid #e6e7e8;
+	background: white;
+}
+/* 음식 이미지 사진 */
+.food_img {
+	width: 500px;
+	height: 500px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+/* 프로필 이미지 사진 */
+.profile_img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 50%;
+	position: relative;
+	top: -70px;
+	width: 150px;
+}
+/* 셰프 이름 */
+div.mem_id {
+	font-size: 50px;
+	text-align: center;
+	margin: -50px 0px 0px 0px;
+}
+/* 레시피 제목 */
+div.recipe_nm_ko {
+	font-size: 30px;
+	text-align: center;
+}
+/* 레시피 요약 정보 */
+div.sumry {
+	font-size: 30px;
+	text-align: center;
+	color: #bcb7b7;
+}
+/* 요리 시간 ,및 댓글로 이동 */
+div.cooktime_comment {
+	font-size: 30px;
+	text-align: center;
+}
+/* 유튜브 비디오 */
+div.recife_video {
+	margin: 10px 10px 0px 200px;
+}
+
+/* 이 밑으로는 재료 영역입니당~~ */
+material {
+	font-size: 30px;
+	text-align: center;
+}
+/* 재료 영역 ul이랑 li 포함한 컨테이너 */
+material_container {
+	
+}
+/* 메인 재료  */
+div.main_material {
+	font-size: 20px;
+}
+/* 주재료  */
+ul.main_material {
+	display: inline-block;
+	margin: 0px 30px 0px 30px;
+	font-size: 40px;
+}
+/* 부재료  */
+ul.sub_material {
+	display: inline-block;
+	margin: 0px 30px 0px 30px;
+	font-size: 40px;
+}
+/* 양념  */
+ul.seasoning {
+	display: inline-block;
+	margin: 0px 30px 0px 30px;
+	font-size: 40px;
+}
+/* 요리 순서 컨테이너 */
+div.cook_seq_container {
+	font-size: 85px;
+	margin: 30px 0px 20px 30px;
+}
+/* 요리 순서   */
+p.cook_seq {
+	
+	width: 100px;
+    height: 100px;
+    font-size: 75px;
+    display: inline-block;
+    margin: 0px -0px 0px 0px;
+    border: groove;
+    border-color: lime;
+    text-align: center;
+}
+/* 주재료 */
+p.main_material {
+	font-size: 50px;
+	border-bottom: 1px solid #e6e7e8;
+}
+/* 부재료 */
+p.sub_material {
+	font-size: 50px;
+	border-bottom: 1px solid #e6e7e8;
+}
+/* 양념 */
+p.seasoning {
+	font-size: 50px;
+	border-bottom: 1px solid #e6e7e8;
+}
+/* 재료 순서 */
+div.sequence {
+	font-size: 85px;
+	margin: 30px 0px 20px 0px;
+	border-bottom: 1px solid #e6e7e8;
+}
+/* 조리 설명  */
+p.cook_explain {
+	width: 300px;
+	height: 300px;
+	font-size: 30px;
+	display: inline-block;
+	margin: 0px 30px 0px 30px;
+}
+/* 음식 사진   */
+img.cook_img {
+	width: 300px;
+	height: 300px;
+	display: inline-block;
+	margin: 0px 30px 0px 30px;
+}
+/* 재료 라인 컨테이너 */
+div.material_container {
+	text-align: center;
+}
+/* 재료 라인 */
+div.material {
+	font-size: 85px;
+	margin: 30px 0px 20px 30px;
+	border-bottom: 1px solid #e6e7e8;
+}

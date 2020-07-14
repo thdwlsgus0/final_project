@@ -49,8 +49,6 @@
 					<c:forEach var="item" items="${list }">
 						<li>
 							<div class="recipe_subject">
-								<div class="ranking">${item.ranking }</div>
-								<!-- 랭킹순서 -->
 								<c:choose>
 									<c:when test="${item.mem_profile eq null}">
 										<img class="mem_profile"

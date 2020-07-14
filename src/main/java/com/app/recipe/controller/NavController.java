@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class person_info {
+public class NavController {
 	@RequestMapping(value ="/member/signup", method=RequestMethod.GET)
 	public ModelAndView signup_page() {
 		ModelAndView mv = new ModelAndView();

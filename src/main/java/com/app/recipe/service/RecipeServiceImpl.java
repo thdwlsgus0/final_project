@@ -8,15 +8,22 @@ import org.springframework.stereotype.Service;
 
 import com.app.recipe.dao.RecipeDAO;
 import com.app.recipe.model.RecipeDTO;
+import com.app.recipe.model.RecipeVO;
 
 @Service
 public class RecipeServiceImpl implements RecipeService {
+
 	@Inject
 	private RecipeDAO dao;
-	
+
 	@Override
-	public int recipe_select() {
-		return dao.recipe_select();
+	public void updatehit(int seq) {
+		dao.updatehit(seq);
+	}
+
+	@Override
+	public RecipeDTO getRecipe(int seq) {
+		return dao.getRecipeView(seq);
 	}
 
 	@Override
@@ -25,45 +32,52 @@ public class RecipeServiceImpl implements RecipeService {
 	}
 
 	@Override
-	public int recipe_food_result(String keyword) {
-		System.out.println("hi");
-		return dao.recipe_food_result(keyword);
-	}
-	
-	@Override
-	public int getTotalArticle() {
-		return dao.getTotalArticle();
-	}
-	@Override
-	public int getTotalArticle(String keyword) {
-		return dao.getTotalArticle(keyword);
-	}
-	@Override
-	public int getTotalArticle(String mem_id, String keyword) {
-		return dao.getTotalArticle(mem_id, keyword);
-	}
-	
-	@Override
-	public List<RecipeDTO> getRecipeList(int startNum, int endNum) {
-		return dao.getRecipeList(startNum, endNum);
-	}
-	@Override
-	public List<RecipeDTO> getRecipeList(int startNum, int endNum, String mem_id, String keyword) {
-		return dao.getRecipeList(startNum, endNum, mem_id, keyword);
+	public int getTotalArticle(String mem_id, String keyword, String options) {
+		return dao.getTotalArticle(mem_id, keyword, options);
 	}
 
 	@Override
-	public List<RecipeDTO> getKeywordList(int startNum, int endNum, String keyword) {
-        return dao.getKeywordList(startNum, endNum, keyword);
+	public List<RecipeDTO> getRecipeList(int startNum, int endNum, String mem_id, String keyword, String options) {
+		return dao.getRecipeList(startNum, endNum, mem_id, keyword, options);
 	}
 
 	@Override
-	public List<RecipeDTO> getAllList(int startNum, int endNum) {
-		return dao.getAllList(startNum, endNum);
+	public List<RecipeVO> getChefListMap() {
+		return dao.getChefListMap();
 	}
-	
+
 	@Override
-	public int getRecipeCount(String mem_id) {
-		return dao.getRecipeCount(mem_id);
+	public List<RecipeVO> getRecentListMap() {
+		return dao.getRecentListMap();
+	}
+
+	@Override
+	public List<RecipeVO> getRecentSign() {
+		return dao.getRecentSign();
+	}
+
+	@Override
+	public RecipeDTO getRecipe_profile(int seq) {
+		return dao.getRecipe_profile(seq);
+	}
+
+	@Override
+	public List<RecipeVO> getRecipeDetail_1(int seq) {
+		return dao.getRecipeDetail_1(seq);
+	}
+
+	@Override
+	public List<RecipeVO> getRecipeDetail_2(int seq) {
+		return dao.getRecipeDetail_2(seq);
+	}
+
+	@Override
+	public List<RecipeVO> getRecipeDetail_3(int seq) {
+		return dao.getRecipeDetail_3(seq);
+	}
+
+	@Override
+	public List<RecipeVO> getRecipeDetail_4(int seq) {
+		return dao.getRecipeDetail_4(seq);
 	}
 }

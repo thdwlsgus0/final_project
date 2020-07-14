@@ -1,13 +1,39 @@
 body{
   min-width:960px !important;
 }
-.nav_container{
-	margin-left:440px;
+
+header {
+	background-color: #1DDB16;
 }
+
+.nav_div{
+	padding: 0;
+}
+
+.nav_ul {
+	min-width: 0;
+}
+
+.nav_ul li {
+	min-width: 0;
+}
+
+.nav_container{
+	justify-content: start !important;
+	padding: 0;
+}
+.nav_container form{
+	margin-bottom: 0;
+}
+.search-box select[name='options']{
+	float: left;
+    height: 100%;
+    border: none;
+}
+
 .menu{
 	width:100%;
 	height:50px;
-	background-color:#1DDB16;
 	margin-top:30px;
 }
 ul{
@@ -16,9 +42,9 @@ ul{
 .nav_list li{
 	display:inline-block;
 	float:left;
-	width:100px;
-	margin-left:400px;
+	width:370px;
 	padding-top:15px;
+	text-align: center;
 }
 .active{
 	color:red;

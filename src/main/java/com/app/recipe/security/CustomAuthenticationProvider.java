@@ -23,9 +23,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String password = (String) authentication.getCredentials();
         
         CustomUserDetails user = (CustomUserDetails) userDeSer.loadUserByUsername(username);
+        if(user == null) throw new BadCredentialsException(username);
         
         boolean match = encoder.matches(password, user.getPassword());
-        System.out.println(">>>>>>match:"+match);
         
         if(user.isAuthlogin()) {
         	username = user.getUsername();
