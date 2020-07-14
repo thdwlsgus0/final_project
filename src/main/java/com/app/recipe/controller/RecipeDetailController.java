@@ -12,14 +12,23 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.app.recipe.model.RecipeDTO;
 import com.app.recipe.model.RecipeVO;
+import com.app.recipe.model.RegisterDto;
 import com.app.recipe.service.RecipeService;
+import com.app.recipe.service.RegisterService;
+import com.app.recipe.util.s3.AmazonS3Service;
+import com.app.recipe.util.s3.AmazonS3Service.ImgPath;
 
 @Controller
 public class RecipeDetailController {
 
 	@Inject
 	private RecipeService svc;
+	@Inject
+	private RegisterService regisvc;
+	@Inject
+	private AmazonS3Service s3svc;
 
 	@GetMapping("/cook/recipeDetail.do")
 	public String visit(Model model,
@@ -27,8 +36,17 @@ public class RecipeDetailController {
 						HttpServletResponse res) {
 		int seq = Integer.parseInt(req.getParameter("seq"));
 		
-		model.addAttribute("dto", svc.getRecipe(seq));
-		model.addAttribute("profile", svc.getRecipe_profile(seq));
+		RecipeDTO dto = svc.getRecipe(seq);
+		model.addAttribute("dto", dto);
+		
+		String id = (String) dto.getMem_id();
+		if(id != null && id.length() != 0) {
+			RegisterDto dto2 = regisvc.select(id);
+			if(dto2 != null) {
+				String profile = s3svc.getFilePath(dto2.getProfile(), ImgPath.PROFILE);
+				if(profile != null) model.addAttribute("profile", profile);
+			}
+		}
 		
 		//레시피 디테일 재료 정보 가져오기
 		List<RecipeVO> getRecipeDetail_1 = svc.getRecipeDetail_1(seq);

@@ -1,5 +1,6 @@
 package com.app.recipe.util.s3;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -23,6 +24,7 @@ import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.util.IOUtils;
 
 
 @Service
@@ -65,11 +67,14 @@ public class AmazonS3Service {
 			try {
 				String bucketpath = bucket + path.getPath();
 				input = file.getInputStream();
+				byte[] bytes = IOUtils.toByteArray(input);
 				ObjectMetadata metadata = new ObjectMetadata();
+				metadata.setContentLength(bytes.length);
+				ByteArrayInputStream stream = new ByteArrayInputStream(bytes);
 				
-				PutObjectRequest putObjectRequest = new PutObjectRequest(bucketpath, name, input, metadata);
-				putObjectRequest.setCannedAcl(CannedAccessControlList.PublicRead); // file permission
-				amazonS3.putObject(putObjectRequest); // upload file
+				PutObjectRequest putObjectRequest = new PutObjectRequest(bucketpath, name, stream, metadata);
+				putObjectRequest.setCannedAcl(CannedAccessControlList.PublicRead);
+				amazonS3.putObject(putObjectRequest);
 			} catch (Exception e) {
 				logger.warn("upload fail: [{}]", e.getStackTrace());
 				return null;

@@ -13,7 +13,7 @@
 			<b class="info_id">
 				<c:choose>
 					<c:when test="${!empty cmtDTO.mem_profile}">
-						<img class="mem_profile" alt="${cmtDTO.mem_id}_프로필" src="${cmtDTO.mem_profile}">
+						<img class="mem_profile" alt="" src="${cmtDTO.mem_profile}">
 					</c:when>
 					<c:otherwise>
 						<img class="mem_profile" alt="default" src="../img/egg.png">
@@ -25,7 +25,7 @@
 				${cmtDTO.regdate}
 			</b><span class="fix${cmtDTO.cmt_seq}">|</span>
 			<!-- 댓글 삭제 시 삭제 해야할 태그 1 -->
-			<c:if test="${cmtDTO.mem_id eq mem_id}">
+			<c:if test="${cmtDTO.mem_id eq mem_id and not empty realId}">
 				<c:if test="${!empty cmtDTO.cmt}">
 					<a id="modify_cmtBtn${cmtDTO.cmt_seq}" class="modify_myCmt" href="#">
 						수정
@@ -36,10 +36,13 @@
 					</a><span class="sepa">|</span>
 				</c:if>
 			</c:if>
-			<!-- 댓글 삭제 시 삭제 해야할 태그 1 /-->
-			<a id="write_cmtToCmt${cmtDTO.cmt_seq}" class="write_cmtToCmt" href="#">
-				답글
-			</a><span class="fix${cmtDTO.cmt_seq}">|</span>
+			<c:if test="${not empty realId}">
+				<!-- 댓글 삭제 시 삭제 해야할 태그 1 /-->
+				<a id="write_cmtToCmt${cmtDTO.cmt_seq}" class="write_cmtToCmt" href="#">
+					답글
+				</a>
+			</c:if>
+			<span class="fix${cmtDTO.cmt_seq}">|</span>
 			<input type="hidden" class="get_cmt_seq" value="${cmtDTO.cmt_seq}">
 			<input type="hidden" class="get_parent_id" value="${cmtDTO.parent_id}">
 			<br>

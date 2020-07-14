@@ -41,6 +41,7 @@
 			
 			<!-- 쉐프의 레시피 검색 영역 -->		        
 	        <form action="chef.do" method="get"> <!-- leejiwon>>> action="../cook/chef.do" -->
+		        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 	        	<input type="hidden" name="mem_id" value="${mem_id }">
 	            <div class="sub_search">
 					<input type="text" name="keyword" value="${keyword}" placeholder="레시피 또는 재료명을 입력하세요.."> <!-- limsh>>> name="recipe_sub_search" -->
@@ -60,7 +61,7 @@
             		<c:forEach var="recipeDTO" items="${list }">
             		<li>
             			<!-- <a href="..../showRecipeCmtList.do?seq=${recipeDTO.seq }"> -->
-            			<a href="../detail/${recipeDTO.seq }.do">
+            			<a href="../cook/recipeDetail.do?seq=${recipeDTO.seq }">
             				<img src="${recipeDTO.img_url }">
             				<div class="recipe_subject">
             					<h3>${recipeDTO.recipe_nm_ko }</h3>

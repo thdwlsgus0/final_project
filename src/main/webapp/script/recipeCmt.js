@@ -4,13 +4,18 @@ function delete_cmt(cmt_seq) {
 		return false;
 	}
 	
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
 	$.ajax({
 		type: "POST",
 		url : "/recipe/deleteCmt.do",
 		data: {
 			seq: $("#get_seq").val(),
 			cmt_seq: cmt_seq
-        }
+        },
+		beforeSend: function(xhr){
+			xhr.setRequestHeader(header, token);
+		}
 	}).done(function(data) {
 		if (data > 0) {
 			alert("이미 댓글이 작성되어 있어 댓글을 제거할 수 없습니다");
@@ -46,6 +51,8 @@ function modify_cmt(cmt_seq, cmt)  {
 	var modifyCmt = $("#update_cmt" + cmt_seq + " > textarea[name='modify_cmt']").val();
 	
 	var mem_id = $("#get_mem_id").val();	// 로그인 후 세션으로부터 받아야 한다!
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
 	$.ajax({
 		type: "POST",
 		url : "/recipe/modifyCmt.do",
@@ -53,7 +60,10 @@ function modify_cmt(cmt_seq, cmt)  {
 			seq: $("#get_seq").val(),
 			cmt_seq: cmt_seq,
         	cmt: modifyCmt
-        }
+        },
+		beforeSend: function(xhr){
+			xhr.setRequestHeader(header, token);
+		}
 	}).done(function() {
 		$(".info_cmt_none, #get_totalC").remove();
 		$(".update_myCmt, .reply_cmtToCmt").remove();
@@ -78,7 +88,8 @@ function write_cmtToCmt(cmt_seq, parent_id, lvl) {
 	
 	// 대댓글 입력
 	var cmtToCmt = $("#reply_cmt" + cmt_seq + "> textarea[name='input_cmtToCmt']").val();
-	
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
 	var mem_id = $("#get_mem_id").val();	// 로그인 후 세션으로부터 받아야 한다!
 	$.ajax({
 		type: "POST",
@@ -90,7 +101,10 @@ function write_cmtToCmt(cmt_seq, parent_id, lvl) {
         	parent_id: parent_id, 
         	cmt: cmtToCmt,
         	lvl: lvl
-        }
+        },
+		beforeSend: function(xhr){
+			xhr.setRequestHeader(header, token);
+		}
 	}).done(function() {
 		$(".info_cmt_none, #get_totalC").remove();	// 대댓글 달기 전, 기존 대댓글 입력 창 제거(중복 됨), 또는 새로고침을 위해 기존에 달린 댓글 입력창 제거
 		$(".reply_cmtToCmt, .update_myCmt").remove(); // 댓글 답글/수정 후에 다시 보여질 때 중복을 제거하기 위함.
@@ -122,6 +136,8 @@ function writeCmtToRecipe(seq) {
 	
 	var mem_id = $("#get_mem_id").val();	// 로그인 후 세션으로 받아야 한다!
 	cmtToRecipe = $(".write_cmtToRecipe > textarea[name='write_cmt']").val();
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
 	$.ajax({
         type: "POST",
         url : "/recipe/writeCmt.do",
@@ -129,7 +145,10 @@ function writeCmtToRecipe(seq) {
         	seq: seq,
         	mem_id: mem_id,	// 로그인 후 세션으로 받아야 한다!
         	cmt: cmtToRecipe
-        }
+        },
+        beforeSend: function(xhr){
+			xhr.setRequestHeader(header, token);
+		}
     }).done(function() {
     	$(".reply_cmtToCmt, .update_myCmt").remove(); // 댓글 답글/수정 후에 다시 보여질 때 중복을 제거하기 위함.
     	$(".info_cmt_none, #get_totalC").remove();	// 기존 댓글 표시 영역을 비움 / 새로고침을 위해 기존에 달린 댓글 일부 태그 제거
@@ -145,6 +164,8 @@ function writeCmtToRecipe(seq) {
 
 // 댓글 목록 가져오기	
 function showRecipeCmtList(){
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
 	$.ajax({
 		type: 'get',
 		url: '/recipe/getRecipeCmtList.do',
@@ -153,6 +174,9 @@ function showRecipeCmtList(){
 		data: {
 			seq: $("#get_seq").val(),
 			mem_id: $("#get_mem_id").val()
+		},
+		beforeSend: function(xhr){
+			xhr.setRequestHeader(header, token);
 		}
 	}).done(function(cmtData) {
 		//console.log('trim: '+ cmtData.trim());

@@ -38,7 +38,7 @@
 				</div>
 				<div class="row">
 					<div class="text-center">
-						<input type="text" size="200" class="login_input" name="mem_pw" id="mem_pw"
+						<input type="password" size="200" class="login_input" name="mem_pw" id="mem_pw"
 							placeholder="비밀번호를 입력하세요">
 					</div>
 				</div>

@@ -5,8 +5,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=0.25" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=0.25" />
+<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 <title>달달한 민족</title>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
@@ -89,7 +90,7 @@
 								<img class="food_img" alt="이 음식의 사진은 없습니다." src="${dto.img_url}">
 								<!-- 프로필 사진 -->
 								<img class="profile_img" alt="이 회원의 프로필 사진은 없습니다. "
-									src="${profile.mem_profile}">
+									src="${profile}">
 								<!-- 멤버 아이디 -->
 								<div class="mem_id">${dto.mem_id}</div>
 								<!-- 요리 제목 -->
@@ -171,8 +172,7 @@
 	<div id="setRecipeOnTheCmt">
 		<!-- 댓글 표시 -->
 		<input type="hidden" id="get_seq" value="${seq}">
-		<!-- <input type="hidden" id="get_mem_id" value="${mem_id}"> -->
-		<input type="hidden" id="get_mem_id" value="2g1">
+		<input type="hidden" id="get_mem_id" value="${realId}">
 		<!-- 컨테이너 영역 : 댓글 영역 -->
 		<div class="container">
 			<div class="container_frame">
@@ -183,14 +183,15 @@
 					</p>
 					<hr>
 					
-					<div class="write_cmtToRecipe">
-						<textarea name="write_cmt" placeholder="무엇이 궁금하신가요? 댓글을 남겨주세요."></textarea>
-						<span class="write_btn">
-							<button type="button" onclick="
-								writeCmtToRecipe(${seq});
-							">등록</button>
-						</span>
-					</div>
+					<c:if test="${not empty realId}">
+						<div class="write_cmtToRecipe">
+							<textarea name="write_cmt" placeholder="무엇이 궁금하신가요? 댓글을 남겨주세요."></textarea>
+							<span class="write_btn">
+								<button type="button" onclick="
+									writeCmtToRecipe(${seq});">등록</button>
+							</span>
+						</div>
+					</c:if>
 					
 					<!-- 댓글 리스트 출력 영역 -->
 					

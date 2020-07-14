@@ -5,13 +5,14 @@
 	<nav class="navbar navbar-expand-lg nav_div">
 		<!--이지원 추가 : header.css의 .nav_container{...} 내  margin-left: 440px; 제거하고 padding: 0;, justify-content: start !important; 적용!-->
 		<div class="container nav_container">
-			<a class="js-scroll-trigger" href="../member/index.do">
+			<a class="js-scroll-trigger" href="/">
 				<!-- 이지원 추가 : jinhyun.css 의  #img_size{...} 내 padding-bottom: 0px; margin-left: 150px; 제거할 것!-->
 				<img src="../img/logo.png" id="img_size">
 			</a>
 			<!-- 검색창 부분 -->
 			<!-- 10. 이지원 수정 -->
 			<form action="../recipe/method.do" method="get">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				<div class="search-box">
 					<!-- 이지원 추가 -->
 					<!-- 10-2. 이지원 수정 -->
@@ -43,7 +44,7 @@
 							<!-- 이지원 추가 : 아래 태그와 header.css에 nav_ul li 클래스 추가 후, min-width: 0; 추가 -->
 							<li class="nav-item mx-0 mx-lg-1"><a
 								class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-								href="profile.do">'${sessionId}'</a></li>
+								href="../profile">'${sessionId}'</a></li>
 							<li class="nav-item mx-0 mx-lg-1"><a
 								class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 								href="../logout">로그아웃</a></li>

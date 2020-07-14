@@ -14,11 +14,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.app.recipe.model.RecipeCmtDTO;
 import com.app.recipe.service.RecipeCmtService;
+import com.app.recipe.util.s3.AmazonS3Service;
+import com.app.recipe.util.s3.AmazonS3Service.ImgPath;
 
 @Controller
 public class RecipeCmtController {
 	@Inject
 	RecipeCmtService rrsc;
+	@Inject
+	private AmazonS3Service svc;
 	
 	private ModelAndView getInfoRelay(ModelAndView mv, int seq) {
 		int totalC = rrsc.getTotalRecipeCmt(seq);
@@ -46,6 +50,9 @@ public class RecipeCmtController {
 		int seq = Integer.parseInt(request.getParameter("seq"));
 		String mem_id = request.getParameter("mem_id");
 		List<RecipeCmtDTO> list = rrsc.getRecipeCmtList(seq);
+		for(RecipeCmtDTO dto : list) {
+			dto.setMem_profile(svc.getFilePath(dto.getMem_profile(), ImgPath.PROFILE));
+		}
 			
 		mv = getInfoRelay(mv, seq);
 		
@@ -77,6 +84,9 @@ public class RecipeCmtController {
 		
 		rrsc.writeCmt(dto);
 		List<RecipeCmtDTO> list = rrsc.getRecipeCmtList(seq);
+		for(RecipeCmtDTO dt : list) {
+			dt.setMem_profile(svc.getFilePath(dt.getMem_profile(), ImgPath.PROFILE));
+		}
 		mv.addObject("seq", seq);
 		mv.addObject("list", list);
 		mv.setViewName("/recipe/getRecipeCmtList");
@@ -98,6 +108,9 @@ public class RecipeCmtController {
 		rrsc.modifyCmt(dto);
 		
 		List<RecipeCmtDTO> list = rrsc.getRecipeCmtList(seq);
+		for(RecipeCmtDTO dt : list) {
+			dt.setMem_profile(svc.getFilePath(dt.getMem_profile(), ImgPath.PROFILE));
+		}
 		
 		mv = getInfoRelay(mv, seq);
 		mv.addObject("list", list);
